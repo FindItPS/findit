@@ -23,6 +23,7 @@ import android.widget.TextView;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
@@ -30,6 +31,7 @@ import java.net.URL;
 
 public class Search extends AppCompatActivity{
 
+    TextView text;
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -76,17 +78,21 @@ public class Search extends AppCompatActivity{
         searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Document doc = null;
-                try {
-                    doc = Jsoup.connect("http://www.walmart.ca/search/scarf").get();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                Elements prices = doc.select("div.price-current");
-                String priceOne = prices.get(0).toString();
+//                Document doc = null;
+//                try {
+//                    doc = Jsoup.connect("http://www.walmart.ca/search/scarf").get();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//                Elements prices = doc.select("div.price-current");
+//                String priceOne = prices.get(0).toString();
+//
+//                text = (TextView) findViewById(R.id.textView);
+//                text.setText(priceOne);
 
-                TextView text = (TextView) findViewById(R.id.textView);
-                text.setText(priceOne);
+                MyTask task = new MyTask();
+
+                        task.execute("http://www.walmart.ca/search/scarf");
             }
         });
     }
@@ -184,5 +190,36 @@ public class Search extends AppCompatActivity{
             }
             return null;
         }
+    }
+
+    class MyTask extends AsyncTask<String, Void, String>{
+        Document doc = null ;
+        String abouttext = null;
+        @Override
+
+        protected void onPreExecute(){
+            super.onPreExecute();
+            text.setText("please wait...");
+        }
+        protected String doInBackground(String...params){
+
+            String url=params[0];
+
+            try{
+                doc = Jsoup.connect(url).get();
+                Element about = doc.select("div.price-current").first();
+                abouttext = about.text();
+            }
+            catch(Exception e){
+                e.printStackTrace();
+            }
+
+            return abouttext;
+        }
+        protected void onPostExecute(String result){
+            super.onPostExecute(result);
+            text.setText(result);
+        }
+
     }
 }
