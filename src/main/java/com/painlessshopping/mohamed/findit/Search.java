@@ -1,5 +1,6 @@
 package com.painlessshopping.mohamed.findit;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.design.widget.FloatingActionButton;
@@ -12,26 +13,41 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.text.Html;
+import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.webkit.JavascriptInterface;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.TextView;
 
+import org.json.JSONObject;
+import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.URL;
+import java.net.URLConnection;
+import java.util.HashMap;
 
 public class Search extends AppCompatActivity{
 
     TextView text;
+    static String site;
+    Document doc;
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -73,30 +89,67 @@ public class Search extends AppCompatActivity{
 //        });
 
 
-        Button searchBtn = (Button)findViewById(R.id.fetchButton);
+        final Context myApp = this;
+        text = (TextView) findViewById(R.id.textView);
 
-        searchBtn.setOnClickListener(new View.OnClickListener() {
+        final WebView google = (WebView) findViewById(R.id.webView);
+
+        Button fetchBtn = (Button) findViewById(R.id.fetchButton);
+
+        fetchBtn.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
-//                Document doc = null;
-//                try {
-//                    doc = Jsoup.connect("http://www.walmart.ca/search/scarf").get();
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//                Elements prices = doc.select("div.price-current");
-//                String priceOne = prices.get(0).toString();
-//
-//                text = (TextView) findViewById(R.id.textView);
-//                text.setText(priceOne);
 
-                MyTask task = new MyTask();
+                fetcher fetch = new fetcher();
+                fetch.execute();
 
-                        task.execute("http://www.walmart.ca/search/scarf");
             }
         });
+
+
     }
 
+
+
+    public class fetcher extends AsyncTask<Void, Void, Integer>{
+
+        @Override
+        protected Integer doInBackground(Void... voids) {
+            try{
+
+//                Connection.Response response= Jsoup.connect("https://www.google.ca/search?q=scarf+walmart&tbm=shop")
+//                        //.ignoreContentType(true)
+//                        .userAgent("Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36")
+//                        //.referrer("http://www.google.ca")
+//                        //.timeout(100000)
+//                        //.followRedirects(true)
+//                        .execute();
+//
+//                doc = response.parse();
+
+                Connection con = Jsoup.connect("http://www.tesco.com/direct/blocks/catalog/productlisting/infiniteBrowse.jsp?&view=grid&catId=4294967294+4294814304&sortBy=&searchquery=espresso+machine&offset=20&lazyload=true")
+                        .ignoreContentType(true);
+                Connection.Response res = con.execute();
+                String rawJSON = res.body();
+
+                JSONObject o = (JSONObject) JSONValue.parse(html);
+                String html = (String) o.get("products");
+
+
+
+            } catch (IOException e){
+                e.printStackTrace();
+            }
+
+            return 1;
+        }
+
+        @Override
+        protected void onPostExecute(Integer integer) {
+            System.out.println(doc.toString());
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -145,14 +198,14 @@ public class Search extends AppCompatActivity{
             return fragment;
         }
 
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_search, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
-            return rootView;
-        }
+//        @Override
+//        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+//                                 Bundle savedInstanceState) {
+//            View rootView = inflater.inflate(R.layout.fragment_search, container, false);
+//            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
+//            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+//            return rootView;
+//        }
     }
 
     /**
@@ -192,34 +245,5 @@ public class Search extends AppCompatActivity{
         }
     }
 
-    class MyTask extends AsyncTask<String, Void, String>{
-        Document doc = null ;
-        String abouttext = null;
-        @Override
 
-        protected void onPreExecute(){
-            super.onPreExecute();
-            text.setText("please wait...");
-        }
-        protected String doInBackground(String...params){
-
-            String url=params[0];
-
-            try{
-                doc = Jsoup.connect(url).get();
-                Element about = doc.select("div.price-current").first();
-                abouttext = about.text();
-            }
-            catch(Exception e){
-                e.printStackTrace();
-            }
-
-            return abouttext;
-        }
-        protected void onPostExecute(String result){
-            super.onPostExecute(result);
-            text.setText(result);
-        }
-
-    }
 }

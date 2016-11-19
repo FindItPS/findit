@@ -8,27 +8,45 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.painlessshopping.mohamed.findit.Search$PlaceholderFragment">
 
-    <TextView
-        android:id="@+id/section_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:id="@+id/textView"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
 
     <Button
         android:text="Fetch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/fetchButton"
-        android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
         android:onClick="buttonClicked"
-        android:elevation="0dp" />
+        android:elevation="0dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:scrollbars="vertical"
+        android:fillViewport="true"
+        android:layout_above="@+id/fetchButton">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:layout_alignTop="@+id/fetchButton"
+            android:layout_toStartOf="@+id/fetchButton" />
+
+    </ScrollView>
+
+    <WebView
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/scrollView"
+        android:layout_alignParentStart="true"
+        android:id ="@+id/webView"/>
+
+
+    <!--android:maxLines = "4"-->
+
 
 </RelativeLayout>
