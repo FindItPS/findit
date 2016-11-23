@@ -9,41 +9,52 @@
     tools:context="com.painlessshopping.mohamed.findit.Search$PlaceholderFragment">
 
 
-
-    <Button
-        android:text="Fetch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/fetchButton"
-        android:onClick="buttonClicked"
-        android:elevation="0dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
-
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="fill_parent"
         android:layout_height="100dp"
         android:scrollbars="vertical"
         android:fillViewport="true"
-        android:layout_above="@+id/fetchButton">
+        android:layout_above="@+id/buttonDown">
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:layout_weight="1.0"
-            android:layout_alignTop="@+id/fetchButton"
-            android:layout_toStartOf="@+id/fetchButton" />
+            android:layout_alignTop="@+id/buttonDown"
+            android:layout_toStartOf="@+id/buttonDown" />
 
     </ScrollView>
 
-    <WebView
-        android:layout_width="fill_parent"
+    <ListView
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/scrollView"
         android:layout_alignParentStart="true"
-        android:id ="@+id/webView"/>
+        android:id ="@+id/listView"/>
+
+    <Button
+        android:text="Search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonUp"
+        android:onClick="buttonClicked"
+        android:elevation="0dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="49dp" />
+
+    <Button
+        android:text="Clear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonDown"
+        android:onClick="buttonClicked"
+        android:elevation="0dp"
+        android:layout_marginStart="62dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@+id/buttonUp" />
 
 
     <!--android:maxLines = "4"-->

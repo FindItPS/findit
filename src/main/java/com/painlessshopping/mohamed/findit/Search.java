@@ -1,8 +1,11 @@
 package com.painlessshopping.mohamed.findit;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -23,9 +26,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import android.webkit.JavascriptInterface;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import org.json.JSONObject;
@@ -41,6 +47,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Search extends AppCompatActivity{
@@ -61,6 +68,122 @@ public class Search extends AppCompatActivity{
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
+
+    private final Handler uiHandler = new Handler();
+    private ArrayAdapter<String> adapter;
+    private ArrayList<String> entries = new ArrayList<>();
+    private ProgressDialog progressDialog;
+
+//    private class JSHtmlInterface {
+//        @android.webkit.JavascriptInterface
+//        public void showHTML(String html) {
+//            final String htmlContent = html;
+//
+//            uiHandler.post(
+//                    new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            Document doc = Jsoup.parse(htmlContent);
+//                            System.out.println(doc.toString());
+//                            Elements elements = doc.select("body > div#main > div#cnt > div.mw > div#rcnt > " +
+//                                    "div.col > div#center_col > div.res > div#search > div > div#ires > div#rso > " +
+//                                    "div.sh-sr__shop-result-group._G2d > div.sh-pr__product-results > div.g.psgi");
+//                            entries.clear();
+//                            for (Element element : elements) {
+//                                String title = element.select("div.psgicont > h3 > a.pstl").first().text();
+//                                String imgUrl = element.select("div.psgicont > div.psgextra > div._tyb.shop__secondary > span.price").first().text();
+//                                entries.add(title + "\n" + imgUrl);
+//                            }
+//                            adapter.notifyDataSetChanged();
+//                        }
+//                    }
+//            );
+//        }
+//    }
+//
+//
+//    @Override
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.fragment_search);
+//
+//        ListView listView = (ListView) findViewById(R.id.listView);
+//        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, android.R.id.text1, entries);
+//        listView.setAdapter(adapter);
+//
+//        progressDialog = ProgressDialog.show(this, "Loading","Please wait...", true);
+//        progressDialog.setCancelable(false);
+//
+//        try {
+//            final WebView browser = new WebView(this);
+//            browser.setVisibility(View.INVISIBLE);
+//            browser.setLayerType(View.LAYER_TYPE_NONE,null);
+//            browser.getSettings().setJavaScriptEnabled(true);
+//            browser.getSettings().setBlockNetworkImage(true);
+//            browser.getSettings().setDomStorageEnabled(false);
+//            browser.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
+//            browser.getSettings().setLoadsImagesAutomatically(false);
+//            browser.getSettings().setGeolocationEnabled(false);
+//            browser.getSettings().setSupportZoom(false);
+//
+//            browser.addJavascriptInterface(new JSHtmlInterface(), "JSBridge");
+//
+//            browser.setWebViewClient(
+//                    new WebViewClient() {
+//
+//                        @Override
+//                        public void onPageStarted(WebView view, String url, Bitmap favicon) {
+//                            progressDialog.show();
+//                            super.onPageStarted(view, url, favicon);
+//                        }
+//
+//                        @Override
+//                        public void onPageFinished(WebView view, String url) {
+//                            browser.loadUrl("javascript:window.JSBridge.showHTML('<html>'+document.getElementsByTagName('html')[0].innerHTML+'</html>');");
+//                            progressDialog.dismiss();
+//                        }
+//                    }
+//            );
+//
+//            findViewById(R.id.buttonDown).setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    uiHandler.post(new Runnable() {
+//                        @Override
+//                        public void run() {
+////                            int page = Integer.parseInt(browser.getUrl().split("-")[1]);
+////                            int newPage = page > 1 ? page-1 : 1;
+//                            browser.loadUrl("https://www.google.ca/search?q=scarf+walmart&tbm=shop");
+//                            browser.loadUrl(browser.getUrl()); // not sure why this is needed, but doesn't update without it on my device
+//                            if(getSupportActionBar()!=null) getSupportActionBar().setTitle(browser.getUrl());
+//                        }
+//                    });
+//                }
+//            });
+//
+//            findViewById(R.id.buttonUp).setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    uiHandler.post(new Runnable() {
+//                        @Override
+//                        public void run() {
+////                            int page = Integer.parseInt(browser.getUrl().split("-")[1]);
+////                            int newPage = page+1;
+//                            browser.loadUrl("https://www.google.ca/search?q=scarf+walmart&tbm=shop");
+//                            browser.loadUrl(browser.getUrl()); // not sure why this is needed, but doesn't update without it on my device
+//                            if(getSupportActionBar()!=null) getSupportActionBar().setTitle(browser.getUrl());
+//                        }
+//                    });
+//                }
+//            });
+//
+//            browser.loadUrl("https://www.google.ca/search?q=scarf+walmart&tbm=shop");
+//            if(getSupportActionBar()!=null) getSupportActionBar().setTitle(browser.getUrl());
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,9 +215,8 @@ public class Search extends AppCompatActivity{
         final Context myApp = this;
         text = (TextView) findViewById(R.id.textView);
 
-        final WebView google = (WebView) findViewById(R.id.webView);
 
-        Button fetchBtn = (Button) findViewById(R.id.fetchButton);
+        Button fetchBtn = (Button) findViewById(R.id.buttonUp);
 
         fetchBtn.setOnClickListener(new View.OnClickListener() {
 
@@ -110,6 +232,93 @@ public class Search extends AppCompatActivity{
 
     }
 
+    public class Item {
+
+        String title, brand, description;
+        //ArrayList<String> stores;
+        Double price;
+
+        public Item(String t, String b, Double p){
+            setTitle(t);
+            setBrand(b);
+            //setDescription(d);
+            setPrice(p);
+        }
+        public void setTitle(String t){
+
+            if(!t.isEmpty()){
+                title = t;
+            } else {
+                title = "Unspecified";
+            }
+        }
+
+        public void setBrand(String b){
+
+            if(!b.isEmpty()){
+                brand = b;
+            } else {
+                brand = "Unspecified";
+            }
+        }
+
+//        public void setDescription(String d){
+//
+//            if(!d.isEmpty()){
+//                description = d;
+//            } else {
+//                description = "Unspecified";
+//            }
+//        }
+
+//        public void addStore(String s){
+//
+//            if(!s.isEmpty()){
+//                    stores.add(s);
+//            } else {
+//                //Do nothing
+//            }
+//        }
+//
+//        public void removeStore(String s){
+//            stores.remove(s);
+//        }
+
+        public void setPrice(Double p){
+
+            if(p != 0){
+                price = p;
+            } else {
+                //Do nothing
+            }
+        }
+
+        public String getTitle(){
+            return this.title;
+        }
+
+        public String getBrand(){
+            return this.brand;
+        }
+
+        public String getDescription(){
+            return this.description;
+        }
+
+//        public ArrayList<String> getStores(){
+//            return this.stores;
+//        }
+
+        public Double getPrice(){
+            return this.price;
+        }
+
+        @Override
+        public String toString() {
+            return "Item : " + getTitle() + ", from : " + brand + "costs : " + getPrice();
+        }
+    }
+
 
 
     public class fetcher extends AsyncTask<Void, Void, Integer>{
@@ -118,23 +327,57 @@ public class Search extends AppCompatActivity{
         protected Integer doInBackground(Void... voids) {
             try{
 
-//                Connection.Response response= Jsoup.connect("https://www.google.ca/search?q=scarf+walmart&tbm=shop")
-//                        //.ignoreContentType(true)
-//                        .userAgent("Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36")
-//                        //.referrer("http://www.google.ca")
-//                        //.timeout(100000)
-//                        //.followRedirects(true)
-//                        .execute();
+                Connection.Response response = Jsoup.connect("https://www.google.ca/search?q=scarf+walmart&tbm=shop")
+                        //.ignoreContentType(true)
+                        .userAgent("Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36")
+                        //.referrer("http://www.google.ca")
+                        //.timeout(1000000)
+                        //.followRedirects(true)
+                        .execute();
+
+                //response = Jsoup.connect(response.url());
+
+                doc = response.parse();
+
+//                Connection con = Jsoup.connect("http://www.tesco.com/direct/blocks/catalog/productlisting/infiniteBrowse.jsp?&view=grid&catId=4294967294+4294814304&sortBy=&searchquery=espresso+machine&offset=20&lazyload=true")
+//                        .ignoreContentType(true);
+//                Connection.Response res = con.execute();
+//                String rawJSON = res.body();
 //
-//                doc = response.parse();
+//                JSONObject o = (JSONObject) JSONValue.parse(html);
+//                String html = (String) o.get("products");
 
-                Connection con = Jsoup.connect("http://www.tesco.com/direct/blocks/catalog/productlisting/infiniteBrowse.jsp?&view=grid&catId=4294967294+4294814304&sortBy=&searchquery=espresso+machine&offset=20&lazyload=true")
-                        .ignoreContentType(true);
-                Connection.Response res = con.execute();
-                String rawJSON = res.body();
 
-                JSONObject o = (JSONObject) JSONValue.parse(html);
-                String html = (String) o.get("products");
+
+                System.out.println("*********************************");
+
+                //******** FOR LOGCAT**************
+                System.out.println(doc.toString());
+                //*********************************
+
+                System.out.println("*********************************");
+
+                System.out.println("Finished");
+                Elements items = doc.select("body#gsr > div#main > div#cnt >  div.mw > div#rcnt > div.col > div#center_col > div#res > div#search > div > div#ires > div#rso > div.sh-sr__shop-result-group._G2d > div.sh-pr__product-results > div.g.psgi > " +
+                        "div.psgicont");
+
+                ArrayList<Item> results = null;
+
+
+
+                for(int i = 0; i < items.size() ; i++){
+                    String title = items.get(i).select("h3.pstl").text();
+                    //String brand = items.get(i).select("");
+                    //String description = items.get(i).select();
+                    String store = items.get(i).select("div.psgextra > div._tyb shop__secondary").text();
+
+                    Double price = Double.parseDouble(items.get(i).select("div.psgextra > div._tyb shop__secondary > span.price").text());
+                    results.add(new Item(title, store, price));
+
+                    System.out.println(results.get(i).toString());
+
+                }
+
 
 
 
@@ -147,7 +390,6 @@ public class Search extends AppCompatActivity{
 
         @Override
         protected void onPostExecute(Integer integer) {
-            System.out.println(doc.toString());
         }
     }
 

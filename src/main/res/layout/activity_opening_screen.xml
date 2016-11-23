@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/activity_opening_screen"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:paddingBottom="@dimen/activity_vertical_margin"
+android:paddingLeft="@dimen/activity_horizontal_margin"
+android:paddingRight="@dimen/activity_horizontal_margin"
+android:paddingTop="@dimen/activity_vertical_margin"
+tools:context="com.painlessshopping.mohamed.findit.OpeningScreen">
+
+    <TextView
+        android:text="Painless Shopping"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/login_button"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/findItSubTitle"/>
+
+    <TextView
+        android:text="Find It!"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/findItSubTitle"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/findItTitle" />
+
+<Button
+    android:text="Login"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/login_button"
+    android:layout_above="@+id/create_account_button"
+    android:layout_alignParentEnd="true"
+    android:layout_alignParentStart="true"
+    android:onClick="loginButtonClicked" />
+
+<Button
+    android:text="Create Account"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/create_account_button"
+    android:onClick="createAccountButtonClicked"
+    android:layout_centerVertical="true"
+    android:layout_alignParentStart="true" />
+
+</RelativeLayout>
