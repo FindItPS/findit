@@ -110,56 +110,10 @@ public class Search extends AppCompatActivity{
 
         @Override
         protected Integer doInBackground(Void... voids) {
-            try{
-                //This doInBackground will crash the program because the page is  JavaScript generated (A.K.A. no html!) Comment it out if you
-                //want to test run it
-                Document doc = Jsoup.connect("https://www.google.ca/search?q=scarf+walmart&tbm=shop")
-                        .ignoreContentType(true)
-                        .userAgent("Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36")
-                        //.referrer("http://www.google.ca")
-                        //.timeout(1000000)
-                        .followRedirects(true)
-                        //.proxy(proxy)
-                        .get();
 
-
-
-                System.out.println("*********************************");
-
-                //******** FOR LOGCAT**************
-                System.out.println(doc.toString());
-                //*********************************
-
-                System.out.println("*********************************");
-
-                System.out.println("Finished");
-
-                Elements items = doc.select("body#gsr > div#main > div#cnt >  div.mw > div#rcnt > div.col > div#center_col > div#res > div#search > div > div#ires > div#rso > div.sh-sr__shop-result-group._G2d > div.sh-pr__product-results > div.g.psgi > " +
-                        "div.psgicont");
-
-                ArrayList<Item> results = null;
-
-
-
-                for(int i = 0; i < items.size() ; i++){
-                    String title = items.get(i).select("h3.pstl").text();
-                    //String brand = items.get(i).select("");
-                    //String description = items.get(i).select();
-                    String store = items.get(i).select("div.psgextra > div._tyb shop__secondary").text();
-
-                    Double price = Double.parseDouble(items.get(i).select("div.psgextra > div._tyb shop__secondary > span.price").text());
-                    results.add(new Item(title, store, price));
-
-                    System.out.println(results.get(i).toString());
-
-                }
-
-
-
-
-            } catch (IOException e){
-                e.printStackTrace();
-            }
+                CanadaComputersSearch query = new CanadaComputersSearch("mouse");
+                System.out.println(query.fetchDescription(1));
+                System.out.println(query.fetchPrice(1));
 
             return 1;
         }

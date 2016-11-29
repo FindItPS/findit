@@ -23,6 +23,10 @@ public class CanadaComputersSearch extends SearchQuery{
                     .userAgent("Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36")
                     .get();
 
+            System.out.println(doc.toString());
+            System.out.println("End of toString.");
+
+            parse(doc);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -30,8 +34,8 @@ public class CanadaComputersSearch extends SearchQuery{
 
     public void parse(Document d){
 
-        resultsOdd = d.getElementsByClass("productListing-odd");
-        resultsEven = d.getElementsByClass("productListing-even");
+        resultsOdd = d.select("productListing-odd");
+        resultsEven = d.select("productListing-even");
 
         //Add resultsOdd and resultsEven to the master results Element array
         for(int i = 0; i < resultsOdd.size(); i++){
@@ -42,12 +46,15 @@ public class CanadaComputersSearch extends SearchQuery{
             results.add(resultsEven.get(j));
         }
 
+        System.out.println("SIZE");
+        System.out.println(results.size());
     }
 
     public double fetchPrice(int i){
 
         try{
             Elements productData = results.get(i).getElementsByTag("td");
+            System.out.println("PRODUCT DATA:");
             System.out.println(productData.toString());
 
             //Parses a double after the first chart "$" and sets that to price
@@ -61,7 +68,22 @@ public class CanadaComputersSearch extends SearchQuery{
         return price;
     }
 
-    public String fetchDescription(){
+    public String fetchDescription(int i){
+
+        try{
+            Elements productData = results.get(i).getElementsByTag("td");
+            System.out.println(productData.toString());
+
+            //Selects the item description from canada computers website
+            description = productData.get(1)
+                    .select("form#compare > div.item_description > a").text();
+
+            System.out.println("DESCRIPTION:");
+            System.out.println(description);
+
+        } catch (NullPointerException e){
+            e.printStackTrace();
+        }
 
         return description;
     }
