@@ -10,13 +10,22 @@ android:paddingRight="@dimen/activity_horizontal_margin"
 android:paddingTop="@dimen/activity_vertical_margin"
 tools:context="com.painlessshopping.mohamed.findit.OpeningScreen">
 
+   <ImageView
+       android:id="@+id/findItLogo"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_above="@+id/findItTitle"
+       android:layout_centerHorizontal="true"
+       android:src="@drawable/ic_launcher"/>
+
     <TextView
         android:text="Painless Shopping"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/login_button"
+        android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:id="@+id/findItSubTitle"/>
+        android:id="@+id/findItSubTitle"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <TextView
         android:text="Find It!"
@@ -24,25 +33,27 @@ tools:context="com.painlessshopping.mohamed.findit.OpeningScreen">
         android:layout_height="wrap_content"
         android:layout_above="@+id/findItSubTitle"
         android:layout_centerHorizontal="true"
-        android:id="@+id/findItTitle" />
+        android:id="@+id/findItTitle"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display3" />
 
 <Button
     android:text="Login"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/login_button"
-    android:layout_above="@+id/create_account_button"
+    android:layout_below="@+id/findItSubTitle"
     android:layout_alignParentEnd="true"
     android:layout_alignParentStart="true"
     android:onClick="loginButtonClicked" />
 
-<Button
-    android:text="Create Account"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/create_account_button"
-    android:onClick="createAccountButtonClicked"
-    android:layout_centerVertical="true"
-    android:layout_alignParentStart="true" />
+    <Button
+        android:text="Create Account"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/create_account_button"
+        android:onClick="createAccountButtonClicked"
+        android:layout_below="@+id/login_button"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

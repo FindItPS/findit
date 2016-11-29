@@ -44,13 +44,29 @@ public class CanadaComputersSearch extends SearchQuery{
 
     }
 
-    public double fetchPrice(){
+    public double fetchPrice(int i){
+
+        try{
+            Elements productData = results.get(i).getElementsByTag("td");
+            System.out.println(productData.toString());
+
+            //Parses a double after the first chart "$" and sets that to price
+            price = Double.parseDouble(productData.get(2).text()
+                    .substring(1 , productData.get(2).text().length()));
+
+        } catch (NullPointerException e){
+            e.printStackTrace();
+        }
+
         return price;
     }
 
     public String fetchDescription(){
+
         return description;
     }
+
+
 
 
 }
