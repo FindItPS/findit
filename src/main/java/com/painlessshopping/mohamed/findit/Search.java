@@ -1,5 +1,6 @@
 package com.painlessshopping.mohamed.findit;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -52,7 +53,7 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Search extends AppCompatActivity{
+public class Search extends AppCompatActivity {
 
     TextView text;
     static String site;
@@ -72,56 +73,138 @@ public class Search extends AppCompatActivity{
     private ViewPager mViewPager;
 
     private final Handler uiHandler = new Handler();
-    private ArrayAdapter<String> adapter;
+//    private ArrayAdapter<String> adapter;
     private ArrayList<String> entries = new ArrayList<>();
     private ProgressDialog progressDialog;
+
+    private class JSHtmlInterface {
+        @android.webkit.JavascriptInterface
+        public void showHTML(String html) {
+            final String htmlContent = html;
+
+            uiHandler.post(
+                    new Runnable() {
+                        @Override
+                        public void run() {
+                            Document doc = Jsoup.parse(htmlContent);
+                            Elements elements = doc.select("#online_movies > div > div");
+                            entries.clear();
+                            for (Element element : elements) {
+                                String title = element.select("div.l-description.float-left > div:nth-child(1) > a").first().attr("title");
+                                String imgUrl = element.select("div.l-image.float-left > a > img.lazy").first().attr("data-original");
+                                entries.add(title + "\n" + imgUrl);
+                            }
+//                            adapter.notifyDataSetChanged();
+                        }
+                    }
+            );
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_search);
 
+//        ListView listView = (ListView) findViewById(R.id.listView);
+//        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, android.R.id.text1, entries);
+//        listView.setAdapter(adapter);
 
-        final Context myApp = this;
-        text = (TextView) findViewById(R.id.textView);
+        progressDialog = ProgressDialog.show(this, "Loading", "Please wait...", true);
+        progressDialog.setCancelable(false);
 
+        try {
+            final WebView browser = new WebView(this);
+            browser.setVisibility(View.INVISIBLE);
+            browser.setLayerType(View.LAYER_TYPE_NONE, null);
+            browser.getSettings().setJavaScriptEnabled(true);
+            browser.getSettings().setBlockNetworkImage(true);
+            browser.getSettings().setDomStorageEnabled(true);
+            browser.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
+            browser.getSettings().setLoadsImagesAutomatically(false);
+            browser.getSettings().setGeolocationEnabled(false);
+            browser.getSettings().setSupportZoom(false);
+            browser.getSettings().setUserAgentString("Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36");
 
-        Button fetchBtn = (Button) findViewById(R.id.buttonUp);
+            browser.addJavascriptInterface(new JSHtmlInterface(), "JSBridge");
 
-        fetchBtn.setOnClickListener(new View.OnClickListener() {
+            browser.setWebViewClient(
+                    new WebViewClient() {
 
-            @Override
-            public void onClick(View v) {
+                        @Override
+                        public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                            progressDialog.show();
+                            super.onPageStarted(view, url, favicon);
+                        }
 
-                fetcher fetch = new fetcher();
-                fetch.execute();
+                        @Override
+                        public void onPageFinished(WebView view, String url) {
+                            browser.loadUrl("javascript:window.JSBridge.showHTML('<html>'+document.getElementsByTagName('html')[0].innerHTML+'</html>');");
+                            progressDialog.dismiss();
+                        }
+                    }
+            );
 
-            }
-        });
+            findViewById(R.id.buttonDown).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    uiHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            int page = Integer.parseInt(browser.getUrl().split("=")[2]);
+                            int newPage = page > 1 ? page - 1 : 1;
+                            browser.loadUrl("http://www.canadacomputers.com/simple_search.php?keywords=mouse&page=" + newPage);
+                            browser.loadUrl(browser.getUrl()); // not sure why this is needed, but doesn't update without it on my device
+                            if (getSupportActionBar() != null)
+                                getSupportActionBar().setTitle(browser.getUrl());
 
+                            System.out.println("Page " + newPage);
+                            new CanadaComputersSearch(browser, Search.this);
+                        }
+                    });
+                }
+            });
 
+            findViewById(R.id.buttonUp).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    uiHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            int page = Integer.parseInt(browser.getUrl().split("=")[2]);
+                            int newPage = page + 1;
+                            browser.loadUrl("http://www.canadacomputers.com/simple_search.php?keywords=mouse&page=" + newPage);
+                            browser.loadUrl(browser.getUrl()); // not sure why this is needed, but doesn't update without it on my device
+                            if (getSupportActionBar() != null)
+                                getSupportActionBar().setTitle(browser.getUrl());
+
+                            System.out.println("Page " + newPage);
+                            new CanadaComputersSearch(browser, Search.this);
+                        }
+                    });
+                }
+            });
+
+            browser.loadUrl("http://www.canadacomputers.com/simple_search.php?keywords=mouse&page=1");
+            new CanadaComputersSearch(browser, this);
+            AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
+            dlgAlert.setMessage("Your Search has been Completed!");
+            dlgAlert.setTitle("Find It!");
+            dlgAlert.setPositiveButton("OK", null);
+            dlgAlert.setCancelable(true);
+            dlgAlert.create().show();
+
+            if (getSupportActionBar() != null) getSupportActionBar().setTitle(browser.getUrl());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 
 
 
 
-    public class fetcher extends AsyncTask<Void, Void, Integer>{
-
-        @Override
-        protected Integer doInBackground(Void... voids) {
-
-                CanadaComputersSearch query = new CanadaComputersSearch("mouse");
-                System.out.println(query.fetchDescription(1));
-                System.out.println(query.fetchPrice(1));
-
-            return 1;
-        }
-
-        @Override
-        protected void onPostExecute(Integer integer) {
-        }
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

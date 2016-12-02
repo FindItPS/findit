@@ -34,28 +34,6 @@ public class Item {
         }
     }
 
-//        public void setDescription(String d){
-//
-//            if(!d.isEmpty()){
-//                description = d;
-//            } else {
-//                description = "Unspecified";
-//            }
-//        }
-
-//        public void addStore(String s){
-//
-//            if(!s.isEmpty()){
-//                    stores.add(s);
-//            } else {
-//                //Do nothing
-//            }
-//        }
-//
-//        public void removeStore(String s){
-//            stores.remove(s);
-//        }
-
     public void setPrice(Double p){
 
         if(p != 0){
