@@ -30,6 +30,7 @@ import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -55,6 +56,9 @@ import java.util.HashMap;
 
 public class Search extends AppCompatActivity {
 
+    ArrayList<Item> Items;
+    ListView listView;
+    public static CustomAdapter adapter;
     TextView text;
     static String site;
     Document doc;
@@ -106,9 +110,8 @@ public class Search extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_search);
 
-//        ListView listView = (ListView) findViewById(R.id.listView);
-//        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, android.R.id.text1, entries);
-//        listView.setAdapter(adapter);
+
+
 
         progressDialog = ProgressDialog.show(this, "Loading", "Please wait...", true);
         progressDialog.setCancelable(false);
@@ -186,15 +189,34 @@ public class Search extends AppCompatActivity {
             });
 
             browser.loadUrl("http://www.canadacomputers.com/simple_search.php?keywords=mouse&page=1");
-            new CanadaComputersSearch(browser, this);
-            AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
-            dlgAlert.setMessage("Your Search has been Completed!");
-            dlgAlert.setTitle("Find It!");
-            dlgAlert.setPositiveButton("OK", null);
-            dlgAlert.setCancelable(true);
-            dlgAlert.create().show();
+
+            CanadaComputersSearch ccsearch = new CanadaComputersSearch(browser, this);
+
+
+            ListView listView=(ListView)findViewById(R.id.listView);
+
+            Items = new ArrayList<>();
+
+            adapter= new CustomAdapter(Items, this);
+
+
+            listView.setAdapter(adapter);
+
+
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                    Item item= Items.get(position);
+
+                    Snackbar.make(view, item.getTitle()+"\n"+item.getStore()+" Price: "+item.getPrice(), Snackbar.LENGTH_LONG)
+                            .setAction("No action", null).show();
+                }
+            });
 
             if (getSupportActionBar() != null) getSupportActionBar().setTitle(browser.getUrl());
+
+
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -302,3 +324,5 @@ public class Search extends AppCompatActivity {
 
 
 }
+
+

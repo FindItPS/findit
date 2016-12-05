@@ -15,6 +15,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * Created by Abdourahmane on 2016-11-28.
@@ -23,6 +24,8 @@ import java.io.IOException;
 public class CanadaComputersSearch extends SearchQuery{
 
     public Elements resultsEven, finalDoc;
+    private ArrayList<Item> processed;
+    private Context c = null;
 
     /**
      * Constructor method
@@ -33,7 +36,10 @@ public class CanadaComputersSearch extends SearchQuery{
 
         //Get the link from the WebView, and save it in a final string so it can be accessed from worker thread
         final String link = view.getUrl();
+        c = context;
         new fetcher(context).execute(link);
+
+
     }
 
     /**
@@ -85,8 +91,15 @@ public class CanadaComputersSearch extends SearchQuery{
         protected void onPostExecute(Elements result) {
 
 
+            Search.adapter.clear();
+            processed = crunchResults(parse(result));
+            System.out.println("Done Crunching");
+            Search.adapter.addAll(processed);
+            Search.adapter.notifyDataSetChanged();
+            System.out.println("Adapter Notified");
             pdialog.cancel();
-            parse(result);
+
+
 
 
         }
@@ -96,7 +109,7 @@ public class CanadaComputersSearch extends SearchQuery{
      * This class stores the relevant results retrieved from the Asynctask in one Elements object for manipulation
      * @param r The elements retrieved from the Asynctask "fetcher"
      */
-    public void parse(Elements r){
+    public Elements parse(Elements r){
 
         results = r.select("tr.productListing-odd");
         resultsEven = r.select("tr.productListing-even");
@@ -106,8 +119,10 @@ public class CanadaComputersSearch extends SearchQuery{
             results.add(resultsEven.get(j));
         }
         System.out.println(results.size() + " Results have been returned.");
-        fetchPrice(results);
-        fetchDescription(results);
+//        fetchPrice(results);
+//        fetchDescription(results);
+
+        return results;
     }
 
 
@@ -170,6 +185,8 @@ public class CanadaComputersSearch extends SearchQuery{
                 //Prints the description to console for testing purposes
                 System.out.println("DESCRIPTION " + (i + 1) + ": " + description);
 
+
+
             }
 
         } catch (NullPointerException e){
@@ -182,4 +199,46 @@ public class CanadaComputersSearch extends SearchQuery{
 
 
 
-}
+    public ArrayList<Item> crunchResults(Elements e){
+
+        ArrayList<Item> results = new ArrayList<Item>();
+
+        try {
+
+            for (int i = 0; i < e.size(); i++) {
+                Element ele = e.get(i).select("td").get(1);
+
+                String description = ele.select("div.item_description > a").first().text();
+
+                Element prices = e.get(i).select("td").get(2);
+
+                //For some reason I have to substring this twice seperately because it doesn't work otherwise
+                String pricestring = prices.toString().substring(prices.toString().indexOf("$") + 1);
+                int endIndex = 0;
+
+                while (Character.isDigit(pricestring.charAt(endIndex))) {
+                    endIndex++;
+                }
+
+                pricestring = pricestring.substring(0, endIndex);
+                //Parses the double as an actual price
+                price = Double.parseDouble(pricestring);
+
+
+                String store = "Canada Computers";
+
+                results.add(new Item(description, store, price));
+
+                System.out.println(results.get(i).toString());
+            }
+        } catch (Exception a){
+            a.printStackTrace();
+        }
+
+        return results;
+    }
+
+    public ArrayList<Item> getProcessed() {
+        return processed;
+    }
+ }

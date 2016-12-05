@@ -6,13 +6,12 @@ package com.painlessshopping.mohamed.findit;
 
 public class Item {
 
-    String title, brand, description;
-    //ArrayList<String> stores;
+    String title, store;
     Double price;
 
-    public Item(String t, String b, Double p){
+    public Item(String t, String s, Double p){
         setTitle(t);
-        setBrand(b);
+        setStore(s);
         //setDescription(d);
         setPrice(p);
     }
@@ -25,12 +24,12 @@ public class Item {
         }
     }
 
-    public void setBrand(String b){
+    public void setStore(String s){
 
-        if(!b.isEmpty()){
-            brand = b;
+        if(!s.isEmpty()){
+            store = s;
         } else {
-            brand = "Unspecified";
+            store = "Unspecified";
         }
     }
 
@@ -39,7 +38,7 @@ public class Item {
         if(p != 0){
             price = p;
         } else {
-            //Do nothing
+            System.out.println("There was an Error Setting the Price of the object " + getTitle() + ".");
         }
     }
 
@@ -47,24 +46,19 @@ public class Item {
         return this.title;
     }
 
-    public String getBrand(){
-        return this.brand;
-    }
-
-    public String getDescription(){
-        return this.description;
-    }
-
-//        public ArrayList<String> getStores(){
-//            return this.stores;
-//        }
 
     public Double getPrice(){
+
         return this.price;
     }
 
+    public String getStore() {
+        return this.store;
+    }
     @Override
     public String toString() {
-        return "Item : " + getTitle() + ", from : " + brand + "costs : " + getPrice();
+        return getTitle() + " from  " + store + " costs $" + getPrice() + ".";
     }
+
+
 }
