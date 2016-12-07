@@ -88,7 +88,6 @@ public class CustomAdapter extends ArrayAdapter<Item> implements View.OnClickLis
         lastPosition = position;
 
         viewHolder.itemTitle.setText(item.getTitle());
-        //viewHolder.itemStore.setText(item.getStore());
         viewHolder.itemPrice.setText("$" + item.getPrice());
         viewHolder.storeLogo.setOnClickListener(this);
         viewHolder.storeLogo.setTag(position);

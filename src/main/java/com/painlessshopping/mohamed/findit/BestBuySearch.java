@@ -16,7 +16,7 @@ import java.util.Arrays;
 
 public class BestBuySearch extends SearchQuery{
 
-    public ArrayList<Item> BestBuySearch(String query){
+    public BestBuySearch(String query){
 
         //Using JSoup, the code connects to the Best Buy product search
         //The search is configured to return certain attributes (ex. item name, availibilty) in a json format
@@ -35,14 +35,12 @@ public class BestBuySearch extends SearchQuery{
             //Save search results to be manipulated with parse method
             String searchResults = doc.toString();
 
-            return transferItems(searchResults);
             
         //Exception Catch
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return null;
 
     }
 

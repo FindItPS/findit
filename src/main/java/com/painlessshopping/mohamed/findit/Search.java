@@ -56,7 +56,7 @@ import java.util.HashMap;
 
 public class Search extends AppCompatActivity {
 
-    ArrayList<Item> Items;
+    ArrayList<Item> Items = new ArrayList<>(); ;
     ListView listView;
     public static CustomAdapter adapter;
     TextView text;
@@ -113,8 +113,8 @@ public class Search extends AppCompatActivity {
 
 
 
-        progressDialog = ProgressDialog.show(this, "Loading", "Please wait...", true);
-        progressDialog.setCancelable(false);
+
+
 
         try {
             final WebView browser = new WebView(this);
@@ -131,19 +131,22 @@ public class Search extends AppCompatActivity {
 
             browser.addJavascriptInterface(new JSHtmlInterface(), "JSBridge");
 
+
             browser.setWebViewClient(
                     new WebViewClient() {
 
                         @Override
                         public void onPageStarted(WebView view, String url, Bitmap favicon) {
-                            progressDialog.show();
+//                            progressDialog = ProgressDialog.show(Search.this, "Just a Moment", "We'll be right with you", true);
+//                            progressDialog.setCancelable(false);
+//                            progressDialog.show();
                             super.onPageStarted(view, url, favicon);
                         }
 
                         @Override
                         public void onPageFinished(WebView view, String url) {
                             browser.loadUrl("javascript:window.JSBridge.showHTML('<html>'+document.getElementsByTagName('html')[0].innerHTML+'</html>');");
-                            progressDialog.dismiss();
+//                            progressDialog.dismiss();
                         }
                     }
             );
@@ -188,14 +191,35 @@ public class Search extends AppCompatActivity {
                 }
             });
 
-            browser.loadUrl("http://www.canadacomputers.com/simple_search.php?keywords=mouse&page=1");
+            findViewById(R.id.searchBtn).setOnClickListener(new View.OnClickListener() {
 
-            CanadaComputersSearch ccsearch = new CanadaComputersSearch(browser, this);
+                @Override
+                public void onClick(View view) {
+
+                    uiHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+
+
+                            TextView text = (TextView) findViewById(R.id.editText);
+
+                            //If something has been entered into the text field, start a search with entered info
+                            if(text.getText() != null){
+                                browser.loadUrl("http://www.canadacomputers.com/simple_search.php?keywords=" + text.getText().toString());
+                                browser.loadUrl(browser.getUrl());
+
+                                new CanadaComputersSearch(browser, Search.this);
+
+                            }
+                        }
+                    });
+
+                }
+            });
 
 
             ListView listView=(ListView)findViewById(R.id.listView);
 
-            Items = new ArrayList<>();
 
             adapter= new CustomAdapter(Items, this);
 
