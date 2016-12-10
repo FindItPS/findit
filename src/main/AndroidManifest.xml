@@ -43,6 +43,7 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".FeaturedScreen" android:screenOrientation="portrait"/>
 
         <activity android:name=".MapsActivity" android:screenOrientation="portrait"/>
         <activity android:name=".LoginActivity"  android:screenOrientation="portrait"/>

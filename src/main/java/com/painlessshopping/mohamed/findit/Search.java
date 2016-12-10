@@ -81,7 +81,7 @@ public class Search extends AppCompatActivity {
     private ArrayList<String> entries = new ArrayList<>();
     private ProgressDialog progressDialog;
 
-    private class JSHtmlInterface {
+    protected class JSHtmlInterface {
         @android.webkit.JavascriptInterface
         public void showHTML(String html) {
             final String htmlContent = html;
@@ -94,11 +94,11 @@ public class Search extends AppCompatActivity {
                             Elements elements = doc.select("#online_movies > div > div");
                             entries.clear();
                             for (Element element : elements) {
-                                String title = element.select("div.l-description.float-left > div:nth-child(1) > a").first().attr("title");
+                                String title = element.select("div.l-description .float-left > div:nth-child(1) > a").first().attr("title");
                                 String imgUrl = element.select("div.l-image.float-left > a > img.lazy").first().attr("data-original");
                                 entries.add(title + "\n" + imgUrl);
                             }
-//                            adapter.notifyDataSetChanged();
+
                         }
                     }
             );
@@ -111,61 +111,14 @@ public class Search extends AppCompatActivity {
         setContentView(R.layout.fragment_search);
 
 
-
-
-
-
-
-        try {
-            final WebView browser = new WebView(this);
-            browser.setVisibility(View.INVISIBLE);
-            browser.setLayerType(View.LAYER_TYPE_NONE, null);
-            browser.getSettings().setJavaScriptEnabled(true);
-            browser.getSettings().setBlockNetworkImage(true);
-            browser.getSettings().setDomStorageEnabled(true);
-            browser.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
-            browser.getSettings().setLoadsImagesAutomatically(false);
-            browser.getSettings().setGeolocationEnabled(false);
-            browser.getSettings().setSupportZoom(false);
-            browser.getSettings().setUserAgentString("Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36");
-
-            browser.addJavascriptInterface(new JSHtmlInterface(), "JSBridge");
-
-
-            browser.setWebViewClient(
-                    new WebViewClient() {
-
-                        @Override
-                        public void onPageStarted(WebView view, String url, Bitmap favicon) {
-//                            progressDialog = ProgressDialog.show(Search.this, "Just a Moment", "We'll be right with you", true);
-//                            progressDialog.setCancelable(false);
-//                            progressDialog.show();
-                            super.onPageStarted(view, url, favicon);
-                        }
-
-                        @Override
-                        public void onPageFinished(WebView view, String url) {
-                            browser.loadUrl("javascript:window.JSBridge.showHTML('<html>'+document.getElementsByTagName('html')[0].innerHTML+'</html>');");
-//                            progressDialog.dismiss();
-                        }
-                    }
-            );
-
             findViewById(R.id.buttonDown).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     uiHandler.post(new Runnable() {
                         @Override
                         public void run() {
-                            int page = Integer.parseInt(browser.getUrl().split("=")[2]);
-                            int newPage = page > 1 ? page - 1 : 1;
-                            browser.loadUrl("http://www.canadacomputers.com/simple_search.php?keywords=mouse&page=" + newPage);
-                            browser.loadUrl(browser.getUrl()); // not sure why this is needed, but doesn't update without it on my device
-                            if (getSupportActionBar() != null)
-                                getSupportActionBar().setTitle(browser.getUrl());
 
-                            System.out.println("Page " + newPage);
-                            new CanadaComputersSearch(browser, Search.this);
+
                         }
                     });
                 }
@@ -177,21 +130,13 @@ public class Search extends AppCompatActivity {
                     uiHandler.post(new Runnable() {
                         @Override
                         public void run() {
-                            int page = Integer.parseInt(browser.getUrl().split("=")[2]);
-                            int newPage = page + 1;
-                            browser.loadUrl("http://www.canadacomputers.com/simple_search.php?keywords=mouse&page=" + newPage);
-                            browser.loadUrl(browser.getUrl()); // not sure why this is needed, but doesn't update without it on my device
-                            if (getSupportActionBar() != null)
-                                getSupportActionBar().setTitle(browser.getUrl());
 
-                            System.out.println("Page " + newPage);
-                            new CanadaComputersSearch(browser, Search.this);
                         }
                     });
                 }
             });
 
-            findViewById(R.id.searchBtn).setOnClickListener(new View.OnClickListener() {
+             findViewById(R.id.searchBtn).setOnClickListener(new View.OnClickListener() {
 
                 @Override
                 public void onClick(View view) {
@@ -200,17 +145,7 @@ public class Search extends AppCompatActivity {
                         @Override
                         public void run() {
 
-
-                            TextView text = (TextView) findViewById(R.id.editText);
-
-                            //If something has been entered into the text field, start a search with entered info
-                            if(text.getText() != null){
-                                browser.loadUrl("http://www.canadacomputers.com/simple_search.php?keywords=" + text.getText().toString());
-                                browser.loadUrl(browser.getUrl());
-
-                                new CanadaComputersSearch(browser, Search.this);
-
-                            }
+                            new SearchQuery(Search.this, Search.this);
                         }
                     });
 
@@ -219,32 +154,22 @@ public class Search extends AppCompatActivity {
 
 
             ListView listView=(ListView)findViewById(R.id.listView);
-
-
             adapter= new CustomAdapter(Items, this);
-
-
             listView.setAdapter(adapter);
 
 
-            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                    Item item= Items.get(position);
-
-                    Snackbar.make(view, item.getTitle()+"\n"+item.getStore()+" Price: "+item.getPrice(), Snackbar.LENGTH_LONG)
-                            .setAction("No action", null).show();
-                }
-            });
-
-            if (getSupportActionBar() != null) getSupportActionBar().setTitle(browser.getUrl());
+//            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//                @Override
+//                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//
+//                    Item item= Items.get(position);
+//
+//                    Snackbar.make(view, item.getTitle()+"\n"+item.getStore()+" Price: "+item.getPrice(), Snackbar.LENGTH_LONG)
+//                            .setAction("No action", null).show();
+//                }
+//            });
 
 
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
 

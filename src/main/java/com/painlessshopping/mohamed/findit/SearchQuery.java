@@ -1,5 +1,9 @@
 package com.painlessshopping.mohamed.findit;
 
+import android.app.Activity;
+import android.content.Context;
+import android.webkit.WebView;
+
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
@@ -18,7 +22,15 @@ public class SearchQuery {
 
     }
 
-    public SearchQuery(String store, String query){
+    public SearchQuery(Activity a, Context c){
+
+        Search.adapter.clear();
+        new CanadaComputersSearch(a, c);
+        new SearchTemplate(a, c);
+
+
+
 
     }
+
 }

@@ -31,6 +31,16 @@ public class HomeScreen extends AppCompatActivity {
 
             }
         });
+        
+        Button featuredBtn = (Button) findViewById(R.id.featured_button);
+
+        featuredBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                    startActivity(new Intent(HomeScreen.this, FeaturedScreen.class));
+
+            }
+        });
     }
 
 }

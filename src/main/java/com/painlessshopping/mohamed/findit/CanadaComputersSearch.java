@@ -4,9 +4,15 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
+import android.os.Handler;
+import android.view.View;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.jsoup.Jsoup;
@@ -25,21 +31,79 @@ public class CanadaComputersSearch extends SearchQuery{
 
     public Elements resultsEven, finalDoc;
     private ArrayList<Item> processed;
-    private Context c = null;
+    private final Handler uiHandler = new Handler();
+    protected class JSHtmlInterface {
+        @android.webkit.JavascriptInterface
+        public void showHTML(String html) {
+            final String htmlContent = html;
+
+            uiHandler.post(
+                    new Runnable() {
+                        @Override
+                        public void run() {
+                            Document doc = Jsoup.parse(htmlContent);
+                        }
+                    }
+            );
+        }
+    }
 
     /**
      * Constructor method
-     * @param view The WebView that is being used to render the JavaScript in the Search Activity
+     * @param activity Search Activity
      * @param context The context taken from the webview (So that the asynctask can show progress)
      */
-    public CanadaComputersSearch(WebView view, Context context) {
+    public CanadaComputersSearch(Activity activity, Context context) {
 
-        //Get the link from the WebView, and save it in a final string so it can be accessed from worker thread
-        final String link = view.getUrl();
-        c = context;
-        new fetcher(context).execute(link);
+        final Activity a = activity;
+        final Context c = context;
+
+        try {
+            final WebView browser = new WebView(c);
+            browser.setVisibility(View.INVISIBLE);
+            browser.setLayerType(View.LAYER_TYPE_NONE, null);
+            browser.getSettings().setJavaScriptEnabled(true);
+            browser.getSettings().setBlockNetworkImage(true);
+            browser.getSettings().setDomStorageEnabled(true);
+            browser.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
+            browser.getSettings().setLoadsImagesAutomatically(false);
+            browser.getSettings().setGeolocationEnabled(false);
+            browser.getSettings().setSupportZoom(false);
+            browser.getSettings().setUserAgentString("Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36");
+            browser.addJavascriptInterface(new JSHtmlInterface(), "JSBridge");
+
+            browser.setWebViewClient(
+                    new WebViewClient() {
+
+                        @Override
+                        public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                            super.onPageStarted(view, url, favicon);
+                        }
+
+                        @Override
+                        public void onPageFinished(WebView view, String url) {
+                            browser.loadUrl("javascript:window.JSBridge.showHTML('<html>'+document.getElementsByTagName('html')[0].innerHTML+'</html>');");
+                        }
+                    }
+            );
 
 
+            TextView text = (TextView) a.findViewById(R.id.editText);
+
+            if(text.getText() != null){
+                browser.loadUrl("http://www.canadacomputers.com/simple_search.php?keywords=" + text.getText().toString());
+                browser.loadUrl(browser.getUrl());
+                final String link = browser.getUrl();
+                new fetcher(c).execute(link);
+
+            }
+
+
+
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -57,17 +121,17 @@ public class CanadaComputersSearch extends SearchQuery{
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            pdialog = new ProgressDialog(mContext);
-            pdialog.setTitle("Finding Results!");
-            pdialog.setCancelable(false);
-            pdialog.show();
+//            pdialog = new ProgressDialog(mContext);
+//            pdialog.setTitle("Finding Results!");
+//            pdialog.setCancelable(false);
+//            pdialog.show();
         }
 
         @Override
         protected Elements doInBackground(String... strings) {
             String link = strings[0];
 
-            System.out.println(link);
+            System.out.println("Connecting to " + link + "\n...");
 
             try {
                 doc = Jsoup.connect(link)
@@ -90,14 +154,12 @@ public class CanadaComputersSearch extends SearchQuery{
         @Override
         protected void onPostExecute(Elements result) {
 
-
-            Search.adapter.clear();
             processed = crunchResults(parse(result));
-            System.out.println("Done Crunching");
+            System.out.println("Done Crunching CanadaComputers");
             Search.adapter.addAll(processed);
             Search.adapter.notifyDataSetChanged();
-            System.out.println("Adapter Notified");
-            pdialog.cancel();
+            System.out.println("Adapter Notified by CanadaComputers");
+//            pdialog.cancel();
 
 
 
@@ -118,86 +180,12 @@ public class CanadaComputersSearch extends SearchQuery{
         for(int j = 0; j <resultsEven.size();j++){
             results.add(resultsEven.get(j));
         }
-        System.out.println(results.size() + " Results have been returned.");
+        System.out.println(results.size() + " Results have been returned from CanadaComputers.");
 //        fetchPrice(results);
 //        fetchDescription(results);
 
         return results;
     }
-
-
-    /**
-     *This method returns the price(s) for the search elements passed in
-     * @param productData the results scraped from the site
-     * @return the product price(s)
-     */
-    public double fetchPrice(Elements productData){
-
-        try{
-
-            //Parses a double after the first chart "$" and sets that to price for every element
-            for(int i = 0; i < productData.size(); i++){
-                Element prices = productData.get(i).select("td").get(2);
-
-                //For some reason I have to substring this twice seperately because it doesn't work otherwise
-                String pricestring = prices.toString().substring(prices.toString().indexOf("$") + 1);
-                int endIndex = 0;
-
-                while(Character.isDigit(pricestring.charAt(endIndex))){
-                        endIndex++;
-                    }
-
-
-                pricestring = pricestring.substring(0, endIndex);
-                //Parses the double as an actual price
-                price = Double.parseDouble(pricestring);
-
-                //Prints the price to console for testing purposes
-                System.out.println("PRICE " + (i+1) + ": " + price);
-
-            }
-
-
-
-        } catch (NullPointerException e){
-            e.printStackTrace();
-        }
-
-        return price;
-    }
-
-
-    /**
-     * This method returns the description(s) for the search elements passed in
-     * @param productData the results scraped from the site
-     * @return the product description
-     */
-    public String fetchDescription(Elements productData){
-
-        try{
-
-
-            for(int i = 0; i < productData.size(); i++){
-                Element ele = productData.get(i).select("td").get(1);
-
-                String description = ele.select("div.item_description > a").first().text();
-
-                //Prints the description to console for testing purposes
-                System.out.println("DESCRIPTION " + (i + 1) + ": " + description);
-
-
-
-            }
-
-        } catch (NullPointerException e){
-            e.printStackTrace();
-        }
-
-        return description;
-    }
-
-
-
 
     public ArrayList<Item> crunchResults(Elements e){
 
@@ -238,7 +226,4 @@ public class CanadaComputersSearch extends SearchQuery{
         return results;
     }
 
-    public ArrayList<Item> getProcessed() {
-        return processed;
-    }
  }

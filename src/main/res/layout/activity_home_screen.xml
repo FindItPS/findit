@@ -37,4 +37,15 @@
         android:layout_below="@+id/maps_button"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true" />
+        
+    <Button
+        android:text="Featured Stores"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/featured_button"
+        android:onClick="featuredButtonClicked"
+        android:layout_below="@+id/cart_button"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true" />
+        
 </RelativeLayout>

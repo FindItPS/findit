@@ -1,108 +1,175 @@
 package com.painlessshopping.mohamed.findit;
 
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.os.AsyncTask;
+import android.webkit.WebView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
- * This class controls Best Buy searches (sending a query to the website, retrieving and processing the information)
- *
- * Created by Samuel on 2016-11-29.
+ * Created by Abdourahmane on 2016-12-07.
  */
 
 public class BestBuySearch extends SearchQuery{
 
-    public BestBuySearch(String query){
+    //You do not need a resultsEven object. This was specific to CANADA COMPUTERS' WEBSITE
+    public Elements resultsEven;
+    public JSONArray finalDoc;
+    private ArrayList<Item> processed;
 
-        //Using JSoup, the code connects to the Best Buy product search
-        //The search is configured to return certain attributes (ex. item name, availibilty) in a json format
-        try {
-            doc = Jsoup.connect("https://api.bestbuy.com/v1/products((search=" + query + "))?apiKey=qbBfecRN2JqSzbliyHCC0zMN&sort=name.asc&show=name,inStoreAvailability,regularPrice,salePrice&format=json")
-                    .ignoreContentType(true)
-                    .userAgent("Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36")
-                    .get();
-            
-            
-            //TESTING: REMOVE IN FUTURE
-            //Prints results to console for testing purposes
-            System.out.println(doc.toString());
-            System.out.println("End of toString.");
-            
-            //Save search results to be manipulated with parse method
-            String searchResults = doc.toString();
+    //This basically is just so that the class knows which Activity we're working with
+    private Context c;
 
-            
-        //Exception Catch
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    /**
+     * Constructor method
+     * @param view The WebView that is being used to render the JavaScript in the Search Activity
+     * @param context The context taken from the webview (So that the asynctask can show progress)
+     */
+    public BestBuySearch(WebView view, Context context) {
+
+        //Get the link from the WebView, and save it in a final string so it can be accessed from worker thread
+        final String link = view.getUrl();
+
+        c = context;
+        new BestBuySearch.fetcher(context).execute(link);
 
 
     }
 
-    //Takes JSoup output and transfers it into readable elements
-    public ArrayList<Item> transferItems(String completeResults){
-        
-        //Separates the completeResults string into an ArrayList of strings based on where the line breaks are
-        ArrayList<String> listResults = new ArrayList<String> (Arrays.asList(completeResults.split(System.getProperty("line.separator"))));
+    /**
+     * This subclass is a worker thread meaning it does work in the background while the user interface is doing something else
+     * This is done to prevent "lag".
+     * To call this class you must write fetcher(Context c).execute(The link you want to connect to)
+     *
+     */
+    class fetcher extends AsyncTask<String, Void, JSONArray> {
 
-        //Deletes lines 1-11 of the search query
-        //Provided the search is done correctly these lines are all piece of irrelevant information
-        for (int j = 10; j == 0; j--) {
-          
-          listResults.remove(j);
+        Context mContext;
+        ProgressDialog pdialog;
+
+        public fetcher(Context context) {
+            mContext = context;
         }
-        
-        //Deletes useless punctuation at the bottom of the search results
-        for (int j = listResults.size() - 1; j ==listResults.size() - 3; j--){
-          
-          listResults.remove(j);
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            Search.adapter.clear();
+            pdialog = new ProgressDialog(mContext);
+            pdialog.setTitle("Finding Results!");
+            pdialog.setCancelable(false);
+            pdialog.show();
         }
-        
-        //TESTING: REMOVE IN FUTURE
-        //Prints string to console so we can see the correct lines were deleted
-        for (int i = 0; i < listResults.size(); i++){
-          
-          System.out.println(listResults.get(i));
+
+        //This return elements because the postExecute() method needs an Elements object to parse its results
+        @Override
+        protected JSONArray doInBackground(String... strings) {
+
+            //You can pass in multiple strings, so this line just says to use the first string
+            String link = strings[0];
+
+            //For Debug Purposes, Do NOT Remove - **Important**
+            System.out.println("Connecting to: " + link);
+
+            try {
+                doc = Jsoup.connect(link)
+                        .ignoreContentType(true)
+                        .userAgent("Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36")
+                        .timeout(10000)
+                        .get();
+
+
+                finalDoc = new JSONArray(doc.toString().substring(doc.toString().indexOf("["), doc.toString().length()));
+
+
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            return finalDoc;
         }
-        
-        //Calculate the number of items and saves it
-        int numberOfItems = listResults.size()/6;
-        
-        //Array to store items that will be created for later access
-        ArrayList<Item> bestBuySearchItems = new ArrayList<Item>();
-        
-        //Loop that creates item objects to be added to the displayed search result list
-        for (int j = numberOfItems; j == 0; j --){
-          
-          //Sets the name of the item
-          //NOTE: PRINTLN IS FOR TESTING WILL BE REMOVED LATER
-          String name = listResults.get(1).substring(9, listResults.get(1).length() - 3);
-          System.out.println(name);
-          
-          //Sets the price of the item
-          //NOTE: PRINTLN IS FOR TESTING WILL BE REMOVED LATER
-          double value = Double.parseDouble(listResults.get(2).substring(9, listResults.get(2).length() - 3));
-          System.out.println(price);
-          
-          //Sets store name
-          String store = "Best Buy";
-          
-          //Creates item
-          bestBuySearchItems.add(new Item(name, store, price));
-          
-          //Removes used lines from the code
-          for (int i = 5; i == 0; i --){
-            
-            listResults.remove(i);
-          }
+
+
+        @Override
+        protected void onPostExecute(JSONArray result) {
+
+
+            //This line clears the list of info in the Search activity
+            //I should probably be using a getter method but adapter is a static variable so it shouldn't matter
+
+
+            //parse seperates document into elements
+            //crunch results formats those elements into item objects
+            //I am saving the result of this to an ArrayList<Item> called "processed"
+            processed = crunchResults(result);
+
+            //For debug purposes, do NOT remove - **Important**
+            System.out.println(processed.size() + " results have been crunched. \nNotifying List Adapter...");
+
+            //Adds all of the processed results to the list of info in Search activity
+            Search.adapter.addAll(processed);
+
+            //Refreshes the list so that they actually show up
+            Search.adapter.notifyDataSetChanged();
+
+            //For debug purposes, do NOt remove - **Important
+            System.out.println("Adapter has been notified.");
+
+            //Closes the progress dialog called pdialog assigned to the AsyncTask
+            pdialog.cancel();
+
+
+
+
         }
-        
-        return bestBuySearchItems;
+    }
+
+
+
+    public ArrayList<Item> crunchResults(JSONArray e){
+
+        ArrayList<Item> results = new ArrayList<Item>();
+
+        try {
+
+            for (int i = 0; i < e.length(); i++) {
+
+
+
+                JSONObject current = e.getJSONObject(i);
+                String description = current.getString("name");
+
+                price = current.getDouble("salePrice");
+
+
+                //*******************************************
+
+                String store = "Best Buy";
+
+                //Adds the formatted item to an ArrayList of items
+                results.add(new Item(description, store, price));
+
+                //Prints the object's to String to console
+                //For debug purposes, do NOT remove - **Important
+                System.out.println(results.get(i).toString());
+            }
+        } catch (Exception a){
+            a.printStackTrace();
+        }
+
+        return results;
     }
 
 }
