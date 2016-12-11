@@ -1,6 +1,7 @@
 package com.painlessshopping.mohamed.findit;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.webkit.WebView;
 
@@ -17,20 +18,23 @@ public class SearchQuery {
     public Elements results;
     public String description;
     public double price;
+    //This number is to be increased with all of the stores implemented
+    private int status = -2;
+    private ProgressDialog dialog;
+    private static int ccstatus, bbstatus = 0;
 
     public SearchQuery(){
 
     }
 
-    public SearchQuery(Activity a, Context c){
+    public SearchQuery(Context c, String q){
 
         Search.adapter.clear();
-        new CanadaComputersSearch(a, c);
-        new SearchTemplate(a, c);
-
-
+        new CanadaComputersSearch(c, q);
+        new BestBuySearch(c, q);
 
 
     }
+
 
 }

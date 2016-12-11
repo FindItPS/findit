@@ -2,6 +2,7 @@ package com.painlessshopping.mohamed.findit;
 
 import android.content.Context;
 import android.support.design.widget.Snackbar;
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,13 +48,11 @@ public class CustomAdapter extends ArrayAdapter<Item> implements View.OnClickLis
         switch (v.getId())
         {
             case R.id.store:
-                Snackbar.make(v, "Alpha Ver.  " , Snackbar.LENGTH_LONG)
+                Snackbar.make(v, "This item is being sold at " + item.getStore() + "." , Snackbar.LENGTH_LONG)
                         .setAction("No action", null).show();
                 break;
         }
     }
-
-    private int lastPosition = -1;
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -65,7 +64,6 @@ public class CustomAdapter extends ArrayAdapter<Item> implements View.OnClickLis
 
         final View result;
 
-        if (convertView == null) {
 
             viewHolder = new ViewHolder();
             LayoutInflater inflater = LayoutInflater.from(getContext());
@@ -78,14 +76,6 @@ public class CustomAdapter extends ArrayAdapter<Item> implements View.OnClickLis
             result = convertView;
 
             convertView.setTag(viewHolder);
-        } else {
-            viewHolder = (ViewHolder) convertView.getTag();
-            result = convertView;
-        }
-
-        Animation animation = AnimationUtils.loadAnimation(mContext, (position > lastPosition) ? R.anim.up_from_bottom : R.anim.down_from_top);
-        result.startAnimation(animation);
-        lastPosition = position;
 
         viewHolder.itemTitle.setText(item.getTitle());
         viewHolder.itemPrice.setText("$" + item.getPrice());

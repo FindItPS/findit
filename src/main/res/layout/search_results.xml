@@ -12,7 +12,6 @@
     tools:context="com.painlessshopping.mohamed.findit.Search$PlaceholderFragment">
 
 
-
     <ListView
         android:layout_width="match_parent"
         android:id ="@+id/listView"

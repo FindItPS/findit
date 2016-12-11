@@ -17,7 +17,7 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="Find It!"
+        android:label="Find It: Painless Shopping"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
@@ -47,7 +47,7 @@
 
         <activity android:name=".MapsActivity" android:screenOrientation="portrait"/>
         <activity android:name=".LoginActivity"  android:screenOrientation="portrait"/>
-        <activity android:name=".HomeScreen" />
+        <activity android:name=".HomeScreen" android:screenOrientation="portrait" />
         <activity
             android:name=".ItemListActivity"
             android:label="@string/title_item_list"
@@ -68,12 +68,25 @@
             android:name=".Search"
             android:label="@string/title_activity_search"
             android:parentActivityName=".HomeScreen"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:launchMode="singleTop">
+
+
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.painlessshopping.mohamed.findit.HomeScreen" />
+                android:value="com.painlessshopping.mohamed.findit.HomeScreen"/>
+
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+
         </activity>
+
     </application>
 
 </manifest>

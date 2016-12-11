@@ -32,6 +32,7 @@ public class CanadaComputersSearch extends SearchQuery{
     public Elements resultsEven, finalDoc;
     private ArrayList<Item> processed;
     private final Handler uiHandler = new Handler();
+    private int status = 0;
     protected class JSHtmlInterface {
         @android.webkit.JavascriptInterface
         public void showHTML(String html) {
@@ -50,12 +51,10 @@ public class CanadaComputersSearch extends SearchQuery{
 
     /**
      * Constructor method
-     * @param activity Search Activity
      * @param context The context taken from the webview (So that the asynctask can show progress)
      */
-    public CanadaComputersSearch(Activity activity, Context context) {
+    public CanadaComputersSearch(Context context, String query) {
 
-        final Activity a = activity;
         final Context c = context;
 
         try {
@@ -88,15 +87,15 @@ public class CanadaComputersSearch extends SearchQuery{
             );
 
 
-            TextView text = (TextView) a.findViewById(R.id.editText);
-
-            if(text.getText() != null){
-                browser.loadUrl("http://www.canadacomputers.com/simple_search.php?keywords=" + text.getText().toString());
+//            TextView text = (TextView) a.findViewById(R.id.editText);
+//
+//            if(text.getText() != null){
+                browser.loadUrl("http://www.canadacomputers.com/simple_search.php?keywords=" + query);
                 browser.loadUrl(browser.getUrl());
                 final String link = browser.getUrl();
                 new fetcher(c).execute(link);
-
-            }
+//
+//            }
 
 
 
@@ -121,10 +120,10 @@ public class CanadaComputersSearch extends SearchQuery{
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-//            pdialog = new ProgressDialog(mContext);
-//            pdialog.setTitle("Finding Results!");
-//            pdialog.setCancelable(false);
-//            pdialog.show();
+            pdialog = new ProgressDialog(mContext);
+            pdialog.setTitle("Finding Results!");
+            pdialog.setCancelable(false);
+            pdialog.show();
         }
 
         @Override
@@ -157,11 +156,11 @@ public class CanadaComputersSearch extends SearchQuery{
             processed = crunchResults(parse(result));
             System.out.println("Done Crunching CanadaComputers");
             Search.adapter.addAll(processed);
-            Search.adapter.notifyDataSetChanged();
             System.out.println("Adapter Notified by CanadaComputers");
-//            pdialog.cancel();
 
+            pdialog.dismiss();
 
+            Search.adapter.notifyDataSetChanged();
 
 
         }
@@ -226,4 +225,7 @@ public class CanadaComputersSearch extends SearchQuery{
         return results;
     }
 
+    public int getStatus(){
+        return status;
+    }
  }

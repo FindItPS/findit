@@ -2,7 +2,9 @@ package com.painlessshopping.mohamed.findit;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.app.SearchManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
@@ -10,6 +12,7 @@ import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 
 import android.support.v4.app.Fragment;
@@ -26,6 +29,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.view.WindowManager;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -56,12 +60,15 @@ import java.util.HashMap;
 
 public class Search extends AppCompatActivity {
 
+    private static Context context;
+    ProgressDialog dialog;
     ArrayList<Item> Items = new ArrayList<>(); ;
     ListView listView;
     public static CustomAdapter adapter;
     TextView text;
     static String site;
     Document doc;
+    private String sortValue = "";
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -81,122 +88,76 @@ public class Search extends AppCompatActivity {
     private ArrayList<String> entries = new ArrayList<>();
     private ProgressDialog progressDialog;
 
-    protected class JSHtmlInterface {
-        @android.webkit.JavascriptInterface
-        public void showHTML(String html) {
-            final String htmlContent = html;
-
-            uiHandler.post(
-                    new Runnable() {
-                        @Override
-                        public void run() {
-                            Document doc = Jsoup.parse(htmlContent);
-                            Elements elements = doc.select("#online_movies > div > div");
-                            entries.clear();
-                            for (Element element : elements) {
-                                String title = element.select("div.l-description .float-left > div:nth-child(1) > a").first().attr("title");
-                                String imgUrl = element.select("div.l-image.float-left > a > img.lazy").first().attr("data-original");
-                                entries.add(title + "\n" + imgUrl);
-                            }
-
-                        }
-                    }
-            );
-        }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_search);
+        Search.context = Search.this;
 
+        ListView listView=(ListView)findViewById(R.id.listView);
+        adapter= new CustomAdapter(Items, this);
+        listView.setAdapter(adapter);
 
-            findViewById(R.id.buttonDown).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    uiHandler.post(new Runnable() {
-                        @Override
-                        public void run() {
-
-
-                        }
-                    });
-                }
-            });
-
-            findViewById(R.id.buttonUp).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    uiHandler.post(new Runnable() {
-                        @Override
-                        public void run() {
-
-                        }
-                    });
-                }
-            });
-
-             findViewById(R.id.searchBtn).setOnClickListener(new View.OnClickListener() {
-
-                @Override
-                public void onClick(View view) {
-
-                    uiHandler.post(new Runnable() {
-                        @Override
-                        public void run() {
-
-                            new SearchQuery(Search.this, Search.this);
-                        }
-                    });
-
-                }
-            });
-
-
-            ListView listView=(ListView)findViewById(R.id.listView);
-            adapter= new CustomAdapter(Items, this);
-            listView.setAdapter(adapter);
-
-
-//            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//                @Override
-//                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//
-//                    Item item= Items.get(position);
-//
-//                    Snackbar.make(view, item.getTitle()+"\n"+item.getStore()+" Price: "+item.getPrice(), Snackbar.LENGTH_LONG)
-//                            .setAction("No action", null).show();
-//                }
-//            });
-
+        handleIntent(getIntent());
 
     }
 
+    @Override
+    protected void onNewIntent(Intent intent) {
+
+        setIntent(intent);
+        handleIntent(intent);
+    }
+
+    private void handleIntent(Intent intent) {
+
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            String query = intent.getStringExtra(SearchManager.QUERY);
+
+            new SearchQuery(Search.this, query);
 
 
-
-
-
+        }
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_search, menu);
+
+        SearchManager searchManager =(SearchManager) getSystemService(Context.SEARCH_SERVICE);
+
+        SearchView searchView =(SearchView) menu.findItem(R.id.search).getActionView();
+
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                final CharSequence sortTypes[] = new CharSequence[] {"Price: Low to High", "Price: High to Low",
+                        "Name: A to Z", "Name: Z to A", "Proximity: Close to Far"};
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("Sort Result By");
+                builder.setItems(sortTypes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        sortList(sortTypes[which].toString());
+                    }
+                });
+                builder.show();
+                return true;
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+
         }
-
-        return super.onOptionsItemSelected(item);
     }
 
     /**
@@ -271,6 +232,53 @@ public class Search extends AppCompatActivity {
         }
     }
 
+
+    public static Context getAppContext(){
+        return Search.context;
+    }
+
+
+    public void sortList(String type){
+
+        ArrayList<Item> results = new ArrayList<Item>();
+
+        for(int i =0;i <adapter.getCount(); i++){
+            results.add(adapter.getItem(i));
+        }
+
+        adapter.clear();
+
+        switch(type){
+
+            case "Price: Low to High" :
+                adapter.addAll(Item.sortItems(results, "Price: Low to High"));
+                break;
+
+            case "Price: High to Low" :
+                adapter.addAll(Item.sortItems(results, "Price: High to Low"));
+                break;
+
+            case "Name: A to Z" :
+                adapter.addAll(Item.sortItems(results, "Name: A to Z"));
+                break;
+
+            case "Name: Z to A" :
+                adapter.addAll(Item.sortItems(results, "Name: Z to A"));
+                break;
+
+            case "Proximity: Close to Far":
+                adapter.addAll(Item.sortItems(results, "Proximity: Close to Far"));
+                break;
+
+            default:
+                adapter.addAll(results);
+                System.out.println("Default Sort has been carried out.");
+                break;
+        }
+
+        adapter.notifyDataSetChanged();
+
+    }
 
 }
 

@@ -1,14 +1,22 @@
 package com.painlessshopping.mohamed.findit;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
+import android.os.Handler;
+import android.view.View;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
@@ -25,22 +33,84 @@ public class BestBuySearch extends SearchQuery{
     public Elements resultsEven;
     public JSONArray finalDoc;
     private ArrayList<Item> processed;
+    private final Handler uiHandler = new Handler();
+    public int status = 0;
 
     //This basically is just so that the class knows which Activity we're working with
     private Context c;
 
+    protected class JSHtmlInterface {
+        @android.webkit.JavascriptInterface
+        public void showHTML(String html) {
+            final String htmlContent = html;
+
+            uiHandler.post(
+                    new Runnable() {
+                        @Override
+                        public void run() {
+                            Document doc = Jsoup.parse(htmlContent);
+                        }
+                    }
+            );
+        }
+    }
+
     /**
      * Constructor method
-     * @param view The WebView that is being used to render the JavaScript in the Search Activity
      * @param context The context taken from the webview (So that the asynctask can show progress)
      */
-    public BestBuySearch(WebView view, Context context) {
+    public BestBuySearch(Context context, String query) {
+
+        final Context c = context;
+
+        try {
+            final WebView browser = new WebView(c);
+            browser.setVisibility(View.INVISIBLE);
+            browser.setLayerType(View.LAYER_TYPE_NONE, null);
+            browser.getSettings().setJavaScriptEnabled(true);
+            browser.getSettings().setBlockNetworkImage(true);
+            browser.getSettings().setDomStorageEnabled(true);
+            browser.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
+            browser.getSettings().setLoadsImagesAutomatically(false);
+            browser.getSettings().setGeolocationEnabled(false);
+            browser.getSettings().setSupportZoom(false);
+            browser.getSettings().setUserAgentString("Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36");
+            browser.addJavascriptInterface(new JSHtmlInterface(), "JSBridge");
+
+            browser.setWebViewClient(
+                    new WebViewClient() {
+
+                        @Override
+                        public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                            super.onPageStarted(view, url, favicon);
+                        }
+
+                        @Override
+                        public void onPageFinished(WebView view, String url) {
+                            browser.loadUrl("javascript:window.JSBridge.showHTML('<html>'+document.getElementsByTagName('html')[0].innerHTML+'</html>');");
+                        }
+                    }
+            );
+
+
+//            TextView text = (TextView) a.findViewById(R.id.editText);
+//
+//            if(text.getText() != null){
+                browser.loadUrl("https://api.bestbuy.com/v1/products((search=" + query + "))?apiKey=qbBfecRN2JqSzbliyHCC0zMN&sort=name.asc&show=name,inStoreAvailability,regularPrice,salePrice&format=json");
+                browser.loadUrl(browser.getUrl());
+                final String link = browser.getUrl();
+                new fetcher(c).execute(link);
+//
+//            }
+
+
+
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
 
         //Get the link from the WebView, and save it in a final string so it can be accessed from worker thread
-        final String link = view.getUrl();
-
-        c = context;
-        new BestBuySearch.fetcher(context).execute(link);
 
 
     }
@@ -63,7 +133,6 @@ public class BestBuySearch extends SearchQuery{
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            Search.adapter.clear();
             pdialog = new ProgressDialog(mContext);
             pdialog.setTitle("Finding Results!");
             pdialog.setCancelable(false);
@@ -92,6 +161,7 @@ public class BestBuySearch extends SearchQuery{
 
 
 
+
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (JSONException e) {
@@ -116,19 +186,20 @@ public class BestBuySearch extends SearchQuery{
             processed = crunchResults(result);
 
             //For debug purposes, do NOT remove - **Important**
-            System.out.println(processed.size() + " results have been crunched. \nNotifying List Adapter...");
+            System.out.println(processed.size() + " results have been crunched by Best Buy.");
 
             //Adds all of the processed results to the list of info in Search activity
             Search.adapter.addAll(processed);
 
-            //Refreshes the list so that they actually show up
-            Search.adapter.notifyDataSetChanged();
 
             //For debug purposes, do NOt remove - **Important
-            System.out.println("Adapter has been notified.");
+            System.out.println("Adapter has been notified by Best Buy.");
 
             //Closes the progress dialog called pdialog assigned to the AsyncTask
-            pdialog.cancel();
+
+            pdialog.dismiss();
+
+            Search.adapter.notifyDataSetChanged();
 
 
 
@@ -138,7 +209,7 @@ public class BestBuySearch extends SearchQuery{
 
 
 
-    public ArrayList<Item> crunchResults(JSONArray e){
+        public ArrayList<Item> crunchResults(JSONArray e){
 
         ArrayList<Item> results = new ArrayList<Item>();
 
@@ -170,6 +241,10 @@ public class BestBuySearch extends SearchQuery{
         }
 
         return results;
+    }
+
+    public int getStatus(){
+        return status;
     }
 
 }
