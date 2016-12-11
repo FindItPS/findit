@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_my_cart"
+            android:icon="@drawable/ic_shopping_cart_black_24dp"
+            android:title="My Cart" />
+        <item
+            android:id="@+id/nav_second_layout"
+            android:icon="@drawable/ic_photo_black_24dp"
+            android:title="Second Layout" />
+        <item
+            android:id="@+id/nav_third_layout"
+            android:icon="@drawable/ic_slideshow_black_24dp"
+            android:title="Third Layout" />
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_share_black_24dp"
+                android:title="Share" />
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/ic_send_black_24dp"
+                android:title="Send" />
+        </menu>
+    </item>
+
+</menu>

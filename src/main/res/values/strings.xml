@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FindIt</string>
+    <string name="app_name">Find It</string>
     <string name="title_activity_maps">Map</string>
     <string name="title_activity_login">Sign in</string>
 
@@ -23,4 +23,6 @@
     <string name="search_hint">Enter Search Query</string>
     <string name="action_search">Search for Items</string>
     <string name="search_settings">Sort Results</string>
+    <string name="drawer_open">Open Navigation Drawer</string>
+    <string name="drawer_close">Close Navigation Drawer</string>
 </resources>
