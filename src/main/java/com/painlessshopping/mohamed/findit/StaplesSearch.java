@@ -1,6 +1,7 @@
 package com.painlessshopping.mohamed.findit;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -10,11 +11,10 @@ import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -24,21 +24,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * Created by Abdourahmane on 2016-12-07.
+ * Created by Abdourahmane on 2016-11-28.
  */
 
-public class BestBuySearch extends SearchQuery{
+public class StaplesSearch extends SearchQuery{
 
-    //You do not need a resultsEven object. This was specific to CANADA COMPUTERS' WEBSITE
-    public Elements resultsEven;
-    public Elements finalDoc;
+    public Elements resultsEven, finalDoc;
     private ArrayList<Item> processed;
     private final Handler uiHandler = new Handler();
-    public int status = 0;
-
-    //This basically is just so that the class knows which Activity we're working with
-    private Context c;
-
+    private int status = 0;
     protected class JSHtmlInterface {
         @android.webkit.JavascriptInterface
         public void showHTML(String html) {
@@ -59,7 +53,7 @@ public class BestBuySearch extends SearchQuery{
      * Constructor method
      * @param context The context taken from the webview (So that the asynctask can show progress)
      */
-    public BestBuySearch(Context context, String query) {
+    public StaplesSearch(Context context, String query) {
 
         final Context c = context;
 
@@ -96,12 +90,12 @@ public class BestBuySearch extends SearchQuery{
 //            TextView text = (TextView) a.findViewById(R.id.editText);
 //
 //            if(text.getText() != null){
-                browser.loadUrl("http://www.bestbuy.ca/Search/SearchResults.aspx?type=product&lang=en&sortBy=relevance&sortDir=desc&query=" + query);
-                browser.loadUrl(browser.getUrl());
-                final String link = browser.getUrl();
-                new fetcher(c).execute(link);
-                new fetcher(c).execute(link + "&page=2");
-                new fetcher(c).execute(link + "&page=3");
+            browser.loadUrl("http://www.staples.ca/" + query + "/directory_" + query + "_20051_1_20001?");
+            browser.loadUrl(browser.getUrl());
+            final String link = browser.getUrl();
+            new fetcher(c).execute(link);
+            new fetcher(c).execute(link + "fids=&pn=2&sr=true&sby=&min=&max=");
+            new fetcher(c).execute(link + "fids=&pn=3&sr=true&sby=&min=&max=");
 //
 //            }
 
@@ -111,17 +105,10 @@ public class BestBuySearch extends SearchQuery{
         catch(Exception e){
             e.printStackTrace();
         }
-
-        //Get the link from the WebView, and save it in a final string so it can be accessed from worker thread
-
-
     }
 
     /**
-     * This subclass is a worker thread meaning it does work in the background while the user interface is doing something else
-     * This is done to prevent "lag".
-     * To call this class you must write fetcher(Context c).execute(The link you want to connect to)
-     *
+     * This subclass accesses the CanadaComputers website and fetches results, all the while posting progress
      */
     class fetcher extends AsyncTask<String, Void, Elements> {
 
@@ -141,15 +128,11 @@ public class BestBuySearch extends SearchQuery{
             pdialog.show();
         }
 
-        //This return elements because the postExecute() method needs an Elements object to parse its results
         @Override
         protected Elements doInBackground(String... strings) {
-
-            //You can pass in multiple strings, so this line just says to use the first string
             String link = strings[0];
 
-            //For Debug Purposes, Do NOT Remove - **Important**
-            System.out.println("Connecting to: " + link);
+            System.out.println("Connecting to " + link + "\n...");
 
             try {
                 doc = Jsoup.connect(link)
@@ -158,10 +141,7 @@ public class BestBuySearch extends SearchQuery{
                         .timeout(10000)
                         .get();
 
-
-                finalDoc = doc.select("body ul.listing-items.util_equalheight.clearfix > li.listing-item.equal-height-container");
-
-
+                finalDoc = doc.select("body div.stp--product-list");
 
 
             } catch (IOException e) {
@@ -175,41 +155,34 @@ public class BestBuySearch extends SearchQuery{
         @Override
         protected void onPostExecute(Elements result) {
 
-
-            //This line clears the list of info in the Search activity
-            //I should probably be using a getter method but adapter is a static variable so it shouldn't matter
-
-
-            //parse seperates document into elements
-            //crunch results formats those elements into item objects
-            //I am saving the result of this to an ArrayList<Item> called "processed"
-            processed = crunchResults(result);
-
-            //For debug purposes, do NOT remove - **Important**
-            System.out.println(processed.size() + " results have been crunched by Best Buy.");
-
-            //Adds all of the processed results to the list of info in Search activity
+            processed = crunchResults(parse(result));
+            System.out.println("Done Crunching Staples");
             Search.adapter.addAll(processed);
-
-
-            //For debug purposes, do NOt remove - **Important
-            System.out.println("Adapter has been notified by Best Buy.");
-
-            //Closes the progress dialog called pdialog assigned to the AsyncTask
+            System.out.println("Adapter Notified by Staples");
 
             pdialog.dismiss();
 
             Search.adapter.notifyDataSetChanged();
 
 
-
-
         }
     }
 
+    /**
+     * This class stores the relevant results retrieved from the Asynctask in one Elements object for manipulation
+     * @param r The elements retrieved from the Asynctask "fetcher"
+     */
+    public Elements parse(Elements r){
 
+        results = r.select("div.stp--new-product-tile-container.desktop");
+        System.out.println(results.size() + " Results have been returned from Staples.");
+//        fetchPrice(results);
+//        fetchDescription(results);
 
-        public ArrayList<Item> crunchResults(Elements e){
+        return results;
+    }
+
+    public ArrayList<Item> crunchResults(Elements e){
 
         ArrayList<Item> results = new ArrayList<Item>();
 
@@ -219,23 +192,19 @@ public class BestBuySearch extends SearchQuery{
 
                 Element ele = e.get(i);
 
+                String description = ele.select(" div.product-info > a").first().text();
 
-                String link = "http://m.bestbuy.ca/defaultpage.aspx?lang=en#/catalog/productdetails.aspx?ajax=true&sku=" + ele.select(" ul.prod-availability.list-layout-prod-availability").attr("data-sku") + "&lang=en-CA";
-                System.out.println("SKU = " + ele.select(" ul.prod-availability.list-layout-prod-availability").attr("data-sku"));
-                String title = ele.select(" h4.prod-title > a").first().text();
+                String id = ele.select(" div.product-info > a").first().attr("href");
+                String link = "http://m.staples.ca" + id;
 
-                price = Double.parseDouble(ele.select(" span.amount").text().substring(1, ele.select(" span.amount").text().length()));
+                price = Double.parseDouble(ele.select(" span.discounted-price").text()
+                        .substring(1, ele.select(" span.discounted-price").text().length() ));
 
 
-                //*******************************************
+                String store = "Staples";
 
-                String store = "Best Buy";
+                results.add(new Item(description, store, price, link));
 
-                //Adds the formatted item to an ArrayList of items
-                results.add(new Item(title, store, price, link));
-
-                //Prints the object's to String to console
-                //For debug purposes, do NOT remove - **Important
                 System.out.println(results.get(i).toString());
             }
         } catch (Exception a){
@@ -248,5 +217,4 @@ public class BestBuySearch extends SearchQuery{
     public int getStatus(){
         return status;
     }
-
 }

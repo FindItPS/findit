@@ -6,12 +6,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.design.widget.Snackbar;
-import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -19,10 +16,10 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 /**
- * Created by Abdourahmane on 2016-12-02.
+ * Created by Abdourahmane on 2016-12-12.
  */
 
-public class CustomAdapter extends ArrayAdapter<Item> implements View.OnClickListener{
+public class CartAdapter extends ArrayAdapter<Item> implements View.OnClickListener{
 
     private ArrayList<Item> dataSet;
     Context mContext;
@@ -32,11 +29,12 @@ public class CustomAdapter extends ArrayAdapter<Item> implements View.OnClickLis
         TextView itemTitle;
         TextView itemStore;
         TextView itemPrice;
-        ImageView storeLogo, addToCart;
+        ImageView storeLogo;
+        ImageView removeFromCart;
     }
 
-    public CustomAdapter(ArrayList<Item> data, Context context) {
-        super(context, R.layout.row_item, data);
+    public CartAdapter (ArrayList<Item> data, Context context) {
+        super(context, R.layout.row_cart, data);
         this.dataSet = data;
         this.mContext=context;
 
@@ -49,9 +47,9 @@ public class CustomAdapter extends ArrayAdapter<Item> implements View.OnClickLis
         Object object= getItem(position);
         final Item item=(Item)object;
 
-        final View view = v;
         CharSequence actions[];
 
+        final View view = v;
         switch (v.getId())
         {
 
@@ -76,12 +74,12 @@ public class CustomAdapter extends ArrayAdapter<Item> implements View.OnClickLis
 
             viewHolder = new ViewHolder();
             LayoutInflater inflater = LayoutInflater.from(getContext());
-            convertView = inflater.inflate(R.layout.row_item, parent, false);
+            convertView = inflater.inflate(R.layout.row_cart, parent, false);
             viewHolder.itemTitle = (TextView) convertView.findViewById(R.id.title);
             viewHolder.itemStore = (TextView) convertView.findViewById(R.id.retailer);
             viewHolder.itemPrice = (TextView) convertView.findViewById(R.id.price);
             viewHolder.storeLogo = (ImageView) convertView.findViewById(R.id.more);
-            viewHolder.addToCart = (ImageView) convertView.findViewById(R.id.addCart);
+            viewHolder.removeFromCart = (ImageView) convertView.findViewById(R.id.removeCart);
 
             result = convertView;
 
@@ -91,20 +89,19 @@ public class CustomAdapter extends ArrayAdapter<Item> implements View.OnClickLis
         viewHolder.itemStore.setText("From " + item.getStore());
         viewHolder.itemPrice.setText("$" + item.getPrice());
         viewHolder.storeLogo.setOnClickListener(this);
-        viewHolder.addToCart.setOnClickListener(new View.OnClickListener() {
+        viewHolder.removeFromCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                CartInfoProvider.addToCart(item);
-                final ImageView imageView = (ImageView) v.findViewById(R.id.addCart);
-                imageView.setImageResource(R.drawable.ic_remove_shopping_cart_black_24dp);
-
-                Snackbar.make(result, "This item has been added to your Cart", Snackbar.LENGTH_LONG).setAction("UNDO", new View.OnClickListener() {
+                CartInfoProvider.removeFromCart(item);
+                MyCart.adapter.remove(item);
+                MyCart.adapter.notifyDataSetChanged();
+                Snackbar.make(result, "This item has been removed from your Cart", Snackbar.LENGTH_LONG).setAction("UNDO", new View.OnClickListener() {
 
                     @Override
                     public void onClick(View v) {
-                        CartInfoProvider.removeFromCart(item);
-                        imageView.setImageResource(R.drawable.ic_shopping_cart_black_24dp);
+                        CartInfoProvider.addToCart(item);
+                        MyCart.adapter.add(item);
+                        MyCart.adapter.notifyDataSetChanged();
                     }
 
                 }).show();
@@ -118,4 +115,3 @@ public class CustomAdapter extends ArrayAdapter<Item> implements View.OnClickLis
 
     }
 }
-

@@ -17,23 +17,34 @@ public class OpeningScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_opening_screen);
 
-        Button loginBtn = (Button)findViewById(R.id.login_button);
+//        Button loginBtn = (Button)findViewById(R.id.login_button);
+//
+//        loginBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(OpeningScreen.this, LoginActivity.class));
+//            }
+//        });
 
-        loginBtn.setOnClickListener(new View.OnClickListener() {
+//        Button createAccountBtn = (Button)findViewById(R.id.create_account_button);
+//
+//        createAccountBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(OpeningScreen.this, NewAccountActivity.class));
+//
+//            }
+//        });
+
+        Button continuebutton = (Button) findViewById(R.id.continue_button);
+        continuebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(OpeningScreen.this, LoginActivity.class));
+                startActivity(new Intent(OpeningScreen.this, HomeScreen.class));
             }
         });
 
-        Button createAccountBtn = (Button)findViewById(R.id.create_account_button);
 
-        createAccountBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(OpeningScreen.this, NewAccountActivity.class));
-
-            }
-        });
     }
+
 }

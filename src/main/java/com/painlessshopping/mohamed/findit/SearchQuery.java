@@ -32,6 +32,7 @@ public class SearchQuery {
         Search.adapter.clear();
         new CanadaComputersSearch(c, q);
         new BestBuySearch(c, q);
+        new StaplesSearch(c, q);
 
 
     }

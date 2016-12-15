@@ -78,6 +78,16 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
             }
         });
 
+        Button cartBtn = (Button) findViewById(R.id.cart_button);
+
+        cartBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomeScreen.this, MyCart.class));
+
+            }
+        });
+
 
     }//End of OnCreate**************************************
 
@@ -121,17 +131,23 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
         int id = item.getItemId();
         FragmentManager fragmentManager = getFragmentManager();
 
-        if (id == R.id.nav_first_layout) {
+        if (id == R.id.nav_search) {
+            startActivity(new Intent(HomeScreen.this, Search.class));
+        } else if (id == R.id.nav_my_cart) {
+            startActivity(new Intent(HomeScreen.this, MyCart.class));
+
+        } else if (id == R.id.nav_featured_stores) {
+            startActivity(new Intent(HomeScreen.this, FeaturedScreen.class));
+
+        } else if (id == R.id.nav_language_settings) {
 //            fragmentManager.beginTransaction()
 //                    .replace(R.id.content_frame
-//                            , new FirstFragment())
+//                            , new ThirdFragment())
 //                    .commit();
-        } else if (id == R.id.nav_second_layout) {
-//            fragmentManager.beginTransaction()
-//                    .replace(R.id.content_frame
-//                            , new SecondFragment())
-//                    .commit();
-        } else if (id == R.id.nav_third_layout) {
+        } else if (id == R.id.nav_location_settings) {
+            startActivity(new Intent(HomeScreen.this, MapsActivity.class));
+
+        } else if (id == R.id.nav_display) {
 //            fragmentManager.beginTransaction()
 //                    .replace(R.id.content_frame
 //                            , new ThirdFragment())

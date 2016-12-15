@@ -1,12 +1,23 @@
 package com.painlessshopping.mohamed.findit;
 
+import android.app.AlertDialog;
+import android.app.SearchManager;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -24,7 +35,7 @@ import com.google.android.gms.vision.barcode.Barcode;
 import java.io.IOException;
 import java.util.List;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private static final float DEFAULTZOOM = 15;
@@ -33,10 +44,42 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+        mapFragment.getMapAsync(MapsActivity.this);
+
+        handleIntent(getIntent());
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+
+        setIntent(intent);
+        handleIntent(intent);
+    }
+
+    private void handleIntent(Intent intent) {
+
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            String query = intent.getStringExtra(SearchManager.QUERY);
+            fetchLoc(query);
+
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.maps_search, menu);
+
+        SearchManager searchManager =(SearchManager) getSystemService(Context.SEARCH_SERVICE);
+
+        SearchView searchView =(SearchView) menu.findItem(R.id.search).getActionView();
+
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+
+        return true;
     }
 
 //    private void gotoLocation(double lat, double lng, float zoom) {
@@ -44,10 +87,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //        CameraUpdate update = CameraUpdateFactory.newLatLngZoom(ll, zoom);
 //        mMap.moveCamera(update);
 //}
-    public void fetchLoc(View v){
+    public void fetchLoc(String loc){
 
-        EditText et = (EditText) findViewById(R.id.TFaddress);
-        String loc = et.getText().toString();
+//        EditText et = (EditText) findViewById(R.id.TFaddress);
+//        String loc = et.getText().toString();
 
         if(loc !=null && !loc.equals("")) {
 
@@ -60,18 +103,27 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 e.printStackTrace();
             }
 
-            Address a = list.get(0);
+            if(list != null) {
 
-            String locality = a.getLocality();
+                try {
+                    Address a = list.get(0);
 
-            LatLng latlng = new LatLng(a.getLatitude(), a.getLongitude());
-            mMap.addMarker(new MarkerOptions().position(latlng).title("from geocoder"));
-            CameraUpdate update = CameraUpdateFactory.newLatLngZoom(latlng, DEFAULTZOOM);
-            mMap.animateCamera(update);
+                    if(a != null){
+                        String locality = a.getLocality();
+
+                        LatLng latlng = new LatLng(a.getLatitude(), a.getLongitude());
+                        mMap.addMarker(new MarkerOptions().position(latlng).title("from geocoder"));
+                        CameraUpdate update = CameraUpdateFactory.newLatLngZoom(latlng, DEFAULTZOOM);
+                        mMap.animateCamera(update);
+                    }
+                } catch (IndexOutOfBoundsException e){
+                    e.printStackTrace();
+                }
+
+            }
+
         }
 
-
-//        gotoLocation(lat, lng, DEFAULTZOOM);
         }
 
 
@@ -84,6 +136,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //            LatLng sydney = new LatLng(-34, 151);
 //            mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
 //            mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                Toast.makeText(this, "Your Location has Successfully been Saved",
+                        Toast.LENGTH_LONG).show();
+                return true;
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+
+        }
     }
 
 }

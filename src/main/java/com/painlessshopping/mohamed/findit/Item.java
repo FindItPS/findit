@@ -10,13 +10,13 @@ import java.util.Comparator;
 
 public class Item{
 
-    String title, store;
+    String title, store, link;
     Double price;
 
-    public Item(String t, String s, Double p){
+    public Item(String t, String s, Double p, String l){
         setTitle(t);
         setStore(s);
-        //setDescription(d);
+        setLink(l);
         setPrice(p);
     }
     public void setTitle(String t){
@@ -154,4 +154,17 @@ public class Item{
             }
         }
     }
+
+    public void setLink(String l){
+        if(!l.isEmpty()){
+            link = l;
+        } else {
+            System.out.println("There was an Error setting the link of the item: " + getTitle());
+        }
+    }
+
+    public String getLink(){
+        return link;
+    }
 }
+

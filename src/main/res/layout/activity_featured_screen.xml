@@ -1,63 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:tools="http://schemas.android.com/tools"
-android:id="@+id/activity_featured_screen"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:paddingBottom="@dimen/activity_vertical_margin"
-android:paddingLeft="@dimen/activity_horizontal_margin"
-android:paddingRight="@dimen/activity_horizontal_margin"
-android:paddingTop="@dimen/activity_vertical_margin"
-tools:context="com.painlessshopping.mohamed.findit.OpeningScreen">
-
-  <ScrollView
-        android:id="@+id/login_form"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    
-      <!--
-       
-       The idea of this page is to let users know what sites are being used in their searches. Idealy this page will display the name of the store and a logo (could just display logos if that is decided to be more efficient). This can easily be done with a group of TextViews and ImageViews. The Java for this is also mininal as this screen just need to be initialized and then it will do most of the work for itself.
-       The following is an example of how to use ImageView.
-       
-       <ImageView
-           android:id="@+id/findItLogo"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_below="@+id/pageTitle"
-           android:layout_centerHorizontal="true"
-           android:src="@drawable/ic_launcher"/>
-        
-        The "drawable" folder used to get the images can be found in the res. Add pictures for the companies there.
-        
-      -->
-    
-      <TextView
-          android:text="Featured Websites"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_centerVertical="true"
-          android:layout_centerHorizontal="true"
-          android:id="@+id/pageTitle"
-          android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
-          
-      <ImageView
-          android:id="@+id/canadaComputersLogo"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_below="@+id/pageTitle"
-          android:layout_centerHorizontal="true"
-          android:src="@drawable/cc_logo"/>
-          
-      <ImageView
-          android:id="@+id/bestBuyLogo"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_below="@+id/canadaComputersTitle"
-          android:layout_centerHorizontal="true"
-          android:src="@drawable/bb_logo"/>
-          
-     
-
-  </ScrollView>
-</RelativeLayout>
+<GridView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:paddingTop="24dp"
+    android:id="@+id/gridview"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:columnWidth="160dp"
+    android:numColumns="auto_fit"
+    android:verticalSpacing="24dp"
+    android:horizontalSpacing="2dp"
+    android:stretchMode="columnWidth"
+    android:gravity="center"
+    />

@@ -94,6 +94,8 @@ public class CanadaComputersSearch extends SearchQuery{
                 browser.loadUrl(browser.getUrl());
                 final String link = browser.getUrl();
                 new fetcher(c).execute(link);
+                new fetcher(c).execute(link + "&page=2");
+                new fetcher(c).execute(link + "&page=3");
 //
 //            }
 
@@ -172,8 +174,8 @@ public class CanadaComputersSearch extends SearchQuery{
      */
     public Elements parse(Elements r){
 
-        results = r.select("tr.productListing-odd");
-        resultsEven = r.select("tr.productListing-even");
+        results = r.select(" tr.productListing-odd");
+        resultsEven = r.select(" tr.productListing-even");
 
         //Add the "even" product listings to results array
         for(int j = 0; j <resultsEven.size();j++){
@@ -193,28 +195,31 @@ public class CanadaComputersSearch extends SearchQuery{
         try {
 
             for (int i = 0; i < e.size(); i++) {
+
                 Element ele = e.get(i).select("td").get(1);
 
                 String description = ele.select("div.item_description > a").first().text();
 
+                Elements ids = ele.select(" " +
+                        "div.partnum");
+                String unflink = ids.get(1).attr("id");
+                String link = "http://m.canadacomputers.com/mobile/itemid/" + unflink;
                 Element prices = e.get(i).select("td").get(2);
 
                 //For some reason I have to substring this twice seperately because it doesn't work otherwise
                 String pricestring = prices.toString().substring(prices.toString().indexOf("$") + 1);
                 int endIndex = 0;
 
-                while (Character.isDigit(pricestring.charAt(endIndex))) {
+                while (Character.isDigit(pricestring.charAt(endIndex)) || pricestring.charAt(endIndex) == '.') {
                     endIndex++;
                 }
 
                 pricestring = pricestring.substring(0, endIndex);
                 //Parses the double as an actual price
                 price = Double.parseDouble(pricestring);
-
-
                 String store = "Canada Computers";
 
-                results.add(new Item(description, store, price));
+                results.add(new Item(description, store, price, link));
 
                 System.out.println(results.get(i).toString());
             }
