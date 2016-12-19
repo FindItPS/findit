@@ -17,7 +17,7 @@
         <item
             android:id="@+id/nav_language_settings"
             android:icon="@drawable/ic_g_translate_black_24dp"
-            android:title="Coming Soon" />
+            android:title="Language Settings" />
         <item
             android:id="@+id/nav_location_settings"
             android:icon="@drawable/ic_location_on_black_24dp"
@@ -25,7 +25,7 @@
         <item
             android:id="@+id/nav_display"
             android:icon="@drawable/ic_settings_black_24dp"
-            android:title="Coming Soon" />
+            android:title="Display" />
     </group>
 
     <item android:title="Communicate">
@@ -33,11 +33,11 @@
             <item
                 android:id="@+id/nav_share"
                 android:icon="@drawable/ic_share_black_24dp"
-                android:title="Coming Soon" />
+                android:title="Share" />
             <item
                 android:id="@+id/nav_send"
                 android:icon="@drawable/ic_send_black_24dp"
-                android:title="Coming Soon" />
+                android:title="Send" />
         </menu>
     </item>
 

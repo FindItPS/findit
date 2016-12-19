@@ -91,6 +91,7 @@ public class CanadaComputersSearch extends SearchQuery{
 //
 //            if(text.getText() != null){
                 browser.loadUrl("http://www.canadacomputers.com/simple_search.php?keywords=" + query);
+
                 browser.loadUrl(browser.getUrl());
                 final String link = browser.getUrl();
                 new fetcher(c).execute(link);
@@ -215,6 +216,7 @@ public class CanadaComputersSearch extends SearchQuery{
                 }
 
                 pricestring = pricestring.substring(0, endIndex);
+                System.out.println(pricestring);
                 //Parses the double as an actual price
                 price = Double.parseDouble(pricestring);
                 String store = "Canada Computers";

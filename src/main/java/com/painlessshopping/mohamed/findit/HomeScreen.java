@@ -133,6 +133,10 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
 
         if (id == R.id.nav_search) {
             startActivity(new Intent(HomeScreen.this, Search.class));
+
+        } else if (id == R.id.nav_home) {
+            startActivity(new Intent(HomeScreen.this, HomeScreen.class));
+
         } else if (id == R.id.nav_my_cart) {
             startActivity(new Intent(HomeScreen.this, MyCart.class));
 
@@ -140,18 +144,13 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
             startActivity(new Intent(HomeScreen.this, FeaturedScreen.class));
 
         } else if (id == R.id.nav_language_settings) {
-//            fragmentManager.beginTransaction()
-//                    .replace(R.id.content_frame
-//                            , new ThirdFragment())
-//                    .commit();
+
+
         } else if (id == R.id.nav_location_settings) {
             startActivity(new Intent(HomeScreen.this, MapsActivity.class));
 
         } else if (id == R.id.nav_display) {
-//            fragmentManager.beginTransaction()
-//                    .replace(R.id.content_frame
-//                            , new ThirdFragment())
-//                    .commit();
+
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {

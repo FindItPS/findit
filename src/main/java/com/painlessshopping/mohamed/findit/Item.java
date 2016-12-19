@@ -39,11 +39,9 @@ public class Item{
 
     public void setPrice(Double p){
 
-        if(p != 0){
-            price = p;
-        } else {
-            System.out.println("There was an Error Setting the Price of the object " + getTitle() + ".");
-        }
+
+        price = p;
+
     }
 
     public String getTitle(){

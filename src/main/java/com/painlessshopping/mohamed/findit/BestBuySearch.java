@@ -225,14 +225,17 @@ public class BestBuySearch extends SearchQuery{
                 String title = ele.select(" h4.prod-title > a").first().text();
 
                 price = Double.parseDouble(ele.select(" span.amount").text().substring(1, ele.select(" span.amount").text().length()));
-
+                System.out.println(ele.select(" span.amount").text());
 
                 //*******************************************
 
                 String store = "Best Buy";
 
-                //Adds the formatted item to an ArrayList of items
-                results.add(new Item(title, store, price, link));
+
+
+                    //Adds the formatted item to an ArrayList of items
+                    results.add(new Item(title, store, price, link));
+
 
                 //Prints the object's to String to console
                 //For debug purposes, do NOT remove - **Important
