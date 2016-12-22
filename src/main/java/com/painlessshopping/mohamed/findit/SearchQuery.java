@@ -34,7 +34,9 @@ public class SearchQuery {
 //        new BestBuySearch(c, q);
 //        new StaplesSearch(c, q);
         //new ChaptersIndigoSearch(c, q);
-        new PetSmartSearch(c, q);
+        //new PetSmartSearch(c, q);
+        //new WalmartSearch(c, q);
+        new EBGamesSearch(c, q);
 
 
     }
