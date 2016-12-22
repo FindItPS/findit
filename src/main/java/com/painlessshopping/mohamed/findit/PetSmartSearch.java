@@ -24,10 +24,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * Created by Abdourahmane on 2016-12-07.
+ * Created by Samuel on 2016-12-20.
  */
 
-public class BestBuySearch extends SearchQuery{
+public class PetSmartSearch extends SearchQuery{
 
     //You do not need a resultsEven object. This was specific to CANADA COMPUTERS' WEBSITE
     public Elements resultsEven;
@@ -59,7 +59,7 @@ public class BestBuySearch extends SearchQuery{
      * Constructor method
      * @param context The context taken from the webview (So that the asynctask can show progress)
      */
-    public BestBuySearch(Context context, String query) {
+    public PetSmartSearch(Context context, String query) {
 
         final Context c = context;
 
@@ -92,13 +92,12 @@ public class BestBuySearch extends SearchQuery{
                     }
             );
 
-
-                browser.loadUrl("http://www.bestbuy.ca/Search/SearchResults.aspx?type=product&lang=en&sortBy=relevance&sortDir=desc&query=" + query);
+                browser.loadUrl("https://www.petsmart.ca/gsi/webstore/WFS/PETNA-PETCA-Site/en_CA/-/CAD/ViewParametricSearch-ProductPaging?PageNumber=0&PageSize=24&SearchTerm=" + query + "&SearchParameter=%26%40QueryTerm%3D" + query + "%26OnlineFlag%3D1");
                 browser.loadUrl(browser.getUrl());
                 final String link = browser.getUrl();
                 new fetcher(c).execute(link);
-                new fetcher(c).execute(link + "&page=2");
-                new fetcher(c).execute(link + "&page=3");
+                new fetcher(c).execute("https://www.petsmart.ca/gsi/webstore/WFS/PETNA-PETCA-Site/en_CA/-/CAD/ViewParametricSearch-ProductPaging?PageNumber=1&PageSize=24&SearchTerm=" + query + "&SearchParameter=%26%40QueryTerm%3D" + query + "%26OnlineFlag%3D1");
+                new fetcher(c).execute("https://www.petsmart.ca/gsi/webstore/WFS/PETNA-PETCA-Site/en_CA/-/CAD/ViewParametricSearch-ProductPaging?PageNumber=2&PageSize=24&SearchTerm=" + query + "&SearchParameter=%26%40QueryTerm%3D" + query + "%26OnlineFlag%3D1");
 
 
 
@@ -154,7 +153,7 @@ public class BestBuySearch extends SearchQuery{
                         .get();
 
 
-                finalDoc = doc.select("body ul.listing-items.util_equalheight.clearfix > li.listing-item.equal-height-container");
+                finalDoc = doc.select(" [data-bus=generic-product-list]");
 
 
 
@@ -181,14 +180,14 @@ public class BestBuySearch extends SearchQuery{
             processed = crunchResults(result);
 
             //For debug purposes, do NOT remove - **Important**
-            System.out.println(processed.size() + " results have been crunched by Best Buy.");
+            System.out.println(processed.size() + " results have been crunched by Pet Smart.");
 
             //Adds all of the processed results to the list of info in Search activity
             Search.adapter.addAll(processed);
 
 
             //For debug purposes, do NOt remove - **Important
-            System.out.println("Adapter has been notified by Best Buy.");
+            System.out.println("Adapter has been notified by Pet Smart.");
 
             //Closes the progress dialog called pdialog assigned to the AsyncTask
 
@@ -215,16 +214,14 @@ public class BestBuySearch extends SearchQuery{
                 Element ele = e.get(i);
 
 
-                String link = "http://m.bestbuy.ca/defaultpage.aspx?lang=en#/catalog/productdetails.aspx?ajax=true&sku=" + ele.select(" ul.prod-availability.list-layout-prod-availability").attr("data-sku") + "&lang=en-CA";
-                System.out.println("SKU = " + ele.select(" ul.prod-availability.list-layout-prod-availability").attr("data-sku"));
-                String title = ele.select(" h4.prod-title > a").first().text();
+                String link = ele.select("a.url.kor-product-link.pet-prodloop-title").attr("href");
+                String title = ele.select("a.url.kor-product-link.pet-prodloop-title").attr("title");
 
-                price = Double.parseDouble(ele.select(" span.amount").text().substring(1, ele.select(" span.amount").text().length()));
-                System.out.println(ele.select(" span.amount").text());
+                String pricestring = ele.select("span.kor-product-sale-price-value.ws-sale-price.ws-sale-price-temporary").text();
+                price = Double.parseDouble(pricestring.substring(1, pricestring.length()));
+                System.out.println(ele.select("span.kor-product-sale-price-value.ws-sale-price.ws-sale-price-temporary").text());
 
-                //*******************************************
-
-                String store = "Best Buy";
+                String store = "Pet Smart";
 
 
 

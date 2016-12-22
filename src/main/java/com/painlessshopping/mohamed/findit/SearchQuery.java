@@ -30,9 +30,11 @@ public class SearchQuery {
     public SearchQuery(Context c, String q){
 
         Search.adapter.clear();
-        new CanadaComputersSearch(c, q);
-        new BestBuySearch(c, q);
-        new StaplesSearch(c, q);
+//        new CanadaComputersSearch(c, q);
+//        new BestBuySearch(c, q);
+//        new StaplesSearch(c, q);
+        //new ChaptersIndigoSearch(c, q);
+        new PetSmartSearch(c, q);
 
 
     }
