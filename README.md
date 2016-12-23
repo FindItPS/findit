@@ -1,6 +1,8 @@
 # Find-It-Android
 ICS4U Project created by Mohamed Amadou and Samuel Jones.
 
+Licensed under Apache License Version 2.0
+
 ##Description
 
 Browse local stores for item of interest from the comfort of your own home.
