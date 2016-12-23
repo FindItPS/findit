@@ -3,7 +3,7 @@ ICS4U Project created by Mohamed Amadou and Samuel Jones.
 
 ##Description
 
-Browse local stores for item of interest from the comfort of your own home. Made for ICS4U Sep-Jan 2016 by @samgjones and Mohamed Amadou.
+Browse local stores for item of interest from the comfort of your own home.
 
 ##Features
 
