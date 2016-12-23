@@ -24,3 +24,5 @@ Search results can be sorted by price and alphabetically, as to best meet your n
 Using our cart function, you can save items for later viewing, perhaps when you're out and about the shops.
 
 ### COMING SOON: Store Categories
+
+###TEST
