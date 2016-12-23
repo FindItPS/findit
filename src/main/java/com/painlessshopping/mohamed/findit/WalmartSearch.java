@@ -142,13 +142,16 @@ public class WalmartSearch extends SearchQuery{
                         .timeout(10000)
                         .get();
 
+                System.out.println(doc.toString());
                 finalDoc = doc.select("body div.thumb-inner-wrap");
+
 
 
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
+            System.out.println("SIZE: " + finalDoc.size());
             return finalDoc;
         }
 
@@ -182,10 +185,13 @@ public class WalmartSearch extends SearchQuery{
 
                 String description = ele.select("h1 > a").first().text();
 
+                System.out.println("TITLE " + description);
                 String unflink = ele.select("h1 > a").first().attr("href");
                 String link = "http://www.walmart.ca" + unflink;
 
+                System.out.println("LINK " + link);
                 String pricestring = ele.select("span[data-analytics-type=product-price]").attr("data-analytics-value");
+                System.out.println("PRICE " + pricestring);
                 price = Double.parseDouble(pricestring);
 
                 String store = "Walmart";

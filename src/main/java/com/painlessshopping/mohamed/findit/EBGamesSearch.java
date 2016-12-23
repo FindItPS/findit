@@ -217,7 +217,14 @@ public class EBGamesSearch extends SearchQuery{
 
                 int endIndex = 0;
 
-                String pricestring = (ele.select("div.prodBuy span").text()).substring((ele.select("div.prodBuy span").text()).indexOf("$") + 1);
+                String pricestring = "";
+                String samplestring = ele.select("div.prodBuy span").text();
+
+
+
+                    pricestring = (ele.select("div.prodBuy span").text()).substring((ele.select("div.prodBuy span").text()).lastIndexOf("$") + 1);
+
+
 
                 System.out.println("PRICE = " + pricestring);
 //                while (Character.isDigit(pricestring.charAt(endIndex)) || pricestring.charAt(endIndex) == '.') {
