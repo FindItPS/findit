@@ -10,6 +10,14 @@ android:paddingRight="@dimen/activity_horizontal_margin"
 android:paddingTop="@dimen/activity_vertical_margin"
 tools:context="com.painlessshopping.mohamed.findit.OpeningScreen">
 
+   <!--
+    Formats all visual items for the layout of the activity
+    Includes:
+      -A FindIt Logo
+      -Title text for the opening screen
+      -A continue button
+    -->
+   
    <ImageView
        android:id="@+id/findItLogo"
        android:layout_width="wrap_content"
@@ -19,6 +27,15 @@ tools:context="com.painlessshopping.mohamed.findit.OpeningScreen">
        android:src="@drawable/ic_launcher"/>
 
     <TextView
+        android:text="Find It!"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/findItSubTitle"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/findItTitle"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display3" />
+    
+    <TextView
         android:text="Painless Shopping"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -27,23 +44,14 @@ tools:context="com.painlessshopping.mohamed.findit.OpeningScreen">
         android:id="@+id/findItSubTitle"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
-    <TextView
-        android:text="Find It!"
-        android:layout_width="wrap_content"
+    <Button
+        android:text="Continue"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/findItSubTitle"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/findItTitle"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display3" />
-
-<Button
-    android:text="Continue"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/continue_button"
-    android:layout_below="@+id/findItSubTitle"
-    android:layout_alignParentEnd="true"
-    android:layout_alignParentStart="true"
-    android:onClick="loginButtonClicked" />
+        android:id="@+id/continue_button"
+        android:layout_below="@+id/findItSubTitle"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:onClick="continueButtonClicked" />
 
 </RelativeLayout>
