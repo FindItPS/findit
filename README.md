@@ -41,3 +41,5 @@ User will use search to find very different items with different criteria. They 
 When out and about the shops users may want to have list of the items they have found on Find It! to purchase. When searching, user can add an item to the cart, saving information such as name, price, link and location.
 
 ### COMING SOON: Store Categories
+
+###TEST
