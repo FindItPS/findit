@@ -16,15 +16,23 @@ Stores that can be searched currently include:
 
 -Best Buy
 
--Staples
-
 -Canada Computers
+
+-Staples
 
 -Chapters
 
--EB Games
+-Roots
 
 -Pet Smart
+
+-EB Games
+
+-Mastermind Toys 
+
+-Sport Chek
+
+-Real Canadian Superstore
 
 ###Sort Your Results
 User will use search to find very different items with different criteria. They will be able to sort their results alphabetically and by price to best find their items in the list.
