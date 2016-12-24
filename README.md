@@ -13,6 +13,7 @@ Find It! allows users to browse local stores for item of interest from the comfo
 Using our search functions they can easily get important information such as what store the item can be purchased at, the price, the title of the the item and the item price.
 
 Stores that can be searched currently include:
+
 -Best Buy
 
 -Staples
@@ -22,6 +23,8 @@ Stores that can be searched currently include:
 -Chapters
 
 -EB Games
+
+-Pet Smart
 
 ###Sort Your Results
 User will use search to find very different items with different criteria. They will be able to sort their results alphabetically and by price to best find their items in the list.
