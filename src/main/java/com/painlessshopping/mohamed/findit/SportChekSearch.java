@@ -157,7 +157,7 @@ public class SportChekSearch extends SearchQuery{
                         .get();
 
 
-                finalDoc = doc.select("body ul.product-grid__list product-grid__list_quickview > li.product-grid__list-item product-grid__list-item_state_comparable");
+                finalDoc = doc.select("body li.product-grid__list-item.product-grid__list-item_state_comparable");
 
 
 
@@ -220,10 +220,11 @@ public class SportChekSearch extends SearchQuery{
 
                 String link = "https://www.sportchek.ca" + ele.select(" a.product-grid__link").attr("href");
                 System.out.println("https://www.sportchek.ca" + ele.select(" a.product-grid__link").attr("href"));
-                String title = ele.select(" product-title-text").text();
+                String title = ele.select(" span.product-title-text").text();
 
-                price = Double.parseDouble(ele.select(" span.product-price-text").text().substring(1, ele.select(" span.product-price-text").text().length()));
-                System.out.println(ele.select(" span.product-price-text").text());
+                String pricestring = ele.select(" span.product-price__wrap").text();
+                price = Double.parseDouble(pricestring.substring(pricestring.lastIndexOf("$")));
+                System.out.println(pricestring);
 
                 //*******************************************
 

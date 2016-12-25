@@ -152,7 +152,7 @@ public class MastermindToysSearch extends SearchQuery{
                         .get();
 
 
-                finalDoc = doc.select("body div.mm_SearchResults > div.mm_SearchProduct");
+                finalDoc = doc.select("body div.mm_SearchProduct");
 
 
 
@@ -212,28 +212,27 @@ public class MastermindToysSearch extends SearchQuery{
 
                 Element ele = e.get(i);
 
-
-                String link = ("htttp://www.mastermindtoys.com" + ele.select(" div.mm_SearchProdDescription > a").attr("href"));
+                String link = "http://www.mastermindtoys.com" + ele.select(" div.mm_SearchProdDescription > a").attr("href");
                 System.out.println("http://www.mastermindtoys.com" + ele.select(" div.mm_SearchProdDescription > a").attr("href"));
-                String title = ele.select(" div.mm_SearchProdDescription > a").attr("href").text();
+                String title = ele.select(" div.mm_SearchProdDescription > a").text();
 
-                price = Double.parseDouble(ele.select(" span.mm_PriceListValue").text().substring(1, ele.select(" span.amount").text().length()));
+                price = Double.parseDouble(ele.select(" span.mm_PriceListValue").text().substring(1));
                 System.out.println(ele.select(" span.mm_PriceListValue").text());
 
                 //*******************************************
 
                 String store = "Mastermind Toys";
 
-
-
-                    //Adds the formatted item to an ArrayList of items
-                    results.add(new Item(title, store, price, link));
+                //Adds the formatted item to an ArrayList of items
+                results.add(new Item(title, store, price, link));
 
 
                 //Prints the object's to String to console
                 //For debug purposes, do NOT remove - **Important
                 System.out.println(results.get(i).toString());
+
             }
+
         } catch (Exception a){
             a.printStackTrace();
         }

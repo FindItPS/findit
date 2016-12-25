@@ -157,7 +157,7 @@ public class RCSuperstoreSearch extends SearchQuery{
                         .get();
 
 
-                finalDoc = doc.select("body div.content-tile-list > div.item content-tile add-list-item");
+                finalDoc = doc.select("body div.content-tile-list > div.item.content-tile.add-list-item");
 
 
 
@@ -222,7 +222,7 @@ public class RCSuperstoreSearch extends SearchQuery{
                 System.out.println("http://www.realcanadiansuperstore.ca" + ele.select(" a.product-name").attr("href"));
                 String title = ele.select(" span.js-product-entry-name").text();
 
-                price = Double.parseDouble(ele.select(" span.reg-price ").text().substring(0, ele.select(" span.reg-price ").text().length()));
+                price = Double.parseDouble(ele.select(" span.reg-price ").text());
                 System.out.println(ele.select(" span.reg-price ").text());
 
                 //*******************************************

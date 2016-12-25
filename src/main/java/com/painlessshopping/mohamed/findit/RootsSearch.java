@@ -220,12 +220,13 @@ public class RootsSearch extends SearchQuery{
                 Element ele = e.get(i);
 
 
-                String link = ("http://www.roots.com" + ele.select(" div.product-name").attr("href"));
-                System.out.println("http://www.roots.com" + ele.select(" div.product-name").attr("href"));
-                String title = ele.select(" div.product-name").attr("href").text();
+                String link = ("http://www.roots.com" + ele.select(" a.name-link").attr("href"));
+                System.out.println("http://www.roots.com" + ele.select(" a.name-link").attr("href"));
+                String title = ele.select(" a.name-link").attr("title");
 
-                price = Double.parseDouble(ele.select(" span.product-standard-price").text().substring(1, (ele.select(" span.product-standard-price").text().length()) - 2));
-                System.out.println(ele.select(" span.product-standard-price").text());
+                String pricestring = ele.select(" span.product-standard-price").text();
+                price = Double.parseDouble(pricestring.substring(1, pricestring.indexOf(" ")));
+                System.out.println(pricestring.substring(1, pricestring.indexOf(" ")));
 
                 //*******************************************
 
