@@ -228,12 +228,12 @@ public class GapSearch extends SearchQuery{
                 
                 //In the case that the item is discounted the above way of getting the price shouldn't work
                 //This is a backup way to assure that there is still input
-                if (priceConvert = null)
+                if (priceConvert == null)
                 {
                   priceConvert = ele.select(" span.product-card-price.product-card--regular").text();
                 }
                 
-                price = Double.parseDouble(priceConvert.substring(priceConvert.indexOf("$") + 1, priceConvert.length());
+                price = Double.parseDouble(priceConvert.substring(priceConvert.indexOf("$") + 1, priceConvert.length()));
                 System.out.println(priceConvert);
                 
                 //*******************************************

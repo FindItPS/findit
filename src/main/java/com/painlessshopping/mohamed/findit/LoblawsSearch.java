@@ -224,7 +224,7 @@ public class LoblawsSearch extends SearchQuery{
                 String title = ele.select(" span.js-product-entry-name").text();
 
                 String priceConvert = ele.select(" span.reg-price.price-alert").text();
-                price = Double.parseDouble(priceConvert.substring(priceConvert.indexOf("$") + 1, priceConvert.length());
+                price = Double.parseDouble(priceConvert.substring(priceConvert.indexOf("$") + 1, priceConvert.length()));
                 System.out.println(priceConvert);
 
                 //*******************************************
