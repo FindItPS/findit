@@ -157,12 +157,13 @@ public class StaplesSearch extends SearchQuery{
 
             processed = crunchResults(parse(result));
             System.out.println("Done Crunching Staples");
-            Search.adapter.addAll(processed);
+
+            TechSearch.adapter.addAll(processed);
             System.out.println("Adapter Notified by Staples");
 
             pdialog.dismiss();
 
-            Search.adapter.notifyDataSetChanged();
+            TechSearch.adapter.notifyDataSetChanged();
 
 
         }

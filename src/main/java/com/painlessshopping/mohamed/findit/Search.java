@@ -93,7 +93,7 @@ public class Search extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_search);
-        Search.context = Search.this;
+        context = this;
 
         ListView listView=(ListView)findViewById(R.id.listView);
         adapter= new CustomAdapter(Items, this);
@@ -115,7 +115,7 @@ public class Search extends AppCompatActivity {
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
 
-            new SearchQuery(Search.this, query);
+//            new SearchQuery(Search.this, query);
 
 
         }
@@ -139,7 +139,7 @@ public class Search extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_settings:
                 final CharSequence sortTypes[] = new CharSequence[] {"Price: Low to High", "Price: High to Low",
-                        "Name: A to Z", "Name: Z to A", "Proximity: Close to Far"};
+                        "Name: A to Z", "Name: Z to A"};
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setTitle("Sort Result By");
@@ -265,11 +265,6 @@ public class Search extends AppCompatActivity {
             case "Name: Z to A" :
                 adapter.addAll(Item.sortItems(results, "Name: Z to A"));
                 break;
-
-            case "Proximity: Close to Far":
-                adapter.addAll(Item.sortItems(results, "Proximity: Close to Far"));
-                break;
-
             default:
                 adapter.addAll(results);
                 System.out.println("Default Sort has been carried out.");

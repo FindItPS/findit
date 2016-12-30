@@ -1,6 +1,8 @@
 package com.painlessshopping.mohamed.findit;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -11,7 +13,7 @@ import android.widget.ImageView;
  * Created by Abdourahmane on 2016-12-29.
  */
 
-public class ImageAdapter extends BaseAdapter {
+public class ImageAdapter extends BaseAdapter implements View.OnClickListener {
     private Context mContext;
 
     public ImageAdapter(Context c) {
@@ -22,8 +24,9 @@ public class ImageAdapter extends BaseAdapter {
         return mThumbIds.length;
     }
 
+
     public Object getItem(int position) {
-        return null;
+        return mThumbIds[position];
     }
 
     public long getItemId(int position) {
@@ -43,7 +46,9 @@ public class ImageAdapter extends BaseAdapter {
             imageView = (ImageView) convertView;
         }
 
+        imageView.setTag(position);
         imageView.setImageResource(mThumbIds[position]);
+        imageView.setOnClickListener(this);
         return imageView;
     }
 
@@ -54,4 +59,36 @@ public class ImageAdapter extends BaseAdapter {
             R.drawable.toys_icon_large, R.drawable.clothing_icon_large
 
     };
+
+    @Override
+    public void onClick(View v) {
+
+        int position=(Integer) v.getTag();
+        final int id = mThumbIds[position];
+
+        switch (id)
+        {
+            case R.drawable.books_icon_large:
+                mContext.startActivity(new Intent(mContext, BookSearch.class));
+                break;
+            case R.drawable.food_icon_large:
+                mContext.startActivity(new Intent(mContext, FoodSearch.class));
+                break;
+            case R.drawable.pets_icon_large:
+                mContext.startActivity(new Intent(mContext, PetSearch.class));
+                break;
+            case R.drawable.tech_icon_large:
+                mContext.startActivity(new Intent(mContext, TechSearch.class));
+
+                break;
+            case R.drawable.toys_icon_large:
+                mContext.startActivity(new Intent(mContext, ToySearch.class));
+
+                break;
+            case R.drawable.clothing_icon_large:
+                mContext.startActivity(new Intent(mContext, ClothingSearch.class));
+
+                break;
+        }
+    }
 }

@@ -158,12 +158,12 @@ public class CanadaComputersSearch extends SearchQuery{
 
             processed = crunchResults(parse(result));
             System.out.println("Done Crunching CanadaComputers");
-            Search.adapter.addAll(processed);
+            TechSearch.adapter.addAll(processed);
             System.out.println("Adapter Notified by CanadaComputers");
 
             pdialog.dismiss();
 
-            Search.adapter.notifyDataSetChanged();
+            TechSearch.adapter.notifyDataSetChanged();
 
 
         }

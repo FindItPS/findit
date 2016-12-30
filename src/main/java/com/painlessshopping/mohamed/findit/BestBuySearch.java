@@ -184,7 +184,7 @@ public class BestBuySearch extends SearchQuery{
             System.out.println(processed.size() + " results have been crunched by Best Buy.");
 
             //Adds all of the processed results to the list of info in Search activity
-            Search.adapter.addAll(processed);
+            TechSearch.adapter.addAll(processed);
 
 
             //For debug purposes, do NOt remove - **Important
@@ -194,7 +194,7 @@ public class BestBuySearch extends SearchQuery{
 
             pdialog.dismiss();
 
-            Search.adapter.notifyDataSetChanged();
+            TechSearch.adapter.notifyDataSetChanged();
 
 
 

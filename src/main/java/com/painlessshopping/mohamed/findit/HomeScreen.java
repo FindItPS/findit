@@ -51,13 +51,7 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
         GridView gridview = (GridView) findViewById(R.id.gridview);
         gridview.setAdapter(new ImageAdapter(this));
 
-        gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-                //Do stuff
-//                Toast.makeText(HomeScreen.this, "" + position,
-//                        Toast.LENGTH_SHORT).show();
-            }
-        });
+
 
 
 
@@ -104,12 +98,9 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
         FragmentManager fragmentManager = getFragmentManager();
 
         if (id == R.id.nav_search) {
-            startActivity(new Intent(HomeScreen.this, Search.class));
-
-        } else if (id == R.id.nav_home) {
             startActivity(new Intent(HomeScreen.this, HomeScreen.class));
 
-        } else if (id == R.id.nav_my_cart) {
+        }  else if (id == R.id.nav_my_cart) {
             startActivity(new Intent(HomeScreen.this, MyCart.class));
 
         } else if (id == R.id.nav_featured_stores) {
