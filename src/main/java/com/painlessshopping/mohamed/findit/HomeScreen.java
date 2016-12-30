@@ -16,7 +16,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.GridView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class HomeScreen extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -46,47 +48,17 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        GridView gridview = (GridView) findViewById(R.id.gridview);
+        gridview.setAdapter(new ImageAdapter(this));
 
-
-
-        Button mapsBtn = (Button) findViewById(R.id.maps_button);
-
-        mapsBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(HomeScreen.this, MapsActivity.class));
+        gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+                //Do stuff
+//                Toast.makeText(HomeScreen.this, "" + position,
+//                        Toast.LENGTH_SHORT).show();
             }
         });
 
-        Button searchBtn = (Button) findViewById(R.id.search_button);
-
-        searchBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(HomeScreen.this, Search.class));
-
-            }
-        });
-
-        Button featuredBtn = (Button) findViewById(R.id.featured_button);
-
-        featuredBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(HomeScreen.this, FeaturedScreen.class));
-
-            }
-        });
-
-        Button cartBtn = (Button) findViewById(R.id.cart_button);
-
-        cartBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(HomeScreen.this, MyCart.class));
-
-            }
-        });
 
 
     }//End of OnCreate**************************************
