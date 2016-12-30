@@ -159,7 +159,7 @@ public class RootsSearch extends SearchQuery{
                         .get();
 
 
-                finalDoc = doc.select("body ul.search-result-items.tiles-container.clearfix.hide-compare > li.grid-tile");
+                finalDoc = doc.select("body ul#search-result-items > li.grid-tile");
 
 
 
@@ -222,9 +222,12 @@ public class RootsSearch extends SearchQuery{
 
                 String link = ("http://www.roots.com" + ele.select(" a.name-link").attr("href"));
                 System.out.println("http://www.roots.com" + ele.select(" a.name-link").attr("href"));
+
                 String title = ele.select(" a.name-link").attr("title");
 
-                String pricestring = ele.select(" span.product-standard-price").text();
+
+                String pricestring = ele.select(" span.product-sales-price").text();
+
                 price = Double.parseDouble(pricestring.substring(1, pricestring.indexOf(" ")));
                 System.out.println(pricestring.substring(1, pricestring.indexOf(" ")));
 

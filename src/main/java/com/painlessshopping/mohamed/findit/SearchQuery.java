@@ -38,7 +38,12 @@ public class SearchQuery {
         //new WalmartSearch(c, q);
         //new EBGamesSearch(c, q);
         //new RCSuperstoreSearch(c, q);
-        new MastermindToysSearch(c, q);
+        //new MastermindToysSearch(c, q);
+        new RootsSearch(c, q);
+        //new SportChekSearch(c, q);
+        //new LoblawsSearch(c, q);
+        //new GapSearch(c, q);
+
 
 
 
