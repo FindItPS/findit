@@ -28,4 +28,10 @@
     <string name="drawer_open">Open Navigation Drawer</string>
     <string name="drawer_close">Close Navigation Drawer</string>
     <string name="action_sort">Sort</string>
+    <string name="title_activity_tech_search">TechSearch</string>
+    <string name="title_activity_book_search">BookSearch</string>
+    <string name="title_activity_pet_search">PetSearch</string>
+    <string name="title_activity_food_search">FoodSearch</string>
+    <string name="title_activity_toy_search">ToySearch</string>
+    <string name="title_activity_clothing_search">ClothingSearch</string>
 </resources>

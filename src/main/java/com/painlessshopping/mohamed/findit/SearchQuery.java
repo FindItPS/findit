@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.webkit.WebView;
+import android.widget.Toast;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -29,20 +30,27 @@ public class SearchQuery {
 
     public SearchQuery(Context c, String q){
 
-        Search.adapter.clear();
-        //new CanadaComputersSearch(c, q);
-        //new BestBuySearch(c, q);
-        //new StaplesSearch(c, q);
-        //new ChaptersIndigoSearch(c, q);
-        //new PetSmartSearch(c, q);
-        //new WalmartSearch(c, q);
-        //new EBGamesSearch(c, q);
-        //new RCSuperstoreSearch(c, q);
-        //new MastermindToysSearch(c, q);
-        new RootsSearch(c, q);
-        //new SportChekSearch(c, q);
-        //new LoblawsSearch(c, q);
-        //new GapSearch(c, q);
+        if(q.length() >= 3){
+
+            Search.adapter.clear();
+
+            //new CanadaComputersSearch(c, q);
+            //new BestBuySearch(c, q);
+            //new StaplesSearch(c, q);
+            //new ChaptersIndigoSearch(c, q);
+            //new PetSmartSearch(c, q);
+            //new WalmartSearch(c, q);
+            //new EBGamesSearch(c, q);
+            //new RCSuperstoreSearch(c, q);
+            //new MastermindToysSearch(c, q);
+            new RootsSearch(c, q);
+            //new SportChekSearch(c, q);
+            //new LoblawsSearch(c, q);
+            //new GapSearch(c, q);
+
+        } else {
+            Toast.makeText(c, "The Minimum Query Length is 3 Characters", Toast.LENGTH_LONG).show();
+        }
 
 
 
