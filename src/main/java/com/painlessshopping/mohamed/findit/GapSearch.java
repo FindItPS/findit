@@ -189,7 +189,7 @@ public class GapSearch extends SearchQuery{
             System.out.println(processed.size() + " results have been crunched by The Gap.");
 
             //Adds all of the processed results to the list of info in Search activity
-            Search.adapter.addAll(processed);
+            ClothingSearch.adapter.addAll(processed);
 
 
             //For debug purposes, do NOt remove - **Important
@@ -199,7 +199,7 @@ public class GapSearch extends SearchQuery{
 
             pdialog.dismiss();
 
-            Search.adapter.notifyDataSetChanged();
+            ClothingSearch.adapter.notifyDataSetChanged();
 
 
 

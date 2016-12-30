@@ -187,7 +187,7 @@ public class SportChekSearch extends SearchQuery{
             System.out.println(processed.size() + " results have been crunched by Sport Chek.");
 
             //Adds all of the processed results to the list of info in Search activity
-            Search.adapter.addAll(processed);
+            ClothingSearch.adapter.addAll(processed);
 
 
             //For debug purposes, do NOt remove - **Important
@@ -197,7 +197,7 @@ public class SportChekSearch extends SearchQuery{
 
             pdialog.dismiss();
 
-            Search.adapter.notifyDataSetChanged();
+            ClothingSearch.adapter.notifyDataSetChanged();
 
 
 

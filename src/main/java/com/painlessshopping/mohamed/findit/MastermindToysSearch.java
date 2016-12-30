@@ -59,6 +59,7 @@ public class MastermindToysSearch extends SearchQuery{
      */
     public MastermindToysSearch(Context context, String query) {
 
+
         final Context c = context;
 
         try {
@@ -182,7 +183,11 @@ public class MastermindToysSearch extends SearchQuery{
             System.out.println(processed.size() + " results have been crunched by Mastermind Toys.");
 
             //Adds all of the processed results to the list of info in Search activity
-            Search.adapter.addAll(processed);
+            if(mContext == BookSearch.getAppContext()){
+                BookSearch.adapter.addAll(processed);
+            } else if (mContext == ToySearch.getAppContext()){
+                ToySearch.adapter.addAll(processed);
+            }
 
 
             //For debug purposes, do NOt remove - **Important
@@ -192,8 +197,11 @@ public class MastermindToysSearch extends SearchQuery{
 
             pdialog.dismiss();
 
-            Search.adapter.notifyDataSetChanged();
-
+            if(mContext == BookSearch.getAppContext()){
+                BookSearch.adapter.notifyDataSetChanged();
+            } else if (mContext == ToySearch.getAppContext()){
+                ToySearch.adapter.notifyDataSetChanged();
+            }
 
 
 

@@ -97,14 +97,16 @@ public class CustomAdapter extends ArrayAdapter<Item> implements View.OnClickLis
 
                 CartInfoProvider.addToCart(item);
                 final ImageView imageView = (ImageView) v.findViewById(R.id.addCart);
-                imageView.setImageResource(R.drawable.ic_remove_shopping_cart_black_24dp);
+                imageView.setImageResource(R.drawable.ic_shopping_cart_black_24dp);
+                imageView.setClickable(false);
 
-                Snackbar.make(result, "This item has been added to your Cart", Snackbar.LENGTH_LONG).setAction("UNDO", new View.OnClickListener() {
+                Snackbar.make(result, "This item has been added to your Cart", Snackbar.LENGTH_INDEFINITE).setAction("UNDO", new View.OnClickListener() {
 
                     @Override
                     public void onClick(View v) {
                         CartInfoProvider.removeFromCart(item);
-                        imageView.setImageResource(R.drawable.ic_shopping_cart_black_24dp);
+                        imageView.setImageResource(R.drawable.ic_add_shopping_cart_black_24dp);
+                        imageView.setClickable(true);
                     }
 
                 }).show();

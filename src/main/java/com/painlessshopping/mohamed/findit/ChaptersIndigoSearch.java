@@ -186,8 +186,12 @@ public class ChaptersIndigoSearch  extends SearchQuery{
             //For debug purposes, do NOT remove - **Important**
             System.out.println(processed.size() + " results have been crunched by Chapters Indigo.");
 
+            if(mContext == BookSearch.getAppContext()){
+                BookSearch.adapter.addAll(processed);
+            } else if (mContext == ToySearch.getAppContext()){
+                ToySearch.adapter.addAll(processed);
+            }
             //Adds all of the processed results to the list of info in Search activity
-            Search.adapter.addAll(processed);
 
 
             //For debug purposes, do NOt remove - **Important
@@ -197,7 +201,11 @@ public class ChaptersIndigoSearch  extends SearchQuery{
 
             pdialog.dismiss();
 
-            Search.adapter.notifyDataSetChanged();
+            if(mContext == BookSearch.getAppContext()){
+                BookSearch.adapter.notifyDataSetChanged();
+            } else if (mContext == ToySearch.getAppContext()){
+                ToySearch.adapter.notifyDataSetChanged();
+            }
 
 
 

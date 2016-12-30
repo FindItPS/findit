@@ -188,7 +188,7 @@ public class LoblawsSearch extends SearchQuery{
             System.out.println(processed.size() + " results have been crunched by Loblaws.");
 
             //Adds all of the processed results to the list of info in Search activity
-            Search.adapter.addAll(processed);
+            FoodSearch.adapter.addAll(processed);
 
 
             //For debug purposes, do NOt remove - **Important
@@ -198,7 +198,7 @@ public class LoblawsSearch extends SearchQuery{
 
             pdialog.dismiss();
 
-            Search.adapter.notifyDataSetChanged();
+            FoodSearch.adapter.notifyDataSetChanged();
 
 
 
