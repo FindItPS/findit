@@ -34,10 +34,15 @@ Stores that can be searched currently include:
 
 -Real Canadian Superstore
 
+-Loblaws
+
+-The Gap
+
 ###Sort Your Results
-User will use search to find very different items with different criteria. They will be able to sort their results alphabetically and by price to best find their items in the list.
+Users will use search to find very different items with different criteria. They will be able to sort their results alphabetically and by price to best find their items in the list.
 
 ###Save for Later
 When out and about the shops users may want to have list of the items they have found on Find It! to purchase. When searching, user can add an item to the cart, saving information such as name, price, link and location.
 
-### COMING SOON: Store Categories
+###Store Categories
+When searching for a shirt user may not want to have technology stores give suggestions. To solve this, user have access to Store Categories that allow users control what content will appear.
