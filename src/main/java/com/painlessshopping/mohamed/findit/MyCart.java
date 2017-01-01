@@ -27,7 +27,7 @@ public class MyCart extends AppCompatActivity {
         setContentView(R.layout.activity_my_cart);
 
         ListView listView=(ListView)findViewById(R.id.cart);
-        adapter= new CartAdapter(Items, this);
+        adapter= new CartAdapter(Items, this, listView);
         listView.setAdapter(adapter);
 
         TextView empty = (TextView) findViewById(R.id.empty);

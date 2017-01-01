@@ -23,6 +23,7 @@ public class CartAdapter extends ArrayAdapter<Item> implements View.OnClickListe
 
     private ArrayList<Item> dataSet;
     Context mContext;
+    View listView;
 
     // View lookup cache
     private static class ViewHolder {
@@ -33,10 +34,11 @@ public class CartAdapter extends ArrayAdapter<Item> implements View.OnClickListe
         ImageView removeFromCart;
     }
 
-    public CartAdapter (ArrayList<Item> data, Context context) {
+    public CartAdapter (ArrayList<Item> data, Context context, View lv) {
         super(context, R.layout.row_cart, data);
         this.dataSet = data;
         this.mContext=context;
+        this.listView = lv;
 
     }
 
@@ -97,18 +99,16 @@ public class CartAdapter extends ArrayAdapter<Item> implements View.OnClickListe
                 MyCart.adapter.remove(item);
                 MyCart.adapter.notifyDataSetChanged();
 
-                Snackbar.make(result, "This item was removed from your cart", Snackbar.LENGTH_LONG).setAction("UNDO", null)
-                        //new View.OnClickListener() {
-//
-//                    @Override
-//                    public void onClick(View v) {
-//                        CartInfoProvider.addToCart(item);
-//                        MyCart.adapter.add(item);
-//                        MyCart.adapter.notifyDataSetChanged();
-//                    }
-//
-//                })
-                .show();
+                Snackbar.make(listView, "This item was removed from your cart", Snackbar.LENGTH_INDEFINITE).setAction("UNDO", new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        CartInfoProvider.addToCart(item);
+                        MyCart.adapter.add(item);
+                        MyCart.adapter.notifyDataSetChanged();
+                    }
+
+                }).show();
 
             }
         });
