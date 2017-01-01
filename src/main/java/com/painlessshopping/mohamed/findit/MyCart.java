@@ -10,6 +10,7 @@ import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -28,6 +29,9 @@ public class MyCart extends AppCompatActivity {
         ListView listView=(ListView)findViewById(R.id.cart);
         adapter= new CartAdapter(Items, this);
         listView.setAdapter(adapter);
+
+        TextView empty = (TextView) findViewById(R.id.empty);
+        listView.setEmptyView(empty);
 
         adapter.addAll(CartInfoProvider.getCart());
         adapter.notifyDataSetChanged();

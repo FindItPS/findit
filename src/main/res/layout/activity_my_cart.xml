@@ -18,7 +18,18 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_marginTop="10dp"
+        android:gravity="top"
         android:layout_alignParentTop="true"/>
+
+    <TextView
+        android:id="@+id/empty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
+        android:text="@string/empty_cart"
+        android:textSize="@dimen/empty_list_text"/>
 
 
 

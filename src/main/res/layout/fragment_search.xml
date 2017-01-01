@@ -21,6 +21,16 @@
         android:layout_marginTop="10dp"
         android:layout_alignParentBottom="true"/>
 
+    <TextView
+        android:id="@+id/empty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
+        android:text="@string/empty_search"
+        android:textSize="@dimen/empty_list_text"/>
+
 
 
 </RelativeLayout>

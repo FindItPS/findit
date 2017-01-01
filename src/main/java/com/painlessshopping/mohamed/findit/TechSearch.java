@@ -99,6 +99,9 @@ public class TechSearch extends AppCompatActivity {
         adapter= new CustomAdapter(Items, this);
         listView.setAdapter(adapter);
 
+        TextView empty = (TextView) findViewById(R.id.empty);
+        listView.setEmptyView(empty);
+
         handleIntent(getIntent());
 
     }

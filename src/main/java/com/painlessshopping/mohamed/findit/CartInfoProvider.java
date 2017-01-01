@@ -9,7 +9,6 @@ import java.util.ArrayList;
 public class CartInfoProvider {
 
     private static ArrayList<Item> cart = new ArrayList<Item>();
-    private static CartAdapter Madapter;
 
     public static void addToCart(Item i){
 

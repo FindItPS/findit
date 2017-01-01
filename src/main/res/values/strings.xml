@@ -34,4 +34,6 @@
     <string name="title_activity_food_search">FoodSearch</string>
     <string name="title_activity_toy_search">ToySearch</string>
     <string name="title_activity_clothing_search">ClothingSearch</string>
+    <string name="empty_cart">There are currently no items in your cart.</string>
+    <string name="empty_search">There are currently no available search results to display.</string>
 </resources>
