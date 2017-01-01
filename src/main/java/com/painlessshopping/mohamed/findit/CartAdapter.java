@@ -97,16 +97,18 @@ public class CartAdapter extends ArrayAdapter<Item> implements View.OnClickListe
                 MyCart.adapter.remove(item);
                 MyCart.adapter.notifyDataSetChanged();
 
-                Snackbar.make(result, "This item was removed from your cart", Snackbar.LENGTH_INDEFINITE).setAction("UNDO", new View.OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        CartInfoProvider.addToCart(item);
-                        MyCart.adapter.add(item);
-                        MyCart.adapter.notifyDataSetChanged();
-                    }
-
-                }).show();
+                Snackbar.make(result, "This item was removed from your cart", Snackbar.LENGTH_LONG).setAction("UNDO", null)
+                        //new View.OnClickListener() {
+//
+//                    @Override
+//                    public void onClick(View v) {
+//                        CartInfoProvider.addToCart(item);
+//                        MyCart.adapter.add(item);
+//                        MyCart.adapter.notifyDataSetChanged();
+//                    }
+//
+//                })
+                .show();
 
             }
         });
