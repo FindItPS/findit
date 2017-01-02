@@ -135,6 +135,7 @@
         <activity
             android:name=".BookSearch"
             android:label="@string/title_activity_search"
+            android:theme="@style/AppTheme.NoActionBar"
             android:launchMode="singleTop"
             android:parentActivityName=".HomeScreen"
             android:screenOrientation="portrait">
@@ -152,6 +153,7 @@
         <activity
             android:name=".PetSearch"
             android:label="@string/title_activity_search"
+            android:theme="@style/AppTheme.NoActionBar"
             android:launchMode="singleTop"
             android:parentActivityName=".HomeScreen"
             android:screenOrientation="portrait">
@@ -169,6 +171,7 @@
         <activity
             android:name=".FoodSearch"
             android:label="@string/title_activity_search"
+            android:theme="@style/AppTheme.NoActionBar"
             android:launchMode="singleTop"
             android:parentActivityName=".HomeScreen"
             android:screenOrientation="portrait">
@@ -186,6 +189,7 @@
         <activity
             android:name=".ToySearch"
             android:label="@string/title_activity_search"
+            android:theme="@style/AppTheme.NoActionBar"
             android:launchMode="singleTop"
             android:parentActivityName=".HomeScreen"
             android:screenOrientation="portrait">
@@ -203,6 +207,7 @@
         <activity
             android:name=".ClothingSearch"
             android:label="@string/title_activity_search"
+            android:theme="@style/AppTheme.NoActionBar"
             android:launchMode="singleTop"
             android:parentActivityName=".HomeScreen"
             android:screenOrientation="portrait">
