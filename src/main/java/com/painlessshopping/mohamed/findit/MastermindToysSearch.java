@@ -6,10 +6,12 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Handler;
+import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -199,6 +201,8 @@ public class MastermindToysSearch extends SearchQuery{
 
             if(mContext == BookSearch.getAppContext()){
                 BookSearch.adapter.notifyDataSetChanged();
+                SearchQueueHandler.makeRequest(mContext, processed, SearchQueueHandler.BOOK_SEARCH);
+
             } else if (mContext == ToySearch.getAppContext()){
                 ToySearch.adapter.notifyDataSetChanged();
             }

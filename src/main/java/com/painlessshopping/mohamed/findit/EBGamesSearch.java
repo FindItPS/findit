@@ -96,9 +96,6 @@ public class EBGamesSearch extends SearchQuery{
                 browser.loadUrl(browser.getUrl());
                 final String link = browser.getUrl();
                 new fetcher(c).execute(link);
-//              new fetcher(c).execute(link + "&page=2");
-//              new fetcher(c).execute(link + "&page=3");
-
 
 
         }

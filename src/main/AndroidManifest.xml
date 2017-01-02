@@ -76,7 +76,8 @@
             android:name=".HomeScreen"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:hardwareAccelerated="true"/>
         <activity
             android:name=".ItemListActivity"
             android:label="@string/title_item_list"

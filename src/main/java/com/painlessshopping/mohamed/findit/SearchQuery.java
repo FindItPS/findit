@@ -3,7 +3,9 @@ package com.painlessshopping.mohamed.findit;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.support.design.widget.Snackbar;
 import android.webkit.WebView;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import org.jsoup.nodes.Document;
@@ -23,7 +25,7 @@ public class SearchQuery {
     private int status = -2;
     private ProgressDialog dialog;
     private static int ccstatus, bbstatus = 0;
-    public final int BOOK_SEARCH = 1, FOOD_SEARCH = 2, PETS_SEARCH = 3, TECH_SEARCH = 4, TOYS_SEARCH = 5, CLOTHING_SEARCH = 6;
+    public static final int BOOK_SEARCH = 1, FOOD_SEARCH = 2, PETS_SEARCH = 3, TECH_SEARCH = 4, TOYS_SEARCH = 5, CLOTHING_SEARCH = 6;
 
 
     public SearchQuery(){

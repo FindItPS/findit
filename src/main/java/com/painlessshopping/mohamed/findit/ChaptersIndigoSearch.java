@@ -188,6 +188,7 @@ public class ChaptersIndigoSearch  extends SearchQuery{
 
             if(mContext == BookSearch.getAppContext()){
                 BookSearch.adapter.addAll(processed);
+                SearchQueueHandler.makeRequest(mContext, processed, SearchQueueHandler.BOOK_SEARCH);
             } else if (mContext == ToySearch.getAppContext()){
                 ToySearch.adapter.addAll(processed);
             }
