@@ -44,6 +44,10 @@ tools:context="com.painlessshopping.mohamed.findit.OpeningScreen">
         android:id="@+id/findItSubTitle"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
+    <!--
+
+    Commented for testing of a timer on the opening screen in place of the current continue button
+
     <Button
         android:text="Continue"
         android:layout_width="match_parent"
@@ -52,6 +56,6 @@ tools:context="com.painlessshopping.mohamed.findit.OpeningScreen">
         android:layout_below="@+id/findItSubTitle"
         android:layout_alignParentEnd="true"
         android:layout_alignParentStart="true"
-        android:onClick="continueButtonClicked" />
+        android:onClick="continueButtonClicked" /> -->
 
 </RelativeLayout>
