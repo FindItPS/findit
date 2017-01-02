@@ -4,9 +4,15 @@ import android.app.AlertDialog;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
@@ -14,7 +20,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class MyCart extends AppCompatActivity {
+public class MyCart extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener   {
 
     ArrayList<Item> Items = new ArrayList<>(); ;
     ListView listView;
@@ -25,6 +31,20 @@ public class MyCart extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_cart);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.drawer_open, R.string.drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
 
         ListView listView=(ListView)findViewById(R.id.cart);
         adapter= new CartAdapter(Items, this, listView);
@@ -113,4 +133,49 @@ public class MyCart extends AppCompatActivity {
         adapter.notifyDataSetChanged();
 
     }
-}
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
+        android.app.FragmentManager fragmentManager = getFragmentManager();
+
+        if (id == R.id.nav_search) {
+            startActivity(new Intent(MyCart.this, HomeScreen.class));
+
+        }  else if (id == R.id.nav_my_cart) {
+            startActivity(new Intent(MyCart.this, MyCart.class));
+
+        } else if (id == R.id.nav_featured_stores) {
+            startActivity(new Intent(MyCart.this, FeaturedScreen.class));
+
+        } else if (id == R.id.nav_language_settings) {
+
+
+        } else if (id == R.id.nav_location_settings) {
+            startActivity(new Intent(MyCart.this, MapsActivity.class));
+
+        } else if (id == R.id.nav_display) {
+
+        } else if (id == R.id.nav_share) {
+
+        } else if (id == R.id.nav_send) {
+
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+}//End of Class

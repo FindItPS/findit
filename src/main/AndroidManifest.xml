@@ -111,7 +111,10 @@
         </activity>
 
 
-        <activity android:name=".MyCart" />
+        <activity
+            android:name=".MyCart"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".HomeScreen"/>
 
 
 
