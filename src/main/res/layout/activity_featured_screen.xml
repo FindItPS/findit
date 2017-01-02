@@ -1,14 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<GridView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:paddingTop="24dp"
-    android:paddingBottom="24dp"
-    android:id="@+id/gridview"
+
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:columnWidth="160dp"
-    android:numColumns="auto_fit"
-    android:verticalSpacing="24dp"
-    android:horizontalSpacing="2dp"
-    android:stretchMode="columnWidth"
-    android:gravity="center"
-    />
+    android:layout_height="match_parent">
+    <!-- The main content view -->
+
+    <include
+        layout="@layout/app_bar_featured_screen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+    <!-- The navigation drawer -->
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header_main"
+        app:menu="@menu/activity_main_drawer" />
+
+</android.support.v4.widget.DrawerLayout>
+
+
+
