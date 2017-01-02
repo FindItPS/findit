@@ -17,32 +17,44 @@ tools:context="com.painlessshopping.mohamed.findit.OpeningScreen">
       -Title text for the opening screen
       -A continue button
     -->
-   
-   <ImageView
-       android:id="@+id/findItLogo"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:layout_above="@+id/findItTitle"
-       android:layout_centerHorizontal="true"
-       android:src="@drawable/ic_launcher"/>
 
     <TextView
         android:text="Find It!"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/findItSubTitle"
-        android:layout_centerHorizontal="true"
         android:id="@+id/findItTitle"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display3" />
-    
+        android:textAppearance="@style/TextAppearance.AppCompat.Display3"
+        android:layout_above="@+id/findItLogo"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:id="@+id/findItLogo"
+        android:layout_width = "150dp"
+        android:layout_height= "150dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_launcher"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
     <TextView
         android:text="Painless Shopping"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
         android:id="@+id/findItSubTitle"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Display3"
+        android:textSize="22sp"
+        android:textStyle="normal|italic"
+        android:layout_below="@+id/findItLogo"
+        android:layout_centerHorizontal="true" />
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar2"
+        android:layout_below="@+id/findItSubTitle"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="31dp" />
 
     <!--
 
