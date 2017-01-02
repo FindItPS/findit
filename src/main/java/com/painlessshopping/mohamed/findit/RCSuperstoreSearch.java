@@ -203,8 +203,10 @@ public class RCSuperstoreSearch extends SearchQuery{
 
             if(mContext == FoodSearch.getAppContext()){
                 FoodSearch.adapter.notifyDataSetChanged();
+                SearchQueueHandler.makeRequest(mContext, processed, SearchQueueHandler.FOOD_SEARCH);
             } else if (mContext == PetSearch.getAppContext()){
                 PetSearch.adapter.notifyDataSetChanged();
+                SearchQueueHandler.makeRequest(mContext, processed, SearchQueueHandler.PETS_SEARCH);
             }
 
 

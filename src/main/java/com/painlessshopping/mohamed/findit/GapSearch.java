@@ -200,6 +200,7 @@ public class GapSearch extends SearchQuery{
             pdialog.dismiss();
 
             ClothingSearch.adapter.notifyDataSetChanged();
+            SearchQueueHandler.makeRequest(mContext, processed, SearchQueueHandler.CLOTHING_SEARCH);
 
 
 

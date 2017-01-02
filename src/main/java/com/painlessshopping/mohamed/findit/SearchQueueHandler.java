@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 
 public class SearchQueueHandler {
-    public static int BOOK_QUEUE = 4 , CLOTHING_QUEUE = 3, FOOD_QUEUE = 2, PET_QUEUE = 4, TECH_QUEUE = 13, TOY_QUEUE = 4;
+    public static int BOOK_QUEUE = 4 , CLOTHING_QUEUE = 3, FOOD_QUEUE = 2, PETS_QUEUE = 4, TECH_QUEUE = 10, TOYS_QUEUE = 4;
     public static final int BOOK_SEARCH = 1, FOOD_SEARCH = 2, PETS_SEARCH = 3, TECH_SEARCH = 4, TOYS_SEARCH = 5, CLOTHING_SEARCH = 6;
     public static ArrayList<Item> masterList = new ArrayList<Item>();
 
@@ -21,13 +21,13 @@ public class SearchQueueHandler {
             case BOOK_SEARCH:
                 if(BOOK_QUEUE != 0){
                     masterList.addAll(processed);
-                    System.out.println("HANDLING REQUESET #" + BOOK_QUEUE);
+                    System.out.println("HANDLED REQUESET #" + BOOK_QUEUE);
                     BOOK_QUEUE--;
                 }
 
                 if(BOOK_QUEUE == 0){
                     ListView list = (ListView) ((Activity) c).findViewById(R.id.listView);
-                    Snackbar.make(list, masterList.size() + " results have been returned", Snackbar.LENGTH_LONG ).show();
+                    Snackbar.make(list, masterList.size() + " relevant results have been retrieved", Snackbar.LENGTH_LONG ).show();
                     System.out.println(masterList.size() + "Results have been REACHED.");
 
                     masterList.clear();
@@ -36,14 +36,89 @@ public class SearchQueueHandler {
                 }
                 break;
             case FOOD_SEARCH:
+                if(FOOD_QUEUE != 0){
+                    masterList.addAll(processed);
+                    System.out.println("HANDLED REQUESET #" + Math.abs(FOOD_QUEUE - 3));
+                    FOOD_QUEUE--;
+                }
+
+                if(FOOD_QUEUE == 0){
+                    ListView list = (ListView) ((Activity) c).findViewById(R.id.listView);
+                    Snackbar.make(list, masterList.size() + " relevant results have been retrieved", Snackbar.LENGTH_LONG ).show();
+                    System.out.println(masterList.size() + "Results have been REACHED.");
+
+                    masterList.clear();
+                    FOOD_QUEUE = 2;
+
+                }
                 break;
             case PETS_SEARCH:
+                if(PETS_QUEUE != 0){
+                    masterList.addAll(processed);
+                    System.out.println("HANDLED REQUESET #" + Math.abs(PETS_QUEUE - 5));
+                    PETS_QUEUE--;
+                }
+
+                if(PETS_QUEUE == 0){
+                    ListView list = (ListView) ((Activity) c).findViewById(R.id.listView);
+                    Snackbar.make(list, masterList.size() + " relevant results have been retrieved", Snackbar.LENGTH_LONG ).show();
+                    System.out.println(masterList.size() + "Results have been REACHED.");
+
+                    masterList.clear();
+                    PETS_QUEUE = 4;
+
+                }
                 break;
             case TECH_SEARCH:
+                if(TECH_QUEUE != 0){
+                    masterList.addAll(processed);
+                    System.out.println("HANDLED REQUESET #" + Math.abs(TECH_QUEUE - 11));
+                    TECH_QUEUE--;
+                }
+
+                if(TECH_QUEUE == 0){
+                    ListView list = (ListView) ((Activity) c).findViewById(R.id.listView);
+                    Snackbar.make(list, masterList.size() + " relevant results have been retrieved", Snackbar.LENGTH_LONG ).show();
+                    System.out.println(masterList.size() + "Results have been REACHED.");
+
+                    masterList.clear();
+                    TECH_QUEUE = 10;
+
+                }
                 break;
             case TOYS_SEARCH:
+                if(TOYS_QUEUE != 0){
+                    masterList.addAll(processed);
+                    System.out.println("HANDLED REQUESET #" + Math.abs(TOYS_QUEUE - 5));
+                    TOYS_QUEUE--;
+                }
+
+                if(TOYS_QUEUE == 0){
+                    ListView list = (ListView) ((Activity) c).findViewById(R.id.listView);
+                    Snackbar.make(list, masterList.size() + " relevant results have been retrieved", Snackbar.LENGTH_LONG ).show();
+                    System.out.println(masterList.size() + "Results have been REACHED.");
+
+                    masterList.clear();
+                    TOYS_QUEUE = 4;
+
+                }
                 break;
             case CLOTHING_SEARCH:
+                if(CLOTHING_QUEUE != 0){
+                    masterList.addAll(processed);
+                    System.out.println("HANDLED REQUESET #" + Math.abs(CLOTHING_QUEUE - 4));
+                    CLOTHING_QUEUE--;
+                }
+
+                if(CLOTHING_QUEUE == 0){
+                    ListView list = (ListView) ((Activity) c).findViewById(R.id.listView);
+                    Snackbar.make(list, masterList.size() + " relevant results have been retrieved", Snackbar.LENGTH_LONG ).show();
+                    System.out.println(masterList.size() + "Results have been REACHED.");
+
+                    masterList.clear();
+                    CLOTHING_QUEUE = 3;
+
+                }
                 break;
         }
     }

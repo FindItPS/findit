@@ -191,7 +191,7 @@ public class EBGamesSearch extends SearchQuery{
             pdialog.dismiss();
 
             TechSearch.adapter.notifyDataSetChanged();
-
+            SearchQueueHandler.makeRequest(mContext, processed, SearchQueueHandler.TECH_SEARCH);
 
 
 

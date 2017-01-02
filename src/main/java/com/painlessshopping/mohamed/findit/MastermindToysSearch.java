@@ -205,6 +205,7 @@ public class MastermindToysSearch extends SearchQuery{
 
             } else if (mContext == ToySearch.getAppContext()){
                 ToySearch.adapter.notifyDataSetChanged();
+                SearchQueueHandler.makeRequest(mContext, processed, SearchQueueHandler.TOYS_SEARCH);
             }
 
 

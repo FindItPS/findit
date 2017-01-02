@@ -164,6 +164,7 @@ public class StaplesSearch extends SearchQuery{
             pdialog.dismiss();
 
             TechSearch.adapter.notifyDataSetChanged();
+            SearchQueueHandler.makeRequest(mContext, processed, SearchQueueHandler.TECH_SEARCH);
 
 
         }
@@ -198,8 +199,11 @@ public class StaplesSearch extends SearchQuery{
                 String id = ele.select(" div.product-info > a").first().attr("href");
                 String link = "http://m.staples.ca" + id;
 
-                price = Double.parseDouble(ele.select(" span.discounted-price").text()
-                        .substring(1, ele.select(" span.discounted-price").text().length() ));
+                String pricestring = ele.select(" span.discounted-price").text()
+                        .substring(1, ele.select(" span.discounted-price").text().length());
+
+                pricestring = pricestring.replaceAll(",", "");
+                price = Double.parseDouble(pricestring);
 
 
                 String store = "Staples";

@@ -199,6 +199,7 @@ public class LoblawsSearch extends SearchQuery{
             pdialog.dismiss();
 
             FoodSearch.adapter.notifyDataSetChanged();
+            SearchQueueHandler.makeRequest(mContext, processed, SearchQueueHandler.FOOD_SEARCH);
 
 
 

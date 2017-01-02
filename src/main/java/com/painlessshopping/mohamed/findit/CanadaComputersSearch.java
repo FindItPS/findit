@@ -164,6 +164,7 @@ public class CanadaComputersSearch extends SearchQuery{
             pdialog.dismiss();
 
             TechSearch.adapter.notifyDataSetChanged();
+            SearchQueueHandler.makeRequest(mContext, processed, SearchQueueHandler.TECH_SEARCH);
 
 
         }

@@ -194,6 +194,7 @@ public class PetSmartSearch extends SearchQuery{
             pdialog.dismiss();
 
             PetSearch.adapter.notifyDataSetChanged();
+            SearchQueueHandler.makeRequest(mContext, processed, SearchQueueHandler.PETS_SEARCH);
 
 
 
