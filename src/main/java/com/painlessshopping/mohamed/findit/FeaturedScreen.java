@@ -52,13 +52,15 @@ public class FeaturedScreen extends AppCompatActivity implements NavigationView.
     GridView gridview = (GridView) findViewById(R.id.gridview);
     gridview.setAdapter(new FeaturedStoresAdapter(this));
 
-    gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-        public void onItemClick(AdapterView<?> parent, View v,
-        int position, long id) {
-            Toast.makeText(FeaturedScreen.this, "" + position,
-                    Toast.LENGTH_SHORT).show();
-        }
-    });
+        //Action Listener is not needed at this point but in case we want clicking on the image to do something in the future,
+        //I'll just leave this here
+//    gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//        public void onItemClick(AdapterView<?> parent, View v,
+//        int position, long id) {
+//            Toast.makeText(FeaturedScreen.this, "" + position,
+//                    Toast.LENGTH_SHORT).show();
+//        }
+//    });
 }
 
     @Override

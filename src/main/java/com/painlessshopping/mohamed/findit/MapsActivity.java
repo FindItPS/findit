@@ -8,12 +8,17 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -35,7 +40,7 @@ import com.google.android.gms.vision.barcode.Barcode;
 import java.io.IOException;
 import java.util.List;
 
-public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
+public class MapsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, OnMapReadyCallback {
 
     private GoogleMap mMap;
     private static final float DEFAULTZOOM = 15;
@@ -44,6 +49,20 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.drawer_open, R.string.drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
@@ -112,7 +131,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                         String locality = a.getLocality();
 
                         LatLng latlng = new LatLng(a.getLatitude(), a.getLongitude());
-                        mMap.addMarker(new MarkerOptions().position(latlng).title("from geocoder"));
+                        mMap.addMarker(new MarkerOptions().position(latlng).title("Your Location"));
                         CameraUpdate update = CameraUpdateFactory.newLatLngZoom(latlng, DEFAULTZOOM);
                         mMap.animateCamera(update);
                     }
@@ -153,5 +172,49 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         }
     }
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
 
-}
+
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
+        android.app.FragmentManager fragmentManager = getFragmentManager();
+
+        if (id == R.id.nav_search) {
+            startActivity(new Intent(MapsActivity.this, HomeScreen.class));
+
+        }  else if (id == R.id.nav_my_cart) {
+            startActivity(new Intent(MapsActivity.this, MyCart.class));
+
+        } else if (id == R.id.nav_featured_stores) {
+            startActivity(new Intent(MapsActivity.this, FeaturedScreen.class));
+
+        } else if (id == R.id.nav_language_settings) {
+
+
+        } else if (id == R.id.nav_location_settings) {
+            startActivity(new Intent(MapsActivity.this, MapsActivity.class));
+
+        } else if (id == R.id.nav_display) {
+
+        } else if (id == R.id.nav_share) {
+
+        } else if (id == R.id.nav_send) {
+
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+}//End of Class

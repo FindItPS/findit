@@ -53,6 +53,7 @@
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps"
+            android:theme="@style/AppTheme.NoActionBar"
             android:launchMode="singleTop"
             android:parentActivityName=".HomeScreen"
             android:screenOrientation="portrait">
