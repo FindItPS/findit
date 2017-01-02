@@ -63,7 +63,7 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            //No code to prevent people returning to Opening Screen that would not end
         }
     }
 
