@@ -1,9 +1,50 @@
 <resources>
-    <string name="app_name">Find It</string>
-    <string name="title_activity_maps">Enter Location</string>
-    <string name="title_activity_login">Sign in</string>
 
-    <!-- Strings related to login -->
+    <!-- App Related Names-->
+    <string name="app_name">Find It!</string>
+    <string name="app_slogan">Painless Shopping</string>
+
+    <!-- Navigation Bar Strings-->
+    <string name="search_name">Search</string>
+    <string name="cart_name">My Cart</string>
+    <string name="ft_name">Featured Stores</string>
+    <string name="lang_name">Language Settings</string>
+    <string name="loca_name">Location Settings</string>
+    <string name="display_name">Display</string>
+    <string name="share_name">Share</string>
+    <string name="send_name">Send</string>
+
+    <!-- Search Activity Strings -->
+    <string name="title_activity_tech_search">Tech Search</string>
+    <string name="title_activity_book_search">Book Search</string>
+    <string name="title_activity_pet_search">Pet Search</string>
+    <string name="title_activity_food_search">Food Search</string>
+    <string name="title_activity_toy_search">Toy Search</string>
+    <string name="title_activity_clothing_search">ClothingSearch</string>
+
+    <string name="finding_results">Finding Results!</string>
+    <string name="empty_search">There are currently no available search results to display.</string>
+
+    <!-- My Cart Activity Strings -->
+    <string name="empty_cart">There are currently no items in your cart.</string>
+
+    <!-- Search and Cart Sort Strings-->
+    <string name="sort_r">Sort Results</string>
+    <string name="sort_rby">Sort Results By</string>
+    <string name="sort_plh">Price: Low to High</string>
+    <string name="sort_phl">Price: High to Low</string>
+    <string name="sort_naz">Name: A to Z</string>
+    <string name="sort_nza">Name: Z to A</string>
+
+    <!-- Location Setting Activity Strings-->
+    <string name="title_activity_maps">Enter Location</string>
+
+    <!--POSSIBLE OTHER TAG FOR USE: Back End/Non-UI Strings (All of the above are for UI)-->
+
+    <!--
+
+    Other strings, commented for review
+
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password (optional)</string>
     <string name="action_sign_in">Sign in or register</string>
@@ -27,13 +68,5 @@
     <string name="set_location">Set Location</string>
     <string name="drawer_open">Open Navigation Drawer</string>
     <string name="drawer_close">Close Navigation Drawer</string>
-    <string name="action_sort">Sort</string>
-    <string name="title_activity_tech_search">TechSearch</string>
-    <string name="title_activity_book_search">BookSearch</string>
-    <string name="title_activity_pet_search">PetSearch</string>
-    <string name="title_activity_food_search">FoodSearch</string>
-    <string name="title_activity_toy_search">ToySearch</string>
-    <string name="title_activity_clothing_search">ClothingSearch</string>
-    <string name="empty_cart">There are currently no items in your cart.</string>
-    <string name="empty_search">There are currently no available search results to display.</string>
+    <string name="action_sort">Sort</string> -->
 </resources>
