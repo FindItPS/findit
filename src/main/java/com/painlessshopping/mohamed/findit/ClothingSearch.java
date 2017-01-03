@@ -160,11 +160,11 @@ public class ClothingSearch extends AppCompatActivity implements NavigationView.
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_settings:
-                final CharSequence sortTypes[] = new CharSequence[] {"Price: Low to High", "Price: High to Low",
-                        "Name: A to Z", "Name: Z to A"};
+                final CharSequence sortTypes[] = new CharSequence[] {getResources().getString(R.string.sort_plh), getResources().getString(R.string.sort_phl),
+                        getResources().getString(R.string.sort_naz), getResources().getString(R.string.sort_nza)};
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle("Sort Result By");
+                builder.setTitle(R.string.sort_rby);
                 builder.setItems(sortTypes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -273,19 +273,19 @@ public class ClothingSearch extends AppCompatActivity implements NavigationView.
         switch(type){
 
             case "Price: Low to High" :
-                adapter.addAll(Item.sortItems(results, "Price: Low to High"));
+                adapter.addAll(Item.sortItems(results, getResources().getString(R.string.sort_plh)));
                 break;
 
             case "Price: High to Low" :
-                adapter.addAll(Item.sortItems(results, "Price: High to Low"));
+                adapter.addAll(Item.sortItems(results, getResources().getString(R.string.sort_phl)));
                 break;
 
             case "Name: A to Z" :
-                adapter.addAll(Item.sortItems(results, "Name: A to Z"));
+                adapter.addAll(Item.sortItems(results, getResources().getString(R.string.sort_naz)));
                 break;
 
             case "Name: Z to A" :
-                adapter.addAll(Item.sortItems(results, "Name: Z to A"));
+                adapter.addAll(Item.sortItems(results, getResources().getString(R.string.sort_nza)));
                 break;
             default:
                 adapter.addAll(results);
