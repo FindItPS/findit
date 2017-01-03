@@ -1,7 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#9A150E</color>
-    <color name="colorPrimaryDark">#2B1D0E</color>
-    <color name="colorAccent">#9A150E</color>
+    <color name="colorPrimary">#8BC34A</color>
+    <color name="colorPrimary.Autumn">#F44336</color>
+    <color name="colorPrimary.Amethyst">#673AB7</color>
+    <color name="colorPrimary.Winter">#03A9F4</color>
+    <color name="colorPrimary.Spring">#4CAF50</color>
+    <color name="colorPrimary.Summer">#D50000</color>
+
+    <color name="colorPrimaryDark">#689F38</color>
+    <color name="colorPrimaryDark.Autumn">#D32F2F</color>
+    <color name="colorPrimaryDark.Amethyst">#673AB7</color>
+    <color name="colorPrimaryDark.Winter">#0288D1</color>
+    <color name="colorPrimaryDark.Spring">#9E9D24</color>
+    <color name="colorPrimaryDark.Summer">#E91E63</color>
+
+    <color name="colorAccent">#4CAF50</color>
+    <color name="colorAccent.Autumn">#795548</color>
+    <color name="colorAccent.Amethyst">#E040FB</color>
+    <color name="colorAccent.Winter">#18FFFF</color>
+    <color name="colorAccent.Spring">#00E676</color>
+    <color name="colorAccent.Summer">#FFC400</color>
+
     <color name="dgrey">#333333</color>
+    <color name="BLACK">#000000</color>
 </resources>

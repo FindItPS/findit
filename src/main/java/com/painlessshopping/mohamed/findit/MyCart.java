@@ -28,7 +28,7 @@ public class MyCart extends AppCompatActivity implements NavigationView.OnNaviga
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+        setTheme(ThemeHandler.getTheme());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_cart);
 
@@ -167,6 +167,7 @@ public class MyCart extends AppCompatActivity implements NavigationView.OnNaviga
             startActivity(new Intent(MyCart.this, MapsActivity.class));
 
         } else if (id == R.id.nav_display) {
+            startActivity(new Intent(MyCart.this, Display.class));
 
         } else if (id == R.id.nav_share) {
 

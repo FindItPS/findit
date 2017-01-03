@@ -95,6 +95,7 @@ public class PetSearch extends AppCompatActivity implements NavigationView.OnNav
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(ThemeHandler.getTheme());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_search);
 
@@ -329,6 +330,7 @@ public class PetSearch extends AppCompatActivity implements NavigationView.OnNav
             startActivity(new Intent(PetSearch.this, MapsActivity.class));
 
         } else if (id == R.id.nav_display) {
+            startActivity(new Intent(PetSearch.this, Display.class));
 
         } else if (id == R.id.nav_share) {
 

@@ -32,11 +32,13 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(ThemeHandler.getTheme());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -113,6 +115,7 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
             startActivity(new Intent(HomeScreen.this, MapsActivity.class));
 
         } else if (id == R.id.nav_display) {
+            startActivity(new Intent(HomeScreen.this, Display.class));
 
         } else if (id == R.id.nav_share) {
 

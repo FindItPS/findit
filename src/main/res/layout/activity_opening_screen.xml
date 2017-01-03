@@ -54,7 +54,8 @@ tools:context="com.painlessshopping.mohamed.findit.OpeningScreen">
         android:id="@+id/progressBar2"
         android:layout_below="@+id/findItSubTitle"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="31dp" />
+        android:layout_marginTop="31dp"
+        android:indeterminate="false"/>
 
     <!--
 

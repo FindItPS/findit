@@ -47,6 +47,7 @@ public class MapsActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(ThemeHandler.getTheme());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
 
@@ -206,6 +207,7 @@ public class MapsActivity extends AppCompatActivity implements NavigationView.On
             startActivity(new Intent(MapsActivity.this, MapsActivity.class));
 
         } else if (id == R.id.nav_display) {
+            startActivity(new Intent(MapsActivity.this, Display.class));
 
         } else if (id == R.id.nav_share) {
 

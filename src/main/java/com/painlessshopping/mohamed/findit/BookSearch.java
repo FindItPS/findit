@@ -95,6 +95,7 @@ public class BookSearch extends AppCompatActivity implements NavigationView.OnNa
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(ThemeHandler.getTheme());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_search);
 
@@ -330,6 +331,7 @@ public class BookSearch extends AppCompatActivity implements NavigationView.OnNa
             startActivity(new Intent(BookSearch.this, MapsActivity.class));
 
         } else if (id == R.id.nav_display) {
+            startActivity(new Intent(BookSearch.this, Display.class));
 
         } else if (id == R.id.nav_share) {
 

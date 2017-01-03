@@ -95,6 +95,7 @@ public class ClothingSearch extends AppCompatActivity implements NavigationView.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(ThemeHandler.getTheme());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_search);
 
@@ -329,6 +330,7 @@ public class ClothingSearch extends AppCompatActivity implements NavigationView.
             startActivity(new Intent(ClothingSearch.this, MapsActivity.class));
 
         } else if (id == R.id.nav_display) {
+            startActivity(new Intent(ClothingSearch.this, Display.class));
 
         } else if (id == R.id.nav_share) {
 

@@ -95,6 +95,7 @@ public class FoodSearch extends AppCompatActivity implements NavigationView.OnNa
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(ThemeHandler.getTheme());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_search);
 
@@ -329,6 +330,7 @@ public class FoodSearch extends AppCompatActivity implements NavigationView.OnNa
             startActivity(new Intent(FoodSearch.this, MapsActivity.class));
 
         } else if (id == R.id.nav_display) {
+            startActivity(new Intent(FoodSearch.this, Display.class));
 
         } else if (id == R.id.nav_share) {
 
