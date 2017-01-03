@@ -100,7 +100,7 @@ public class CustomAdapter extends ArrayAdapter<Item> implements View.OnClickLis
                 imageView.setImageResource(R.drawable.ic_shopping_cart_black_24dp);
                 imageView.setClickable(false);
 
-                Snackbar.make(result, "This item has been added to your Cart", Snackbar.LENGTH_INDEFINITE).setAction("UNDO", new View.OnClickListener() {
+                Snackbar.make(result, R.string.added_cart, Snackbar.LENGTH_INDEFINITE).setAction("UNDO", new View.OnClickListener() {
 
                     @Override
                     public void onClick(View v) {

@@ -162,7 +162,7 @@ public class MapsActivity extends AppCompatActivity implements NavigationView.On
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_settings:
-                Toast.makeText(this, "Your Location has Successfully been Saved",
+                Toast.makeText(this, R.string.location_set,
                         Toast.LENGTH_LONG).show();
                 return true;
 

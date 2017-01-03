@@ -99,7 +99,7 @@ public class CartAdapter extends ArrayAdapter<Item> implements View.OnClickListe
                 MyCart.adapter.remove(item);
                 MyCart.adapter.notifyDataSetChanged();
 
-                Snackbar.make(listView, "This item was removed from your cart", Snackbar.LENGTH_INDEFINITE).setAction("UNDO", new View.OnClickListener() {
+                Snackbar.make(listView, R.string.removed_cart, Snackbar.LENGTH_INDEFINITE).setAction("UNDO", new View.OnClickListener() {
 
                     @Override
                     public void onClick(View v) {

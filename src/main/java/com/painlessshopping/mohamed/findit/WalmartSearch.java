@@ -124,7 +124,7 @@ public class WalmartSearch extends SearchQuery{
         protected void onPreExecute() {
             super.onPreExecute();
             pdialog = new ProgressDialog(mContext);
-            pdialog.setTitle("Finding Results!");
+            pdialog.setTitle(R.string.finding_results);
             pdialog.setCancelable(false);
             pdialog.show();
         }
