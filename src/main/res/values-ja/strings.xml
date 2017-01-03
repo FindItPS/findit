@@ -30,4 +30,10 @@
     <string name="title_activity_pet_search">ペットの検索</string>
     <string name="title_activity_tech_search">テクノロジーの検索</string>
     <string name="title_activity_toy_search">おもちゃの検索</string>
+    <string name="action_search">アイテムを検索する</string>
+    <string name="action_settings">設定</string>
+    <string name="action_sort">ソート</string>
+    <string name="search_hint">検索クエリを入力</string>
+    <string name="set_location">あなたの場所を設定する</string>
+    <string name="title_activity_display">表示テーマを選択する</string>
 </resources>
