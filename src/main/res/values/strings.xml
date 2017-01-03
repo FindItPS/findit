@@ -9,6 +9,7 @@
     <string name="lang_name">Language Settings</string>
     <string name="loca_name">Location Settings</string>
     <string name="display_name">Display Settings</string>
+    <string name="action_settings">Settings</string>
     <string name="share_name">Share</string>
     <string name="send_name">Send</string>
 
@@ -19,6 +20,8 @@
     <string name="title_activity_food_search">Food Search</string>
     <string name="title_activity_toy_search">Toy Search</string>
     <string name="title_activity_clothing_search">Clothing Search</string>
+    <string name="action_search">Search for Items</string>
+    <string name="search_hint">Enter Search Query</string>
     <string name="finding_results">Finding Results!</string>
     <string name="empty_search">There are currently no available search results to display.</string>
     <string name="results_found"> relevant results have been retrieved.</string>
@@ -29,6 +32,7 @@
     <string name="added_cart">This item has been added to your cart.</string>
 
     <!-- Search and Cart Sort Strings-->
+    <string name="action_sort">Sort</string>
     <string name="sort_r">Sort Results</string>
     <string name="sort_rby">Sort Results By</string>
     <string name="sort_plh">Price: Low to High</string>
@@ -39,22 +43,15 @@
     <!-- Location Setting Activity Strings-->
     <string name="app_name">Find It</string>
     <string name="title_activity_maps">Enter Location</string>
-    <string name="location_set">Your Location has Successfully been Saved.</string>
-
-
-    <string name="title_activity_search">Search</string>
-    <string name="action_settings">Settings</string>
-    <string name="search_hint">Enter Search Query</string>
-    <string name="map_hint"> 200 University Ave W, Waterloo</string>
-    <string name="action_search">Search for Items</string>
-    <string name="search_settings">Sort Results</string>
     <string name="set_location">Set Location</string>
-    <string name="action_sort">Sort</string>
+    <string name="location_set">Your Location has Successfully been Saved.</string>
+    <string name="map_hint" translatable="false"> 200 University Ave W, Waterloo</string>
+
+    <!-- Display Setting Strings-->
     <string name="title_activity_display">Choose A Display Theme</string>
 
-    <!-- Strings related to Settings -->
-
-    <string name="large_text">
+    <!-- Other Strings -->
+    <string name="large_text" translatable="false">
         "Lorem ipsum dolor sit amet, vivamus vel blandit, fusce suscipit vel."
         " Id magna. Cursus eu amet, facilisis in. Luctus vitae velit, mauris pellentesque blandit, nunc neque."
         " Eros pellentesque vehicula, tellus vestibulum, egestas fermentum vehicula."

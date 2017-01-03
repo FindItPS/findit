@@ -30,4 +30,10 @@
     <string name="title_activity_pet_search">Recherche pour animaux</string>
     <string name="title_activity_tech_search">Recherche Tech</string>
     <string name="title_activity_toy_search">Recherche de jouets</string>
+    <string name="action_settings">Paramètres</string>
+    <string name="action_search">Recherche pour objets</string>
+    <string name="action_sort">Trier</string>
+    <string name="search_hint">Entrer une requete de recherche</string>
+    <string name="set_location">Determiner un lieu</string>
+    <string name="title_activity_display">Choisissez un theme d\'affichage</string>
 </resources>
