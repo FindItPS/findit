@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">找找</string>
+    <string name="added_cart">此商品已添加到您的购物车。</string>
+    <string name="app_slogan">不用操心，我来找！</string>
+    <string name="cart_name">我的购物车</string>
+    <string name="display_name">显示设置</string>
+    <string name="empty_cart">您的购物车是空的。</string>
+    <string name="empty_search">对不起，找不到。。。</string>
+    <string name="finding_results">正在找。。。</string>
+    <string name="ft_name">我们可搜索的商店</string>
+    <string name="lang_name">语言设置</string>
+    <string name="loca_name">位置设置</string>
+    <string name="location_set">您的位置已顺利保存</string>
+    <string name="removed_cart">此商品已从您的购物车中被删除了</string>
+    <string name="results_found">有关系的东西已被找出</string>
+    <string name="search_name">搜索</string>
+    <string name="send_name">发送</string>
+    <string name="share_name">分享</string>
+    <string name="sort_naz">名称：A-Z</string>
+    <string name="sort_nza">名称：Z-A</string>
+    <string name="sort_phl">价格：高-低</string>
+    <string name="sort_plh">价格：低-高</string>
+    <string name="sort_r">排序结果</string>
+    <string name="sort_rby">按xxx排序结果</string>
+    <string name="title_activity_book_search">搜索书</string>
+    <string name="title_activity_clothing_search">搜索服装</string>
+    <string name="title_activity_food_search">搜索食品</string>
+    <string name="title_activity_maps">输入位置</string>
+    <string name="title_activity_pet_search">搜索宠物</string>
+    <string name="title_activity_tech_search">搜索技术产品</string>
+    <string name="title_activity_toy_search">搜索玩具</string>
+</resources>
