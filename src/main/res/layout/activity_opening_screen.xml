@@ -19,7 +19,7 @@ tools:context="com.painlessshopping.mohamed.findit.OpeningScreen">
     -->
 
     <TextView
-        android:text="Find It!"
+        android:text="@string/app_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/findItTitle"
@@ -37,7 +37,7 @@ tools:context="com.painlessshopping.mohamed.findit.OpeningScreen">
         android:layout_centerHorizontal="true" />
 
     <TextView
-        android:text="Painless Shopping"
+        android:text="@string/app_slogan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/findItSubTitle"

@@ -1,5 +1,6 @@
 <resources>
 
+    <string name="app_name">Find It!</string>
     <string name="app_slogan">Painless Shopping</string>
 
     <!-- Navigation Bar Strings-->
@@ -41,7 +42,6 @@
     <string name="sort_nza">Name: Z to A</string>
 
     <!-- Location Setting Activity Strings-->
-    <string name="app_name">Find It</string>
     <string name="title_activity_maps">Enter Location</string>
     <string name="set_location">Set Location</string>
     <string name="location_set">Your Location has Successfully been Saved.</string>
