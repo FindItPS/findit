@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">それを見つける！</string>
+    <string name="added_cart">このアイテムは、ショッピングカートに追加されました</string>
+    <string name="app_slogan">簡単ショッピング</string>
+    <string name="cart_name">私のカート</string>
+    <string name="display_name">ディスプレイの設定</string>
+    <string name="empty_cart">あなたのカートに商品は現在ありません</string>
+    <string name="empty_search">現在表示可能な検索結果はありません</string>
+    <string name="finding_results">結果を見つける！</string>
+    <string name="ft_name">特集ストア</string>
+    <string name="lang_name">言語設定</string>
+    <string name="loca_name">場所の設定</string>
+    <string name="location_set">あなたの場所が正常に保存されました</string>
+    <string name="removed_cart">このアイテムはカートから削除されました</string>
+    <string name="results_found">件の結果が見つかりました</string>
+    <string name="search_name">サーチ</string>
+    <string name="send_name">送信する</string>
+    <string name="share_name">シェア</string>
+    <string name="sort_naz">名前: A-Z</string>
+    <string name="sort_nza">名前: Z-A</string>
+    <string name="sort_phl">コスト：高-低</string>
+    <string name="sort_plh">コスト：低-高</string>
+    <string name="sort_r">結果をソートする</string>
+    <string name="sort_rby">結果をxxxソートする</string>
+    <string name="title_activity_book_search">書籍検索</string>
+    <string name="title_activity_clothing_search">衣類の検索</string>
+    <string name="title_activity_food_search">食品の検索</string>
+    <string name="title_activity_maps">あなたの場所を入力してください</string>
+    <string name="title_activity_pet_search">ペットの検索</string>
+    <string name="title_activity_tech_search">テクノロジーの検索</string>
+    <string name="title_activity_toy_search">おもちゃの検索</string>
+</resources>
