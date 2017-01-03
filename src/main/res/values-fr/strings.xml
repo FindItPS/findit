@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Find It!</string>
+    <string name="added_cart">Cet article a été ajouté à votre panier.</string>
+    <string name="app_slogan">Panier sans chagrin</string>
+    <string name="cart_name">Mon panier</string>
+    <string name="display_name">Paramètres d\'affichage</string>
+    <string name="empty_cart">Il n\'y a aucun produit dans votre panier actuellement.</string>
+    <string name="empty_search">Il n\'existe actuellement aucun résultat de recherche à afficher.</string>
+    <string name="finding_results">Trouver des résultats!</string>
+    <string name="ft_name">Magasins en vedette</string>
+    <string name="lang_name">Paramètres de langue</string>
+    <string name="loca_name">Paramètres de localisation</string>
+    <string name="location_set">Votre emplacement a été enregistré avec succès.</string>
+    <string name="removed_cart">Cet article a été supprimé de votre panier.</string>
+    <string name="results_found">résultats pertinents ont été récupérés.</string>
+    <string name="search_name">Chercher</string>
+    <string name="send_name">Envoyer</string>
+    <string name="share_name">Partager</string>
+    <string name="sort_naz">Nom: De A à Z</string>
+    <string name="sort_nza">Nom: Z à A</string>
+    <string name="sort_phl">Prix: du plus élevé au plus bas</string>
+    <string name="sort_plh">Prix: bas à élevé</string>
+    <string name="sort_r">Trier les résultats</string>
+    <string name="sort_rby">Trier les résultats par</string>
+    <string name="title_activity_book_search">Recherche de livres</string>
+    <string name="title_activity_clothing_search">Recherche de vêtements</string>
+    <string name="title_activity_food_search">Recherche de nourriture</string>
+    <string name="title_activity_maps">Entrez votre emplacement</string>
+    <string name="title_activity_pet_search">Recherche pour animaux</string>
+    <string name="title_activity_tech_search">Recherche Tech</string>
+    <string name="title_activity_toy_search">Recherche de jouets</string>
+</resources>

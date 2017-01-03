@@ -10,7 +10,7 @@
     <string name="ft_name">Featured Stores</string>
     <string name="lang_name">Language Settings</string>
     <string name="loca_name">Location Settings</string>
-    <string name="display_name">Display</string>
+    <string name="display_name">Display Settings</string>
     <string name="share_name">Share</string>
     <string name="send_name">Send</string>
 
@@ -20,7 +20,7 @@
     <string name="title_activity_pet_search">Pet Search</string>
     <string name="title_activity_food_search">Food Search</string>
     <string name="title_activity_toy_search">Toy Search</string>
-    <string name="title_activity_clothing_search">ClothingSearch</string>
+    <string name="title_activity_clothing_search">Clothing Search</string>
     <string name="finding_results">Finding Results!</string>
     <string name="empty_search">There are currently no available search results to display.</string>
     <string name="results_found"> relevant results have been retrieved.</string>
