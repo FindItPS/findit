@@ -1,7 +1,5 @@
 <resources>
 
-    <!-- App Related Names-->
-    <string name="app_name">Find It!</string>
     <string name="app_slogan">Painless Shopping</string>
 
     <!-- Navigation Bar Strings-->
@@ -69,14 +67,6 @@
     <string name="drawer_open">Open Navigation Drawer</string>
     <string name="drawer_close">Close Navigation Drawer</string>
     <string name="action_sort">Sort</string>
-    <string name="title_activity_tech_search">TechSearch</string>
-    <string name="title_activity_book_search">BookSearch</string>
-    <string name="title_activity_pet_search">PetSearch</string>
-    <string name="title_activity_food_search">FoodSearch</string>
-    <string name="title_activity_toy_search">ToySearch</string>
-    <string name="title_activity_clothing_search">ClothingSearch</string>
-    <string name="empty_cart">There are currently no items in your cart.</string>
-    <string name="empty_search">There are currently no available search results to display.</string>
     <string name="title_activity_display">Choose A Display Theme</string>
 
     <!-- Strings related to Settings -->
