@@ -5,39 +5,39 @@
         <item
             android:id="@+id/nav_search"
             android:icon="@drawable/ic_search_black_24dp"
-            android:title="Search" />
+            android:title="@string/search_name" />
         <item
             android:id="@+id/nav_my_cart"
             android:icon="@drawable/ic_shopping_cart_black_24dp"
-            android:title="My Cart" />
+            android:title="@string/cart_name" />
         <item
             android:id="@+id/nav_featured_stores"
             android:icon="@drawable/ic_store_black_24dp"
-            android:title="Featured Stores"/>
+            android:title="@string/ft_name"/>
         <item
             android:id="@+id/nav_language_settings"
             android:icon="@drawable/ic_g_translate_black_24dp"
-            android:title="Language Settings" />
+            android:title="@string/lang_name" />
         <item
             android:id="@+id/nav_location_settings"
             android:icon="@drawable/ic_location_on_black_24dp"
-            android:title="Location Settings" />
+            android:title="@string/loca_name" />
         <item
             android:id="@+id/nav_display"
             android:icon="@drawable/ic_settings_black_24dp"
-            android:title="Display" />
+            android:title="@string/display_name" />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="@string/comm_name">
         <menu>
             <item
                 android:id="@+id/nav_share"
                 android:icon="@drawable/ic_share_black_24dp"
-                android:title="Share" />
+                android:title="@string/share_name" />
             <item
                 android:id="@+id/nav_send"
                 android:icon="@drawable/ic_send_black_24dp"
-                android:title="Send" />
+                android:title="@string/send_name" />
         </menu>
     </item>
 

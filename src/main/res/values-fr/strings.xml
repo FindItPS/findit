@@ -36,4 +36,5 @@
     <string name="search_hint">Entrer une requete de recherche</string>
     <string name="set_location">Determiner un lieu</string>
     <string name="title_activity_display">Choisissez un theme d\'affichage</string>
+    <string name="comm_name">Communiquer</string>
 </resources>
