@@ -6,6 +6,7 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Handler;
@@ -62,6 +63,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Locale;
 
 public class TechSearch extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -103,6 +105,13 @@ public class TechSearch extends AppCompatActivity implements NavigationView.OnNa
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        Locale locale = new Locale(LangSettings.appCurrentLanguage);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config,
+                getBaseContext().getResources().getDisplayMetrics());
+        setContentView(R.layout.activity_tech_search);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -327,7 +336,7 @@ public class TechSearch extends AppCompatActivity implements NavigationView.OnNa
             startActivity(new Intent(TechSearch.this, FeaturedScreen.class));
 
         } else if (id == R.id.nav_language_settings) {
-
+            startActivity(new Intent(TechSearch.this, LangSettings.class));
 
         } else if (id == R.id.nav_location_settings) {
             startActivity(new Intent(TechSearch.this, MapsActivity.class));

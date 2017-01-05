@@ -3,6 +3,7 @@ package com.painlessshopping.mohamed.findit;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -19,6 +20,8 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import java.util.Locale;
 
 public class HomeScreen extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -39,7 +42,13 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
+        Locale locale = new Locale(LangSettings.appCurrentLanguage);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config,
+                getBaseContext().getResources().getDisplayMetrics());
+        setContentView(R.layout.activity_home_screen);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -109,6 +118,7 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
             startActivity(new Intent(HomeScreen.this, FeaturedScreen.class));
 
         } else if (id == R.id.nav_language_settings) {
+            startActivity(new Intent(HomeScreen.this, LangSettings.class));
 
         } else if (id == R.id.nav_location_settings) {
             startActivity(new Intent(HomeScreen.this, MapsActivity.class));

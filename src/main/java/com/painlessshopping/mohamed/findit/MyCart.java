@@ -5,6 +5,7 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -19,6 +20,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class MyCart extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener   {
 
@@ -35,6 +37,13 @@ public class MyCart extends AppCompatActivity implements NavigationView.OnNaviga
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        Locale locale = new Locale(LangSettings.appCurrentLanguage);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config,
+                getBaseContext().getResources().getDisplayMetrics());
+        setContentView(R.layout.activity_my_cart);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -157,7 +166,7 @@ public class MyCart extends AppCompatActivity implements NavigationView.OnNaviga
             startActivity(new Intent(MyCart.this, FeaturedScreen.class));
 
         } else if (id == R.id.nav_language_settings) {
-
+            startActivity(new Intent(MyCart.this, LangSettings.class));
 
         } else if (id == R.id.nav_location_settings) {
             startActivity(new Intent(MyCart.this, MapsActivity.class));
