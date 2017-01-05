@@ -36,7 +36,7 @@ public class LangSettings extends AppCompatActivity implements NavigationView.On
     private ListView mDrawerList;
     private String[] mPlanetTitles;
 
-    static String appCurrentLanguage;
+    static String appCurrentLanguage = "en";
 
 
     @Override
@@ -203,7 +203,7 @@ public class LangSettings extends AppCompatActivity implements NavigationView.On
 
         } else if (id == R.id.nav_language_settings) {
             startActivity(new Intent(LangSettings.this, LangSettings.class));
-            
+
         } else if (id == R.id.nav_location_settings) {
             startActivity(new Intent(LangSettings.this, MapsActivity.class));
 

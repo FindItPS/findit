@@ -18,6 +18,7 @@
     <string name="drawer_close">Close Navigation Drawer</string>
 
     <!-- Search Activity Strings -->
+    <string name="title_activity_search">Search</string>
     <string name="title_activity_tech_search">Tech Search</string>
     <string name="title_activity_book_search">Book Search</string>
     <string name="title_activity_pet_search">Pet Search</string>
