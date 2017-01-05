@@ -6,8 +6,8 @@ package com.painlessshopping.mohamed.findit;
 
 public class ThemeHandler {
 
-    public final static int THEME_DEFAULT = R.style.AppTheme;
-    public static int theme = R.style.AppTheme_Amethyst;
+    public final static int THEME_DEFAULT = R.style.Default;
+    public static int theme = R.style.Amethyst;
 
     public static void setTheme(int themeID){
         theme = themeID;
@@ -16,4 +16,5 @@ public class ThemeHandler {
     public static int getTheme(){
         return theme;
     }
+
 }

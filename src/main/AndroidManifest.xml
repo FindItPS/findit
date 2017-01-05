@@ -20,7 +20,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="Find It: Painless Shopping"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/Default">
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -37,7 +37,7 @@
         <activity
             android:name=".OpeningScreen"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/Default.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -47,14 +47,14 @@
         <activity
             android:name=".FeaturedScreen"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/Default.NoActionBar" />
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps"
             android:launchMode="singleTop"
             android:parentActivityName=".HomeScreen"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/Default.NoActionBar">
             <meta-data
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable_map" />
@@ -71,14 +71,14 @@
             android:hardwareAccelerated="true"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/Default.NoActionBar" />
         <activity
             android:name=".Search"
             android:label="@string/title_activity_search"
             android:launchMode="singleTop"
             android:parentActivityName=".HomeScreen"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/Default.NoActionBar">
             <meta-data
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
@@ -93,14 +93,14 @@
         <activity
             android:name=".MyCart"
             android:parentActivityName=".HomeScreen"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/Default.NoActionBar" />
         <activity
             android:name=".TechSearch"
-            android:label="@string/title_activity_search"
+            android:label="@string/title_activity_tech_search"
             android:launchMode="singleTop"
             android:parentActivityName=".HomeScreen"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/Default.NoActionBar">
             <meta-data
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
@@ -114,11 +114,11 @@
         </activity>
         <activity
             android:name=".BookSearch"
-            android:label="@string/title_activity_search"
+            android:label="@string/title_activity_book_search"
             android:launchMode="singleTop"
             android:parentActivityName=".HomeScreen"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/Default.NoActionBar">
             <meta-data
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
@@ -132,11 +132,11 @@
         </activity>
         <activity
             android:name=".PetSearch"
-            android:label="@string/title_activity_search"
+            android:label="@string/title_activity_pet_search"
             android:launchMode="singleTop"
             android:parentActivityName=".HomeScreen"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/Default.NoActionBar">
             <meta-data
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
@@ -150,11 +150,11 @@
         </activity>
         <activity
             android:name=".FoodSearch"
-            android:label="@string/title_activity_search"
+            android:label="@string/title_activity_food_search"
             android:launchMode="singleTop"
             android:parentActivityName=".HomeScreen"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/Default.NoActionBar">
             <meta-data
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
@@ -168,11 +168,11 @@
         </activity>
         <activity
             android:name=".ToySearch"
-            android:label="@string/title_activity_search"
+            android:label="@string/title_activity_toy_search"
             android:launchMode="singleTop"
             android:parentActivityName=".HomeScreen"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/Default.NoActionBar">
             <meta-data
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
@@ -186,11 +186,11 @@
         </activity>
         <activity
             android:name=".ClothingSearch"
-            android:label="@string/title_activity_search"
+            android:label="@string/title_activity_clothing_search"
             android:launchMode="singleTop"
             android:parentActivityName=".HomeScreen"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/Default.NoActionBar">
             <meta-data
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
@@ -206,7 +206,7 @@
             android:name=".Display"
             android:label="@string/title_activity_display"
             android:parentActivityName=".HomeScreen"
-            android:theme="@style/AppTheme">
+            android:theme="@style/Default">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.painlessshopping.mohamed.findit.HomeScreen" />

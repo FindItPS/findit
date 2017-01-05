@@ -1,7 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="Default" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -12,7 +12,7 @@
 
     </style>
 
-    <style name="AppTheme.Autumn" parent="Theme.AppCompat.DayNight.NoActionBar">
+    <style name="Autumn" parent="Theme.AppCompat.DayNight.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary.Autumn</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark.Autumn</item>
@@ -23,7 +23,7 @@
 
     </style>
 
-    <style name="AppTheme.Amethyst" parent="Theme.AppCompat.DayNight.NoActionBar">
+    <style name="Amethyst" parent="Theme.AppCompat.DayNight.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary.Amethyst</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark.Amethyst</item>
@@ -34,7 +34,7 @@
 
     </style>
 
-    <style name="AppTheme.Winter" parent="Theme.AppCompat.DayNight.NoActionBar">
+    <style name="Winter" parent="Theme.AppCompat.DayNight.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary.Winter</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark.Winter</item>
@@ -45,7 +45,7 @@
 
     </style>
 
-    <style name="AppTheme.Spring" parent="Theme.AppCompat.DayNight.NoActionBar">
+    <style name="Spring" parent="Theme.AppCompat.DayNight.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary.Spring</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark.Spring</item>
@@ -56,7 +56,7 @@
 
     </style>
 
-    <style name="AppTheme.Summer" parent="Theme.AppCompat.DayNight.NoActionBar">
+    <style name="Summer" parent="Theme.AppCompat.DayNight.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary.Summer</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark.Summer</item>
@@ -70,7 +70,7 @@
 
 
 
-    <style name="AppTheme.NoActionBar">
+    <style name="Default.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>

@@ -1,8 +1,13 @@
 package com.painlessshopping.mohamed.findit;
 
+import android.content.Intent;
 import android.os.Build;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -19,9 +24,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import android.view.Window;
+import android.widget.GridView;
+import android.widget.ListView;
 import android.widget.TextView;
 
-public class Display extends AppCompatActivity {
+public class Display extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private Window window = getWindow();
     /**
@@ -31,8 +38,6 @@ public class Display extends AppCompatActivity {
      * loaded fragment in memory. If this becomes too memory intensive, it
      * may be best to switch to a
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
-     */
-    private SectionsPagerAdapter mSectionsPagerAdapter;
 
     /**
      * The {@link ViewPager} that will host the section contents.
@@ -41,30 +46,43 @@ public class Display extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(ThemeHandler.getTheme());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display);
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-        // Create the adapter that will return a fragment for each of the three
-        // primary sections of the activity.
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
-        // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.container);
-        mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            getWindow().setStatusBarColor(getColor(R.color.BLACK));
-        }
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.drawer_open, R.string.drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+        ListView themes = (ListView) findViewById(R.id.themeList);
+        themes.setAdapter(new ThemeAdapter(this, themes));
 
 
     }
-
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            //No code to prevent people returning to Opening Screen that would not end
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_display, menu);
+        getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
@@ -83,92 +101,39 @@ public class Display extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class PlaceholderFragment extends Fragment {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
-        private static final String ARG_SECTION_NUMBER = "section_number";
 
-        public PlaceholderFragment() {
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
+        android.app.FragmentManager fragmentManager = getFragmentManager();
+
+        if (id == R.id.nav_search) {
+            startActivity(new Intent(Display.this, HomeScreen.class));
+
+        }  else if (id == R.id.nav_my_cart) {
+            startActivity(new Intent(Display.this, MyCart.class));
+
+        } else if (id == R.id.nav_featured_stores) {
+            startActivity(new Intent(Display.this, FeaturedScreen.class));
+
+        } else if (id == R.id.nav_language_settings) {
+
+        } else if (id == R.id.nav_location_settings) {
+            startActivity(new Intent(Display.this, MapsActivity.class));
+
+        } else if (id == R.id.nav_display) {
+            startActivity(new Intent(Display.this, Display.class));
+
+        } else if (id == R.id.nav_share) {
+
+        } else if (id == R.id.nav_send) {
+
         }
 
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
-        public static PlaceholderFragment newInstance(int sectionNumber) {
-            PlaceholderFragment fragment = new PlaceholderFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
-            return fragment;
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_display, container, false);
-            TextView text = (TextView) rootView.findViewById(R.id.dummyText);
-            text.setMovementMethod(new ScrollingMovementMethod());
-            //Removed this
-//            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-//            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
-            return rootView;
-        }
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
-
-    /**
-     * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
-     * one of the sections/tabs/pages.
-     */
-    public class SectionsPagerAdapter extends FragmentPagerAdapter {
-
-        public SectionsPagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            // getItem is called to instantiate the fragment for the given page.
-            // Return a PlaceholderFragment (defined as a static inner class below).
-            switch(position){
-                case 0:return PlaceholderFragment.newInstance(position + 1);
-                case 1:return Autumn.newInstance();
-                case 2:return Amethyst.newInstance();
-                case 3:return Winter.newInstance();
-                case 4:return Spring.newInstance();
-                case 5:return Summer.newInstance();
-                default:return PlaceholderFragment.newInstance(position + 1);
-            }
-        }
-
-        @Override
-        public int getCount() {
-            // Show 3 total pages.
-            return 6;
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            switch (position) {
-                case 0:
-                    return "Default Theme";
-                case 1:
-                    return "Autumn Theme";
-                case 2:
-                    return "Amethyst Theme";
-                case 3:
-                    return "Winter Theme";
-                case 4:
-                    return "Spring Theme";
-                case 5:
-                    return "Summer Theme";
-            }
-            return null;
-        }
-    }
-}
+}//End of Class
