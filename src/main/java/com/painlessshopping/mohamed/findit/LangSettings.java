@@ -43,10 +43,6 @@ public class LangSettings extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(ThemeHandler.getTheme());
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lang_settings);
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         Locale locale = new Locale(appCurrentLanguage);
         Locale.setDefault(locale);
@@ -55,6 +51,9 @@ public class LangSettings extends AppCompatActivity implements NavigationView.On
         getBaseContext().getResources().updateConfiguration(config,
                 getBaseContext().getResources().getDisplayMetrics());
         setContentView(R.layout.activity_lang_settings);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         Button enLangButton = (Button)findViewById(R.id.buttonEn);
         Button frLangButton = (Button)findViewById(R.id.buttonFr);

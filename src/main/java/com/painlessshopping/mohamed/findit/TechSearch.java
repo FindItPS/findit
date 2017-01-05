@@ -100,10 +100,6 @@ public class TechSearch extends AppCompatActivity implements NavigationView.OnNa
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(ThemeHandler.getTheme());
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_search);
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         Locale locale = new Locale(LangSettings.appCurrentLanguage);
         Locale.setDefault(locale);
@@ -111,7 +107,10 @@ public class TechSearch extends AppCompatActivity implements NavigationView.OnNa
         config.locale = locale;
         getBaseContext().getResources().updateConfiguration(config,
                 getBaseContext().getResources().getDisplayMetrics());
-        setContentView(R.layout.activity_tech_search);
+        setContentView(R.layout.fragment_search);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(

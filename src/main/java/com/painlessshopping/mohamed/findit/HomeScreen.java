@@ -37,10 +37,6 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(ThemeHandler.getTheme());
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_screen);
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         Locale locale = new Locale(LangSettings.appCurrentLanguage);
         Locale.setDefault(locale);
@@ -49,6 +45,9 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
         getBaseContext().getResources().updateConfiguration(config,
                 getBaseContext().getResources().getDisplayMetrics());
         setContentView(R.layout.activity_home_screen);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(

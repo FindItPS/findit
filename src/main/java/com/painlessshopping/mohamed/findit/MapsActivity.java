@@ -51,10 +51,6 @@ public class MapsActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(ThemeHandler.getTheme());
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_maps);
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         Locale locale = new Locale(LangSettings.appCurrentLanguage);
         Locale.setDefault(locale);
@@ -64,6 +60,8 @@ public class MapsActivity extends AppCompatActivity implements NavigationView.On
                 getBaseContext().getResources().getDisplayMetrics());
         setContentView(R.layout.activity_maps);
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.drawer_open, R.string.drawer_close);
