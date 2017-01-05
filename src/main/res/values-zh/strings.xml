@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- Translations provided by Lucy Li -->
+
     <string name="app_name">找找</string>
     <string name="added_cart">此商品已添加到您的购物车。</string>
     <string name="app_slogan">不用操心，我来找！</string>
