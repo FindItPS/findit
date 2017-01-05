@@ -56,7 +56,7 @@ public class LangSettings extends AppCompatActivity implements NavigationView.On
         enLangButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
-            public void OnClick(View v) {
+            public void onClick(View v) {
 
                 appCurrentLanguage = "en";
 
@@ -66,14 +66,14 @@ public class LangSettings extends AppCompatActivity implements NavigationView.On
                 config.locale = locale;
                 getBaseContext().getResources().updateConfiguration(config,
                         getBaseContext().getResources().getDisplayMetrics());
-                this.setContentView(R.layout.activity_lang_settings);
+                setContentView(R.layout.activity_lang_settings);
             }
         });
 
         frLangButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
-            public void OnClick(View v) {
+            public void onClick(View v) {
 
                 appCurrentLanguage = "fr";
 
@@ -83,14 +83,14 @@ public class LangSettings extends AppCompatActivity implements NavigationView.On
                 config.locale = locale;
                 getBaseContext().getResources().updateConfiguration(config,
                         getBaseContext().getResources().getDisplayMetrics());
-                this.setContentView(R.layout.activity_lang_settings);
+                setContentView(R.layout.activity_lang_settings);
             }
         });
 
         jaLangButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
-            public void OnClick(View v) {
+            public void onClick(View v) {
 
                 appCurrentLanguage = "ja";
 
@@ -100,14 +100,14 @@ public class LangSettings extends AppCompatActivity implements NavigationView.On
                 config.locale = locale;
                 getBaseContext().getResources().updateConfiguration(config,
                         getBaseContext().getResources().getDisplayMetrics());
-                this.setContentView(R.layout.activity_lang_settings);
+                setContentView(R.layout.activity_lang_settings);
             }
         });
 
         zhLangButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
-            public void OnClick(View v) {
+            public void onClick(View v) {
 
                 appCurrentLanguage = "zh";
 
@@ -117,7 +117,7 @@ public class LangSettings extends AppCompatActivity implements NavigationView.On
                 config.locale = locale;
                 getBaseContext().getResources().updateConfiguration(config,
                         getBaseContext().getResources().getDisplayMetrics());
-                this.setContentView(R.layout.activity_lang_settings);
+                setContentView(R.layout.activity_lang_settings);
             }
         });
 
