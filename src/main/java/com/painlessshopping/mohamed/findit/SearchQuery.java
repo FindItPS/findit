@@ -1,11 +1,7 @@
 package com.painlessshopping.mohamed.findit;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.support.design.widget.Snackbar;
-import android.webkit.WebView;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import org.jsoup.nodes.Document;

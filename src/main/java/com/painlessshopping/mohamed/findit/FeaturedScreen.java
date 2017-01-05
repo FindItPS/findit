@@ -6,12 +6,12 @@ package com.painlessshopping.mohamed.findit;
 
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.GridView;
@@ -26,7 +26,7 @@ public class FeaturedScreen extends AppCompatActivity implements NavigationView.
         setTheme(ThemeHandler.getTheme());
     super.onCreate(savedInstanceState);
 
-        Locale locale = new Locale(LangSettings.appCurrentLanguage);
+        Locale locale = new Locale(LanguageHandler.getLang());
         Locale.setDefault(locale);
         Configuration config = new Configuration();
         config.locale = locale;

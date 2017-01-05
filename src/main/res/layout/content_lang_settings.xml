@@ -1,25 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <TextView
-        android:text="@string/lang_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display3"
-        android:textSize="22sp"
-        android:id="@+id/lang_settings_name" />
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:showIn="@layout/app_bar_lang_settings">
 
     <Button
         android:text="English"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/lang_settings_name"
+        android:layout_above="@+id/buttonFr"
         android:id="@+id/buttonEn" />
 
     <Button
@@ -27,8 +18,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/buttonEn"
         android:id="@+id/buttonFr" />
 
     <Button
@@ -36,8 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/buttonEn"
+        android:layout_below="@+id/buttonFr"
         android:id="@+id/buttonJa" />
 
     <Button
@@ -45,9 +33,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/buttonEn"
+        android:layout_below="@+id/buttonJa"
         android:id="@+id/buttonZh" />
 
 
-</LinearLayout>
+</RelativeLayout>

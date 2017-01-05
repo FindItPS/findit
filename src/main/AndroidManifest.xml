@@ -18,7 +18,6 @@
         android:name="android.support.multidex.MultiDexApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="Find It: Painless Shopping"
         android:supportsRtl="true"
         android:theme="@style/Default">
 
@@ -46,6 +45,7 @@
         </activity>
         <activity
             android:name=".FeaturedScreen"
+            android:label="@string/ft_name"
             android:screenOrientation="portrait"
             android:theme="@style/Default.NoActionBar" />
         <activity
@@ -92,6 +92,7 @@
         </activity>
         <activity
             android:name=".MyCart"
+            android:label="@string/cart_name"
             android:parentActivityName=".HomeScreen"
             android:theme="@style/Default.NoActionBar" />
         <activity
@@ -213,6 +214,7 @@
         </activity>
         <activity
             android:name=".LangSettings"
+            android:label="@string/lang_name"
             android:parentActivityName=".HomeScreen"
             android:theme="@style/Default">
             <meta-data
