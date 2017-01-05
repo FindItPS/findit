@@ -211,6 +211,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.painlessshopping.mohamed.findit.HomeScreen" />
         </activity>
+        <activity
+            android:name=".LangSettings"
+            android:parentActivityName=".HomeScreen"
+            android:theme="@style/Default">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.painlessshopping.mohamed.findit.HomeScreen" />
+        </activity>
     </application>
 
 </manifest>
