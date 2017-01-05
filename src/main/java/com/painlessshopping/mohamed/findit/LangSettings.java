@@ -73,7 +73,6 @@ public class LangSettings extends AppCompatActivity implements NavigationView.On
                 config.locale = locale;
                 getBaseContext().getResources().updateConfiguration(config,
                         getBaseContext().getResources().getDisplayMetrics());
-                setContentView(R.layout.activity_lang_settings);
             }
         });
 
@@ -90,7 +89,6 @@ public class LangSettings extends AppCompatActivity implements NavigationView.On
                 config.locale = locale;
                 getBaseContext().getResources().updateConfiguration(config,
                         getBaseContext().getResources().getDisplayMetrics());
-                setContentView(R.layout.activity_lang_settings);
             }
         });
 
@@ -107,7 +105,6 @@ public class LangSettings extends AppCompatActivity implements NavigationView.On
                 config.locale = locale;
                 getBaseContext().getResources().updateConfiguration(config,
                         getBaseContext().getResources().getDisplayMetrics());
-                setContentView(R.layout.activity_lang_settings);
             }
         });
 
@@ -124,7 +121,6 @@ public class LangSettings extends AppCompatActivity implements NavigationView.On
                 config.locale = locale;
                 getBaseContext().getResources().updateConfiguration(config,
                         getBaseContext().getResources().getDisplayMetrics());
-                setContentView(R.layout.activity_lang_settings);
             }
         });
 

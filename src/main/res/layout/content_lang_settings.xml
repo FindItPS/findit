@@ -7,8 +7,8 @@
         android:text="@string/lang_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
+        android:layout_above="@+id/buttonEn"
         android:textAppearance="@style/TextAppearance.AppCompat.Display3"
         android:textSize="22sp"
         android:id="@+id/lang_settings_name" />
@@ -17,9 +17,8 @@
         android:text="English"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/lang_settings_name"
+        android:layout_above="@+id/buttonFr"
         android:id="@+id/buttonEn" />
 
     <Button
@@ -35,7 +34,6 @@
         android:text="日本語"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/buttonEn"
         android:id="@+id/buttonJa" />
@@ -44,7 +42,6 @@
         android:text="中文"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/buttonEn"
         android:id="@+id/buttonZh" />
