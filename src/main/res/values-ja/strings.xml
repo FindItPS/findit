@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- Translations provided by Mohamed Amadou -->
+
     <string name="app_name">それを見つける！</string>
     <string name="added_cart">このアイテムは、ショッピングカートに追加されました</string>
     <string name="app_slogan">簡単ショッピング</string>
