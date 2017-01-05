@@ -30,4 +30,11 @@
     <string name="title_activity_pet_search">搜索宠物</string>
     <string name="title_activity_tech_search">搜索技术产品</string>
     <string name="title_activity_toy_search">搜索玩具</string>
+    <string name="action_search">搜索项目</string>
+    <string name="action_settings">设置</string>
+    <string name="action_sort">排序</string>
+    <string name="comm_name">沟通</string>
+    <string name="search_hint">请输入搜索查询</string>
+    <string name="set_location">设置位置</string>
+    <string name="title_activity_display">请选择显示主题</string>
 </resources>

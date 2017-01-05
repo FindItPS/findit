@@ -3,6 +3,7 @@ package com.painlessshopping.mohamed.findit;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -20,7 +21,13 @@ import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-public class HomeScreen extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+import java.util.Locale;
+
+/**
+ * Created by Sam 05/01/2017
+ */
+
+public class LangSettings extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -29,15 +36,93 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
     private ListView mDrawerList;
     private String[] mPlanetTitles;
 
+    public static String appCurrentLanguage;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(ThemeHandler.getTheme());
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_screen);
+        setContentView(R.layout.activity_lang_settings);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        Button enLangButton = (Button)findViewById(R.id.buttonEn);
+        Button frLangButton = (Button)findViewById(R.id.buttonFr);
+        Button jaLangButton = (Button)findViewById(R.id.buttonJa);
+        Button zhLangButton = (Button)findViewById(R.id.buttonZh);
+
+        enLangButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void OnClick(View v) {
+
+                appCurrentLanguage = "en";
+
+                Locale locale = new Locale(appCurrentLanguage);
+                Locale.setDefault(locale);
+                Configuration config = new Configuration();
+                config.locale = locale;
+                getBaseContext().getResources().updateConfiguration(config,
+                        getBaseContext().getResources().getDisplayMetrics());
+                this.setContentView(R.layout.activity_lang_settings);
+            }
+        });
+
+        frLangButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void OnClick(View v) {
+
+                appCurrentLanguage = "fr";
+
+                Locale locale = new Locale(appCurrentLanguage);
+                Locale.setDefault(locale);
+                Configuration config = new Configuration();
+                config.locale = locale;
+                getBaseContext().getResources().updateConfiguration(config,
+                        getBaseContext().getResources().getDisplayMetrics());
+                this.setContentView(R.layout.activity_lang_settings);
+            }
+        });
+
+        jaLangButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void OnClick(View v) {
+
+                appCurrentLanguage = "ja";
+
+                Locale locale = new Locale(appCurrentLanguage);
+                Locale.setDefault(locale);
+                Configuration config = new Configuration();
+                config.locale = locale;
+                getBaseContext().getResources().updateConfiguration(config,
+                        getBaseContext().getResources().getDisplayMetrics());
+                this.setContentView(R.layout.activity_lang_settings);
+            }
+        });
+
+        zhLangButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void OnClick(View v) {
+
+                appCurrentLanguage = "zh";
+
+                Locale locale = new Locale(appCurrentLanguage);
+                Locale.setDefault(locale);
+                Configuration config = new Configuration();
+                config.locale = locale;
+                getBaseContext().getResources().updateConfiguration(config,
+                        getBaseContext().getResources().getDisplayMetrics());
+                this.setContentView(R.layout.activity_lang_settings);
+            }
+        });
+
+
+
 
 
 
@@ -65,7 +150,7 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            //No code to prevent people returning to Opening Screen that would not end
+            super.onBackPressed();
         }
     }
 
@@ -100,21 +185,21 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
         FragmentManager fragmentManager = getFragmentManager();
 
         if (id == R.id.nav_search) {
-            startActivity(new Intent(HomeScreen.this, HomeScreen.class));
+            startActivity(new Intent(LangSettings.this, HomeScreen.class));
 
         }  else if (id == R.id.nav_my_cart) {
-            startActivity(new Intent(HomeScreen.this, MyCart.class));
+            startActivity(new Intent(LangSettings.this, MyCart.class));
 
         } else if (id == R.id.nav_featured_stores) {
-            startActivity(new Intent(HomeScreen.this, FeaturedScreen.class));
+            startActivity(new Intent(LangSettings.this, FeaturedScreen.class));
 
         } else if (id == R.id.nav_language_settings) {
 
         } else if (id == R.id.nav_location_settings) {
-            startActivity(new Intent(HomeScreen.this, MapsActivity.class));
+            startActivity(new Intent(LangSettings.this, MapsActivity.class));
 
         } else if (id == R.id.nav_display) {
-            startActivity(new Intent(HomeScreen.this, Display.class));
+            startActivity(new Intent(LangSettings.this, Display.class));
 
         } else if (id == R.id.nav_share) {
 

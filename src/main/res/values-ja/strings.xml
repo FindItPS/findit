@@ -36,4 +36,5 @@
     <string name="search_hint">検索クエリを入力</string>
     <string name="set_location">あなたの場所を設定する</string>
     <string name="title_activity_display">表示テーマを選択する</string>
+    <string name="comm_name">コミュニケーションする</string>
 </resources>
