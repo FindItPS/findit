@@ -37,4 +37,5 @@
     <string name="search_hint">请输入搜索查询</string>
     <string name="set_location">设置位置</string>
     <string name="title_activity_display">请选择显示主题</string>
+    <string name="title_activity_search">搜索</string>
 </resources>

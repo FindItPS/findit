@@ -36,7 +36,7 @@ public class LangSettings extends AppCompatActivity implements NavigationView.On
     private ListView mDrawerList;
     private String[] mPlanetTitles;
 
-    public static String appCurrentLanguage;
+    static String appCurrentLanguage = "en";
 
 
     @Override
@@ -47,6 +47,14 @@ public class LangSettings extends AppCompatActivity implements NavigationView.On
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        Locale locale = new Locale(appCurrentLanguage);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config,
+                getBaseContext().getResources().getDisplayMetrics());
+        setContentView(R.layout.activity_lang_settings);
 
         Button enLangButton = (Button)findViewById(R.id.buttonEn);
         Button frLangButton = (Button)findViewById(R.id.buttonFr);
@@ -194,6 +202,7 @@ public class LangSettings extends AppCompatActivity implements NavigationView.On
             startActivity(new Intent(LangSettings.this, FeaturedScreen.class));
 
         } else if (id == R.id.nav_language_settings) {
+            startActivity(new Intent(LangSettings.this, LangSettings.class));
 
         } else if (id == R.id.nav_location_settings) {
             startActivity(new Intent(LangSettings.this, MapsActivity.class));
