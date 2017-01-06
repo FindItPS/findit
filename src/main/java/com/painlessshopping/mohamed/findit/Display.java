@@ -54,6 +54,8 @@ public class Display extends AppCompatActivity implements NavigationView.OnNavig
         ListView themes = (ListView) findViewById(R.id.themeList);
         themes.setAdapter(new ThemeAdapter(this, themes));
 
+        setTitle(getString(R.string.title_activity_display));
+
 
     }
     @Override

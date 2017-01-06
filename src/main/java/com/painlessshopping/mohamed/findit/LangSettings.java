@@ -43,8 +43,8 @@ public class LangSettings extends AppCompatActivity implements NavigationView.On
         Locale.setDefault(locale);
         Configuration config = new Configuration();
         config.locale = locale;
-        getBaseContext().getResources().updateConfiguration(config,
-                getBaseContext().getResources().getDisplayMetrics());
+        getResources().updateConfiguration(config,
+                getResources().getDisplayMetrics());
         setContentView(R.layout.activity_lang_settings);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -67,8 +67,8 @@ public class LangSettings extends AppCompatActivity implements NavigationView.On
                 Locale.setDefault(locale);
                 Configuration config = new Configuration();
                 config.locale = locale;
-                getBaseContext().getResources().updateConfiguration(config,
-                        getBaseContext().getResources().getDisplayMetrics());
+                getResources().updateConfiguration(config,
+                        getResources().getDisplayMetrics());
                 startActivity(new Intent(LangSettings.this, LangSettings.class));
             }
         });
@@ -85,8 +85,8 @@ public class LangSettings extends AppCompatActivity implements NavigationView.On
                 Locale.setDefault(locale);
                 Configuration config = new Configuration();
                 config.locale = locale;
-                getBaseContext().getResources().updateConfiguration(config,
-                        getBaseContext().getResources().getDisplayMetrics());
+                getResources().updateConfiguration(config,
+                        getResources().getDisplayMetrics());
                 startActivity(new Intent(LangSettings.this, LangSettings.class));
             }
         });
@@ -103,8 +103,8 @@ public class LangSettings extends AppCompatActivity implements NavigationView.On
                 Locale.setDefault(locale);
                 Configuration config = new Configuration();
                 config.locale = locale;
-                getBaseContext().getResources().updateConfiguration(config,
-                        getBaseContext().getResources().getDisplayMetrics());
+                getResources().updateConfiguration(config,
+                        getResources().getDisplayMetrics());
                 startActivity(new Intent(LangSettings.this, LangSettings.class));
             }
         });
@@ -121,8 +121,8 @@ public class LangSettings extends AppCompatActivity implements NavigationView.On
                 Locale.setDefault(locale);
                 Configuration config = new Configuration();
                 config.locale = locale;
-                getBaseContext().getResources().updateConfiguration(config,
-                        getBaseContext().getResources().getDisplayMetrics());
+                getResources().updateConfiguration(config,
+                        getResources().getDisplayMetrics());
                 startActivity(new Intent(LangSettings.this, LangSettings.class));
             }
         });
@@ -143,6 +143,7 @@ public class LangSettings extends AppCompatActivity implements NavigationView.On
 
 
 
+        setTitle(getString(R.string.lang_name));
 
 
     }//End of OnCreate**************************************

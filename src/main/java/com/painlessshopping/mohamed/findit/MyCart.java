@@ -34,8 +34,8 @@ public class MyCart extends AppCompatActivity implements NavigationView.OnNaviga
         Locale.setDefault(locale);
         Configuration config = new Configuration();
         config.locale = locale;
-        getBaseContext().getResources().updateConfiguration(config,
-                getBaseContext().getResources().getDisplayMetrics());
+        getResources().updateConfiguration(config,
+                getResources().getDisplayMetrics());
         setContentView(R.layout.activity_my_cart);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -61,6 +61,7 @@ public class MyCart extends AppCompatActivity implements NavigationView.OnNaviga
         adapter.addAll(CartInfoProvider.getCart());
         adapter.notifyDataSetChanged();
 
+        setTitle(getString(R.string.cart_name));
     }
 
     @Override

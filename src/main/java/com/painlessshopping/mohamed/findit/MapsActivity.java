@@ -44,8 +44,8 @@ public class MapsActivity extends AppCompatActivity implements NavigationView.On
         Locale.setDefault(locale);
         Configuration config = new Configuration();
         config.locale = locale;
-        getBaseContext().getResources().updateConfiguration(config,
-                getBaseContext().getResources().getDisplayMetrics());
+        getResources().updateConfiguration(config,
+                getResources().getDisplayMetrics());
         setContentView(R.layout.activity_maps);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -64,6 +64,7 @@ public class MapsActivity extends AppCompatActivity implements NavigationView.On
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(MapsActivity.this);
 
+        setTitle(getString(R.string.title_activity_maps));
         handleIntent(getIntent());
     }
 

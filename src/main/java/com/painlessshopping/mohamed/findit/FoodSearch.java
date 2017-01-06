@@ -70,8 +70,8 @@ public class FoodSearch extends AppCompatActivity implements NavigationView.OnNa
         Locale.setDefault(locale);
         Configuration config = new Configuration();
         config.locale = locale;
-        getBaseContext().getResources().updateConfiguration(config,
-                getBaseContext().getResources().getDisplayMetrics());
+        getResources().updateConfiguration(config,
+                getResources().getDisplayMetrics());
         setContentView(R.layout.fragment_search);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -95,6 +95,7 @@ public class FoodSearch extends AppCompatActivity implements NavigationView.OnNa
         TextView empty = (TextView) findViewById(R.id.empty);
         listView.setEmptyView(empty);
 
+        setTitle(getString(R.string.title_activity_food_search));
         handleIntent(getIntent());
 
     }

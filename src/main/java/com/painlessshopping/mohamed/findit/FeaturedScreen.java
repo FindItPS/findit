@@ -30,8 +30,8 @@ public class FeaturedScreen extends AppCompatActivity implements NavigationView.
         Locale.setDefault(locale);
         Configuration config = new Configuration();
         config.locale = locale;
-        getBaseContext().getResources().updateConfiguration(config,
-                getBaseContext().getResources().getDisplayMetrics());
+        getResources().updateConfiguration(config,
+                getResources().getDisplayMetrics());
         setContentView(R.layout.activity_featured_screen);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -49,6 +49,8 @@ public class FeaturedScreen extends AppCompatActivity implements NavigationView.
 
     GridView gridview = (GridView) findViewById(R.id.gridview);
     gridview.setAdapter(new FeaturedStoresAdapter(this));
+
+        setTitle(getString(R.string.ft_name));
 }
 
     @Override

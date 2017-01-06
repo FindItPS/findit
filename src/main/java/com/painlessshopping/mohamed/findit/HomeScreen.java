@@ -36,8 +36,8 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
         Locale.setDefault(locale);
         Configuration config = new Configuration();
         config.locale = locale;
-        getBaseContext().getResources().updateConfiguration(config,
-                getBaseContext().getResources().getDisplayMetrics());
+        getResources().updateConfiguration(config,
+                getResources().getDisplayMetrics());
         setContentView(R.layout.activity_home_screen);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -56,6 +56,7 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
         gridview.setAdapter(new ImageAdapter(this));
 
 
+        setTitle(getString(R.string.app_name));
 
 
 
