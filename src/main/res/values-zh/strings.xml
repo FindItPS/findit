@@ -41,4 +41,5 @@
     <string name="set_location">设置位置</string>
     <string name="title_activity_display">请选择显示主题</string>
     <string name="title_activity_search">搜索</string>
+    <string name="undo">解开</string>
 </resources>

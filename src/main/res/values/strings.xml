@@ -32,6 +32,7 @@
     <string name="results_found"> relevant results have been retrieved.</string>
 
     <!-- My Cart Activity Strings -->
+    <string name="undo">UNDO</string>
     <string name="empty_cart">There are currently no items in your cart.</string>
     <string name="removed_cart">This item was removed from your cart.</string>
     <string name="added_cart">This item has been added to your cart.</string>
@@ -54,29 +55,4 @@
     <!-- Display Setting Strings-->
     <string name="title_activity_display">Choose A Display Theme</string>
 
-    <!-- Other Strings -->
-    <string name="large_text" translatable="false">
-        "Lorem ipsum dolor sit amet, vivamus vel blandit, fusce suscipit vel."
-        " Id magna. Cursus eu amet, facilisis in. Luctus vitae velit, mauris pellentesque blandit, nunc neque."
-        " Eros pellentesque vehicula, tellus vestibulum, egestas fermentum vehicula."
-        " Massa ut, nec pellentesque. Ultrices nulla, donec vestibulum est, ut sollicitudin officia.\n\n"
-
-        "Aliquam et arcu, nulla tincidunt tellus, pede lorem. Velit vestibulum magna."
-        "At amet vitae, lectus libero, vehicula ipsum. Semper euismod dictumst,"
-        " ridiculus commodo. Suspendisse neque eros, vulputate etiam velit. Erat dolor in."
-        " Nisl quis. Accumsan lobortis, vitae nunc auctor. Inceptos taciti, vel sem,"
-        " diam sagittis. Nisl quis elit, cursus nibh, nam id.\n\n"
-
-        "Et nunc praesent. Felis facilisis, est donec. Ut eros. Faucibus amet porttitor, lectus"
-        "ut lacus, amet elit duis.  Id nam sollicitudin, amet risus, nam egestas scelerisque."
-        " Vestibulum eu, quis urna. In nulla, et vitae. Ut non. Sapien a Nec libero cras,"
-        " vel libero a. Ipsum morbi, mi sit. Vel necessitatibus pharetra.\n\n"
-
-        "Adipising orci. Nam sit rhoncus. Vitae est in, libero vivamus, at ligula."
-        "Augue mi non. Nisl ligula, pharetra eu non. Pharetra fusce. Eget erat ligula,"
-        " mauris erat, lacus mollis. Lorem sem, luctus in magna, dictum cras. Cras massa"
-        " cras, mi inceptos. Ac sapien, mi eu."
-
-
-    </string>
 </resources>

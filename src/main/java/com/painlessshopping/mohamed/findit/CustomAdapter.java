@@ -83,7 +83,7 @@ public class CustomAdapter extends ArrayAdapter<Item> implements View.OnClickLis
             convertView.setTag(viewHolder);
 
         viewHolder.itemTitle.setText(item.getTitle());
-        viewHolder.itemStore.setText("From " + item.getStore());
+        viewHolder.itemStore.setText(item.getStore());
         viewHolder.itemPrice.setText("$" + item.getPrice());
         viewHolder.storeLogo.setOnClickListener(this);
         viewHolder.addToCart.setOnClickListener(new View.OnClickListener() {
@@ -95,7 +95,8 @@ public class CustomAdapter extends ArrayAdapter<Item> implements View.OnClickLis
                 imageView.setImageResource(R.drawable.ic_shopping_cart_black_24dp);
                 imageView.setClickable(false);
 
-                Snackbar.make(result, R.string.added_cart, Snackbar.LENGTH_INDEFINITE).setAction("UNDO", new View.OnClickListener() {
+                Snackbar.make(result, R.string.added_cart, Snackbar.LENGTH_INDEFINITE)
+                        .setAction(mContext.getString(R.string.undo), new View.OnClickListener() {
 
                     @Override
                     public void onClick(View v) {

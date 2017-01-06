@@ -41,4 +41,5 @@
     <string name="title_activity_display">表示テーマを選択する</string>
     <string name="comm_name">コミュニケーションする</string>
     <string name="title_activity_search">サーチ</string>
+    <string name="undo">アンドゥ</string>
 </resources>

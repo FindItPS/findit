@@ -86,7 +86,7 @@ public class CartAdapter extends ArrayAdapter<Item> implements View.OnClickListe
             convertView.setTag(viewHolder);
 
         viewHolder.itemTitle.setText(item.getTitle());
-        viewHolder.itemStore.setText("From " + item.getStore());
+        viewHolder.itemStore.setText(item.getStore());
         viewHolder.itemPrice.setText("$" + item.getPrice());
         viewHolder.storeLogo.setOnClickListener(this);
 
@@ -97,7 +97,8 @@ public class CartAdapter extends ArrayAdapter<Item> implements View.OnClickListe
                 MyCart.adapter.remove(item);
                 MyCart.adapter.notifyDataSetChanged();
 
-                Snackbar.make(listView, R.string.removed_cart, Snackbar.LENGTH_INDEFINITE).setAction("UNDO", new View.OnClickListener() {
+                Snackbar.make(listView, R.string.removed_cart, Snackbar.LENGTH_INDEFINITE)
+                        .setAction(mContext.getString(R.string.undo), new View.OnClickListener() {
 
                     @Override
                     public void onClick(View v) {
