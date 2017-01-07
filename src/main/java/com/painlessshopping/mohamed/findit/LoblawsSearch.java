@@ -88,7 +88,7 @@ public class LoblawsSearch extends SearchQuery{
             );
 
 
-                browser.loadUrl("https://www.loblaws.ca/search/?search-bar=" + query);
+                browser.loadUrl("https://www.loblaws.ca/search/?search-bar=" + query.replaceAll(" ", "%20"));
                 browser.loadUrl(browser.getUrl());
                 final String link = browser.getUrl();
                 new fetcher(c).execute(link);
