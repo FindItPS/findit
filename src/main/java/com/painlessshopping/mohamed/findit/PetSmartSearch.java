@@ -87,12 +87,12 @@ public class PetSmartSearch extends SearchQuery{
                     }
             );
 
-                browser.loadUrl("https://www.petsmart.ca/gsi/webstore/WFS/PETNA-PETCA-Site/en_CA/-/CAD/ViewParametricSearch-ProductPaging?PageNumber=0&PageSize=24&SearchTerm=" + query + "&SearchParameter=%26%40QueryTerm%3D" + query + "%26OnlineFlag%3D1");
+                browser.loadUrl("https://www.petsmart.ca/gsi/webstore/WFS/PETNA-PETCA-Site/en_CA/-/CAD/ViewParametricSearch-ProductPaging?PageNumber=0&PageSize=24&SearchTerm=" + query + "&SearchParameter=%26%40QueryTerm%3D" + query + "26OnlineFlag%3D1");
                 browser.loadUrl(browser.getUrl());
                 final String link = browser.getUrl();
                 new fetcher(c).execute(link);
-                new fetcher(c).execute("https://www.petsmart.ca/gsi/webstore/WFS/PETNA-PETCA-Site/en_CA/-/CAD/ViewParametricSearch-ProductPaging?PageNumber=1&PageSize=24&SearchTerm=" + query + "&SearchParameter=%26%40QueryTerm%3D" + query + "%26OnlineFlag%3D1");
-                new fetcher(c).execute("https://www.petsmart.ca/gsi/webstore/WFS/PETNA-PETCA-Site/en_CA/-/CAD/ViewParametricSearch-ProductPaging?PageNumber=2&PageSize=24&SearchTerm=" + query + "&SearchParameter=%26%40QueryTerm%3D" + query + "%26OnlineFlag%3D1");
+                new fetcher(c).execute("https://www.petsmart.ca/gsi/webstore/WFS/PETNA-PETCA-Site/en_CA/-/CAD/ViewParametricSearch-ProductPaging?PageNumber=1&PageSize=24&SearchTerm=" + query + "&SearchParameter=%26%40QueryTerm%3D" + query + "26OnlineFlag%3D1");
+                new fetcher(c).execute("https://www.petsmart.ca/gsi/webstore/WFS/PETNA-PETCA-Site/en_CA/-/CAD/ViewParametricSearch-ProductPaging?PageNumber=2&PageSize=24&SearchTerm=" + query + "&SearchParameter=%26%40QueryTerm%3D" + query + "26OnlineFlag%3D1");
 
 
 
@@ -148,9 +148,8 @@ public class PetSmartSearch extends SearchQuery{
                         .get();
 
 
-                finalDoc = doc.select(" [data-bus=generic-product-list]");
-
-
+                finalDoc = doc.select("body div.ws-group.pet-prodloop");
+                System.out.println(finalDoc.toString());
 
 
             } catch (IOException e) {
@@ -210,11 +209,12 @@ public class PetSmartSearch extends SearchQuery{
                 Element ele = e.get(i);
 
 
-                String link = ele.select("a.url.kor-product-link.pet-prodloop-title").attr("href");
-                String title = ele.select("a.url.kor-product-link.pet-prodloop-title").attr("title");
+                String link = ele.select(" a.url.kor-product-link.pet-prodloop-title").attr("href");
+//                String title = ele.select(" a.url.kor-product-link.pet-prodloop-title").attr("title");
+                String title = ele.select(" h4.ws-product-title.fn").text();
 
                 String pricestring = ele.select("span.kor-product-sale-price-value.ws-sale-price.ws-sale-price-temporary").text();
-                price = Double.parseDouble(pricestring.substring(1, pricestring.length()));
+                price = Double.parseDouble(pricestring.substring(pricestring.lastIndexOf("$") + 1, pricestring.length()));
                 System.out.println(ele.select("span.kor-product-sale-price-value.ws-sale-price.ws-sale-price-temporary").text());
 
                 String store = "Pet Smart";

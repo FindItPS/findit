@@ -153,7 +153,6 @@ public class RCSuperstoreSearch extends SearchQuery{
 
 
                 finalDoc = doc.select("body div.content-tile-list div.item.content-tile");
-                System.out.println(finalDoc.toString());
 
 
 
