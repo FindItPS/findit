@@ -87,7 +87,7 @@ public class MyCart extends AppCompatActivity implements NavigationView.OnNaviga
             sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
             startActivity(Intent.createChooser(sharingIntent, getString(R.string.share_via)));
         } else {
-            Toast.makeText(this, getString(R.string.empty_cart_share), Toast.LENGTH_LONG);
+            Toast.makeText(this, getString(R.string.empty_cart_share), Toast.LENGTH_LONG).show();
         }
     }
 

@@ -78,6 +78,10 @@ public class CustomAdapter extends ArrayAdapter<Item> implements View.OnClickLis
             viewHolder.storeLogo = (ImageView) convertView.findViewById(R.id.more);
             viewHolder.addToCart = (ImageView) convertView.findViewById(R.id.addCart);
 
+        if(CartInfoProvider.getCart().contains(item)){
+            ImageView imageView = (ImageView) convertView.findViewById(R.id.addCart);
+            imageView.setImageResource(R.drawable.ic_shopping_cart_black_24dp);
+        }
             result = convertView;
 
             convertView.setTag(viewHolder);
