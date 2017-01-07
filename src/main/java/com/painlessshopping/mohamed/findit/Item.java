@@ -59,7 +59,7 @@ public class Item{
     }
     @Override
     public String toString() {
-        return "$" + getPrice() + " " + getTitle() + " from  " + store;
+        return "$" + getPrice() + " " + getTitle() + " from  " + store + "\n" + getLink();
     }
 
 
