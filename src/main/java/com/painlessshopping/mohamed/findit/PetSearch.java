@@ -307,10 +307,6 @@ public class PetSearch extends AppCompatActivity implements NavigationView.OnNav
         } else if (id == R.id.nav_display) {
             startActivity(new Intent(PetSearch.this, Display.class));
 
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

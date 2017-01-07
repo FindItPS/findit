@@ -205,10 +205,6 @@ public class MapsActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.nav_display) {
             startActivity(new Intent(MapsActivity.this, Display.class));
 
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

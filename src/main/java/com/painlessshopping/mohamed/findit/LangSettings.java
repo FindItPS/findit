@@ -206,10 +206,6 @@ public class LangSettings extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.nav_display) {
             startActivity(new Intent(LangSettings.this, Display.class));
 
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

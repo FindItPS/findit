@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -72,6 +73,24 @@ public class MyCart extends AppCompatActivity implements NavigationView.OnNaviga
         return true;
     }
 
+    private void shareIt(){
+        if(adapter.getCount() > 0){
+            Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+            sharingIntent.setType("text/plain");
+
+            String shareBody = "";
+            for(int i= 0; i <adapter.getCount(); i++){
+                shareBody += (i+1) + ". " + adapter.getItem(i).toString() + "\n";
+            }
+
+            sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, getString(R.string.share_subject));
+            sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+            startActivity(Intent.createChooser(sharingIntent, getString(R.string.share_via)));
+        } else {
+            Toast.makeText(this, getString(R.string.empty_cart_share), Toast.LENGTH_LONG);
+        }
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -80,7 +99,7 @@ public class MyCart extends AppCompatActivity implements NavigationView.OnNaviga
                         getResources().getString(R.string.sort_naz), getResources().getString(R.string.sort_nza)};
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle("Sort Result By");
+                builder.setTitle(getString(R.string.sort_rby));
                 builder.setItems(sortTypes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -88,6 +107,10 @@ public class MyCart extends AppCompatActivity implements NavigationView.OnNaviga
                     }
                 });
                 builder.show();
+                return true;
+
+            case R.id.action_share:
+                shareIt();
                 return true;
 
             default:
@@ -170,10 +193,6 @@ public class MyCart extends AppCompatActivity implements NavigationView.OnNaviga
 
         } else if (id == R.id.nav_display) {
             startActivity(new Intent(MyCart.this, Display.class));
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
 
         }
 

@@ -42,4 +42,7 @@
     <string name="comm_name">コミュニケーションする</string>
     <string name="title_activity_search">サーチ</string>
     <string name="undo">アンドゥ</string>
+    <string name="empty_cart_share">あなたのカートは共有するために、少なくとも1つのアイテムを必要とします</string>
+    <string name="share_subject">私の \"見つける！\" ウィッシュリスト</string>
+    <string name="share_via">と共有する</string>
 </resources>

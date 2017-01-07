@@ -309,10 +309,6 @@ public class TechSearch extends AppCompatActivity implements NavigationView.OnNa
         } else if (id == R.id.nav_display) {
             startActivity(new Intent(TechSearch.this, Display.class));
 
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

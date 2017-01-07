@@ -36,6 +36,9 @@
     <string name="empty_cart">There are currently no items in your cart.</string>
     <string name="removed_cart">This item was removed from your cart.</string>
     <string name="added_cart">This item has been added to your cart.</string>
+    <string name="empty_cart_share">Your cart needs at least 1 item to share</string>
+    <string name="share_via">Share via</string>
+    <string name="share_subject">My \"Find It!\" Wishlist</string>
 
     <!-- Search and Cart Sort Strings-->
     <string name="action_sort">Sort</string>
