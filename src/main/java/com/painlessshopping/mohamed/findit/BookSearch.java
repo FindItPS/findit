@@ -309,12 +309,7 @@ public class BookSearch extends AppCompatActivity implements NavigationView.OnNa
         } else if (id == R.id.nav_display) {
             startActivity(new Intent(BookSearch.this, Display.class));
 
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
         }
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
