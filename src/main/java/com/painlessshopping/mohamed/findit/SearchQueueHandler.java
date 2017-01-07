@@ -27,7 +27,7 @@ public class SearchQueueHandler {
 
                 if(BOOK_QUEUE == 0){
                     ListView list = (ListView) ((Activity) c).findViewById(R.id.listView);
-                    Snackbar.make(list, masterList.size() + " "  + R.string.results_found, Snackbar.LENGTH_LONG ).show();
+                    Snackbar.make(list, masterList.size() + " "  + c.getString(R.string.results_found), Snackbar.LENGTH_LONG ).show();
                     System.out.println(masterList.size() + "Results have been REACHED.");
 
                     masterList.clear();
@@ -44,7 +44,7 @@ public class SearchQueueHandler {
 
                 if(FOOD_QUEUE == 0){
                     ListView list = (ListView) ((Activity) c).findViewById(R.id.listView);
-                    Snackbar.make(list, masterList.size() + " "  +  R.string.results_found, Snackbar.LENGTH_LONG ).show();
+                    Snackbar.make(list, masterList.size() + " "  +  c.getString(R.string.results_found), Snackbar.LENGTH_LONG ).show();
                     System.out.println(masterList.size() + "Results have been REACHED.");
 
                     masterList.clear();
@@ -61,7 +61,7 @@ public class SearchQueueHandler {
 
                 if(PETS_QUEUE == 0){
                     ListView list = (ListView) ((Activity) c).findViewById(R.id.listView);
-                    Snackbar.make(list, masterList.size() + " "  +  R.string.results_found, Snackbar.LENGTH_LONG ).show();
+                    Snackbar.make(list, masterList.size() + " "  +  c.getString(R.string.results_found), Snackbar.LENGTH_LONG ).show();
                     System.out.println(masterList.size() + "Results have been REACHED.");
 
                     masterList.clear();
@@ -95,7 +95,7 @@ public class SearchQueueHandler {
 
                 if(TOYS_QUEUE == 0){
                     ListView list = (ListView) ((Activity) c).findViewById(R.id.listView);
-                    Snackbar.make(list, masterList.size() + " "  +  R.string.results_found, Snackbar.LENGTH_LONG ).show();
+                    Snackbar.make(list, masterList.size() + " "  +  c.getString(R.string.results_found), Snackbar.LENGTH_LONG ).show();
                     System.out.println(masterList.size() + "Results have been REACHED.");
 
                     masterList.clear();
@@ -112,7 +112,7 @@ public class SearchQueueHandler {
 
                 if(CLOTHING_QUEUE == 0){
                     ListView list = (ListView) ((Activity) c).findViewById(R.id.listView);
-                    Snackbar.make(list, masterList.size() + " "  +  R.string.results_found, Snackbar.LENGTH_LONG ).show();
+                    Snackbar.make(list, masterList.size() + " "  +  c.getString(R.string.results_found), Snackbar.LENGTH_LONG ).show();
                     System.out.println(masterList.size() + "Results have been REACHED.");
 
                     masterList.clear();
