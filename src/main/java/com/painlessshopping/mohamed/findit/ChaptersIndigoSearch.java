@@ -152,8 +152,9 @@ public class ChaptersIndigoSearch  extends SearchQuery{
                         .get();
 
 
-                finalDoc = doc.select("body div.search-page__results-container div.search-page__product.search-page__product-container");
+//                finalDoc = doc.select("body div.search-page__results-container div.search-page__product.search-page__product-container");
 
+                finalDoc = doc.select("body article.search-page__product--grid");
 
 
 
@@ -221,16 +222,21 @@ public class ChaptersIndigoSearch  extends SearchQuery{
             for (int i = 0; i < e.size(); i++) {
 
                 Element ele = e.get(i);
+                System.out.println(ele.toString());
 
 
-                String link = "https://www.chapters.indigo.ca" + ele.select(" a.search-page__product-title").first().attr("href");
+                String link = "https://www.chapters.indigo.ca" + ele.select(" a.search-page__product-title-link--grid").first().attr("href");
 
-                String title = ele.select(" a.search-page__product-title").first().text();
+                String title = ele.select(" a.search-page__product-title-link--grid").first().text();
 
-                String pricestring = ele.select(" p.search-page__price--orange").first().text();
+                String pricestring = ele.select(" p.search-page__price--orange.search-page__price--grid").first().text();
                 //*******************************************
 
-                pricestring = pricestring.substring(1, pricestring.indexOf(' '));
+                if (pricestring.contains(" ")){
+                    pricestring = pricestring.substring(1, pricestring.indexOf(' '));
+                } else {
+                    pricestring = pricestring.substring(1);
+                }
                 price = Double.parseDouble(pricestring);
 
                 String store = "Chapters Indigo";
