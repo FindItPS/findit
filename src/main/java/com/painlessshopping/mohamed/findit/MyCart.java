@@ -78,9 +78,9 @@ public class MyCart extends AppCompatActivity implements NavigationView.OnNaviga
             Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
             sharingIntent.setType("text/plain");
 
-            String shareBody = "";
+            String shareBody = getString(R.string.share_subject) + "\n\n";
             for(int i= 0; i <adapter.getCount(); i++){
-                shareBody += (i+1) + ". " + adapter.getItem(i).toString() + "\n";
+                shareBody += (i+1) + ". " + adapter.getItem(i).toString() + "\n\n";
             }
 
             sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, getString(R.string.share_subject));
