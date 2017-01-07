@@ -229,7 +229,13 @@ public class ChaptersIndigoSearch  extends SearchQuery{
 
                 String title = ele.select(" a.search-page__product-title-link--grid").first().text();
 
-                String pricestring = ele.select(" p.search-page__price--orange.search-page__price--grid").first().text();
+                String pricestring = "";
+
+                try{
+                    pricestring = ele.select(" p.search-page__price--orange.search-page__price--grid").first().text();
+                } catch (NullPointerException n){
+                    pricestring = ele.select(" p.search-page__price--black.search-page__price--grid").first().text();
+                }
                 //*******************************************
 
                 if (pricestring.contains(" ")){

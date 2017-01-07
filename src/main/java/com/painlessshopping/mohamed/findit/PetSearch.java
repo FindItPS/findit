@@ -139,7 +139,7 @@ public class PetSearch extends AppCompatActivity implements NavigationView.OnNav
                         getResources().getString(R.string.sort_naz), getResources().getString(R.string.sort_nza)};
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle("Sort Result By");
+                builder.setTitle(getString(R.string.sort_rby));
                 builder.setItems(sortTypes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
