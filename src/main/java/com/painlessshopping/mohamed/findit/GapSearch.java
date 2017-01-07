@@ -88,7 +88,7 @@ public class GapSearch extends SearchQuery{
             );
 
 
-                browser.loadUrl("http://www.gapcanada.ca/browse/search.do?searchText=" + query);
+                browser.loadUrl("http://www.gapcanada.ca/browse/search.do?searchText=" + query.replaceAll(" ", "%20"));
                 browser.loadUrl(browser.getUrl());
                 final String link = browser.getUrl();
                 new fetcher(c).execute(link);
@@ -154,8 +154,11 @@ public class GapSearch extends SearchQuery{
                         .get();
 
 
-                finalDoc = doc.select("body div.grid-root.grid > div.g-1-2.g-lg-1-3.g-xl-1-3.g-1280-1-4");
+//                finalDoc = doc.select("body div.product-card-grid.product-card-grid_category div.grid-root.grid  div.g-1-2.g-lg-1-3.g-xl-1-3.g-1280-1-4");
+//
+//                System.out.println(finalDoc.toString());
 
+                System.out.println(doc.toString());
 
 
 

@@ -153,7 +153,10 @@ public class LoblawsSearch extends SearchQuery{
                         .get();
 
 
-                finalDoc = doc.select("body div.content-tile-list > div.item content-tile add-list-item");
+                finalDoc = doc.select("body div.item.content-tile");
+
+
+                System.out.println(finalDoc.toString());
 
 
 
@@ -219,8 +222,19 @@ public class LoblawsSearch extends SearchQuery{
                 System.out.println("https://www.loblaws.ca" + ele.select(" a.product-name").attr("href"));
                 String title = ele.select(" span.js-product-entry-name").text();
 
-                String priceConvert = ele.select(" span.reg-price.price-alert").text();
-                price = Double.parseDouble(priceConvert.substring(priceConvert.indexOf("$") + 1, priceConvert.length()));
+                String priceConvert = "";
+                if(ele.select(" span.reg-price").text().isEmpty()){
+                    priceConvert = ele.select(" div.reg-price.price-alert").text();
+                } else {
+                   priceConvert = ele.select(" span.reg-price").text();
+                }
+
+
+                priceConvert = priceConvert.substring(priceConvert.indexOf("$") + 1, priceConvert.length());
+
+                price = Double.parseDouble(priceConvert);
+
+
                 System.out.println(priceConvert);
 
                 //*******************************************

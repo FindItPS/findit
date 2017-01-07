@@ -86,7 +86,7 @@ public class SportChekSearch extends SearchQuery{
             );
 
 
-                browser.loadUrl("https://www.sportchek.ca/search.html#q=" + query);
+                browser.loadUrl("https://www.sportchek.ca/search.html#q=" + query.replaceAll(" ", "+") + "&lastVisibleProductNumber=3");
                 browser.loadUrl(browser.getUrl());
                 final String link = browser.getUrl();
                 new fetcher(c).execute(link);
@@ -152,8 +152,9 @@ public class SportChekSearch extends SearchQuery{
                         .get();
 
 
-                finalDoc = doc.select("body li.product-grid__list-item.product-grid__list-item_state_comparable");
+                finalDoc = doc.select("body section.product-grid-wrapper");
 
+//                System.out.println(finalDoc.toString());
 
 
 
