@@ -156,9 +156,6 @@ public class LoblawsSearch extends SearchQuery{
                 finalDoc = doc.select("body div.item.content-tile");
 
 
-                System.out.println(finalDoc.toString());
-
-
 
 
             } catch (IOException e) {

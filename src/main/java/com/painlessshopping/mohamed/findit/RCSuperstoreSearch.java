@@ -86,7 +86,7 @@ public class RCSuperstoreSearch extends SearchQuery{
             );
 
 
-                browser.loadUrl("https://www.realcanadiansuperstore.ca/search/1482600846122/page/~item/" + query + "/~sort/popularity/~selected/true");
+                browser.loadUrl("https://www.realcanadiansuperstore.ca/search/?search-bar=" + query.replaceAll(" ", "%20"));
                 browser.loadUrl(browser.getUrl());
                 final String link = browser.getUrl();
                 new fetcher(c).execute(link);
@@ -152,7 +152,8 @@ public class RCSuperstoreSearch extends SearchQuery{
                         .get();
 
 
-                finalDoc = doc.select("body div.content-tile-list > div.item.content-tile.add-list-item");
+                finalDoc = doc.select("body div.content-tile-list div.item.content-tile");
+                System.out.println(finalDoc.toString());
 
 
 
