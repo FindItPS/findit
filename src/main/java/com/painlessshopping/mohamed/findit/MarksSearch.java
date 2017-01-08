@@ -10,23 +10,28 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.URL;
 import java.util.ArrayList;
 
 /**
  * Created by Sam on 2016-12-29.
  */
 
-public class GapSearch extends SearchQuery{
+public class MarksSearch extends SearchQuery{
 
     //You do not need a resultsEven object. This was specific to CANADA COMPUTERS' WEBSITE
     public Elements resultsEven;
     public Elements finalDoc;
+    public JSONArray items;
     private ArrayList<Item> processed;
     private final Handler uiHandler = new Handler();
     public int status = 0;
@@ -54,7 +59,7 @@ public class GapSearch extends SearchQuery{
      * Constructor method
      * @param context The context taken from the webview (So that the asynctask can show progress)
      */
-    public GapSearch(Context context, String query) {
+    public MarksSearch(Context context, String query) {
 
         final Context c = context;
 
@@ -83,22 +88,20 @@ public class GapSearch extends SearchQuery{
                         @Override
                         public void onPageFinished(WebView view, String url) {
                             browser.loadUrl("javascript:window.JSBridge.showHTML('<html>'+document.getElementsByTagName('html')[0].innerHTML+'</html>');");
+
                         }
                     }
             );
 
 
-                browser.loadUrl("http://www.gapcanada.ca/browse/search.do?searchText=" + query.replaceAll(" ", "%20"));
+                browser
+                        .loadUrl("https://www.marks.com/services-rest/marks/search-and-promote/products?q="
+                                + query.replaceAll(" ", "+")
+                                + "&count=30&page=1&lang=en");
                 browser.loadUrl(browser.getUrl());
                 final String link = browser.getUrl();
                 new fetcher(c).execute(link);
-                
-                
-                /*
-                Won't work, lazy loaded
-                new fetcher(c).execute(link + "&page=2");
-                new fetcher(c).execute(link + "&page=3");
-                */
+
 
 
 
@@ -118,7 +121,7 @@ public class GapSearch extends SearchQuery{
      * To call this class you must write fetcher(Context c).execute(The link you want to connect to)
      *
      */
-    class fetcher extends AsyncTask<String, Void, Elements> {
+    class fetcher extends AsyncTask<String, Void, JSONArray> {
 
         Context mContext;
         ProgressDialog pdialog;
@@ -138,7 +141,7 @@ public class GapSearch extends SearchQuery{
 
         //This return elements because the postExecute() method needs an Elements object to parse its results
         @Override
-        protected Elements doInBackground(String... strings) {
+        protected JSONArray doInBackground(String... strings) {
 
             //You can pass in multiple strings, so this line just says to use the first string
             String link = strings[0];
@@ -147,31 +150,28 @@ public class GapSearch extends SearchQuery{
             System.out.println("Connecting to: " + link);
 
             try {
-                doc = Jsoup.connect(link)
-                        .ignoreContentType(true)
-                        .userAgent("Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36")
-                        .timeout(10000)
-                        .get();
 
+                System.out.println(readUrl(link));
 
-//                finalDoc = doc.select("body div.product-card-grid.product-card-grid_category div.grid-root.grid  div.g-1-2.g-lg-1-3.g-xl-1-3.g-1280-1-4");
-//
-//                System.out.println(finalDoc.toString());
-
-                System.out.println(doc.toString());
+                String json = readUrl(link);
+                JSONObject parent = new JSONObject(json);
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
+                    items = parent.getJSONArray("products");
+                }
 
 
 
-            } catch (IOException e) {
+
+            } catch (Exception e) {
                 e.printStackTrace();
             }
 
-            return finalDoc;
+            return items;
         }
 
 
         @Override
-        protected void onPostExecute(Elements result) {
+        protected void onPostExecute(JSONArray result) {
 
 
             //This line clears the list of info in the Search activity
@@ -184,14 +184,14 @@ public class GapSearch extends SearchQuery{
             processed = crunchResults(result);
 
             //For debug purposes, do NOT remove - **Important**
-            System.out.println(processed.size() + " results have been crunched by The Gap.");
+            System.out.println(processed.size() + " results have been crunched by Mark's.");
 
             //Adds all of the processed results to the list of info in Search activity
             ClothingSearch.adapter.addAll(processed);
 
 
             //For debug purposes, do NOt remove - **Important
-            System.out.println("Adapter has been notified by The Gap.");
+            System.out.println("Adapter has been notified by Mark's.");
 
             //Closes the progress dialog called pdialog assigned to the AsyncTask
 
@@ -208,46 +208,28 @@ public class GapSearch extends SearchQuery{
 
 
 
-        public ArrayList<Item> crunchResults(Elements e){
+        public ArrayList<Item> crunchResults(JSONArray jsonArray){
 
         ArrayList<Item> results = new ArrayList<Item>();
 
         try {
 
-            for (int i = 0; i < e.size(); i++) {
+            for (int i = 0; i < jsonArray.length(); i++) {
 
-                Element ele = e.get(i);
+                JSONObject j = jsonArray.getJSONObject(i);
 
+                String title = j.getString("title");
+                String link = "https://www.marks.com" + j.getJSONArray("productPageUrls").getString(0);
 
-                String link = "http://www.gapcanada.ca" + ele.select(" a.product-card--link").attr("href");
-                System.out.println("http://www.gapcanada.ca" + ele.select(" a.product-card--link").attr("href"));
-                String title = ele.select(" div.product-card--name").text();
+                price = j.getDouble("price");
 
-                String priceConvert = ele.select(" div.product-card-price.product-card--regular").text();
-                
-                //In the case that the item is discounted the above way of getting the price shouldn't work
-                //This is a backup way to assure that there is still input
-                if (priceConvert == null)
-                {
-                  priceConvert = ele.select(" span.product-card-price.product-card--regular").text();
-                }
-                
-                price = Double.parseDouble(priceConvert.substring(priceConvert.indexOf("$") + 1, priceConvert.length()));
-                System.out.println(priceConvert);
-                
-                //*******************************************
+                String store = "Mark's";
 
-                String store = "The Gap";
-
-
-
-                    //Adds the formatted item to an ArrayList of items
-                    results.add(new Item(title, store, price, link));
-
-
-                //Prints the object's to String to console
-                //For debug purposes, do NOT remove - **Important
+                results.add(new Item(title, store, price, link));
                 System.out.println(results.get(i).toString());
+
+
+
             }
         } catch (Exception a){
             a.printStackTrace();
@@ -258,6 +240,24 @@ public class GapSearch extends SearchQuery{
 
     public int getStatus(){
         return status;
+    }
+
+    private static String readUrl(String urlString) throws Exception {
+        BufferedReader reader = null;
+        try {
+            URL url = new URL(urlString);
+            reader = new BufferedReader(new InputStreamReader(url.openStream()));
+            StringBuffer buffer = new StringBuffer();
+            int read;
+            char[] chars = new char[1024];
+            while ((read = reader.read(chars)) != -1)
+                buffer.append(chars, 0, read);
+
+            return buffer.toString();
+        } finally {
+            if (reader != null)
+                reader.close();
+        }
     }
 
 }

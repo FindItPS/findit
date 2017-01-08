@@ -10,21 +10,28 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.URL;
 import java.util.ArrayList;
 
 /**
- * Created by Samuel on 2016-12-24.
+ * Created by Sam on 2016-12-29.
  */
 
 public class SportChekSearch extends SearchQuery{
 
+    //You do not need a resultsEven object. This was specific to CANADA COMPUTERS' WEBSITE
+    public Elements resultsEven;
     public Elements finalDoc;
+    public JSONArray items;
     private ArrayList<Item> processed;
     private final Handler uiHandler = new Handler();
     public int status = 0;
@@ -81,22 +88,20 @@ public class SportChekSearch extends SearchQuery{
                         @Override
                         public void onPageFinished(WebView view, String url) {
                             browser.loadUrl("javascript:window.JSBridge.showHTML('<html>'+document.getElementsByTagName('html')[0].innerHTML+'</html>');");
+
                         }
                     }
             );
 
 
-                browser.loadUrl("https://www.sportchek.ca/search.html#q=" + query.replaceAll(" ", "+") + "&lastVisibleProductNumber=3");
-                browser.loadUrl(browser.getUrl());
-                final String link = browser.getUrl();
-                new fetcher(c).execute(link);
-                
-                /*
-                Can't do pages, site lazy-loaded
-                
-                new fetcher(c).execute(link + "&page=2");
-                new fetcher(c).execute(link + "&page=3");
-                */
+            browser
+                    .loadUrl("https://www.sportchek.ca/services/sportchek/search-and-promote/products?q="
+                            + query.replaceAll(" ", "+")
+                            + "&count=30&page=1&lang=en");
+            browser.loadUrl(browser.getUrl());
+            final String link = browser.getUrl();
+            new fetcher(c).execute(link);
+
 
 
 
@@ -116,7 +121,7 @@ public class SportChekSearch extends SearchQuery{
      * To call this class you must write fetcher(Context c).execute(The link you want to connect to)
      *
      */
-    class fetcher extends AsyncTask<String, Void, Elements> {
+    class fetcher extends AsyncTask<String, Void, JSONArray> {
 
         Context mContext;
         ProgressDialog pdialog;
@@ -136,7 +141,7 @@ public class SportChekSearch extends SearchQuery{
 
         //This return elements because the postExecute() method needs an Elements object to parse its results
         @Override
-        protected Elements doInBackground(String... strings) {
+        protected JSONArray doInBackground(String... strings) {
 
             //You can pass in multiple strings, so this line just says to use the first string
             String link = strings[0];
@@ -145,29 +150,28 @@ public class SportChekSearch extends SearchQuery{
             System.out.println("Connecting to: " + link);
 
             try {
-                doc = Jsoup.connect(link)
-                        .ignoreContentType(true)
-                        .userAgent("Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36")
-                        .timeout(10000)
-                        .get();
+
+                System.out.println(readUrl(link));
+
+                String json = readUrl(link);
+                JSONObject parent = new JSONObject(json);
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
+                    items = parent.getJSONArray("products");
+                }
 
 
-                finalDoc = doc.select("body section.product-grid-wrapper");
-
-//                System.out.println(finalDoc.toString());
 
 
-
-            } catch (IOException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
 
-            return finalDoc;
+            return items;
         }
 
 
         @Override
-        protected void onPostExecute(Elements result) {
+        protected void onPostExecute(JSONArray result) {
 
 
             //This line clears the list of info in the Search activity
@@ -204,38 +208,28 @@ public class SportChekSearch extends SearchQuery{
 
 
 
-        public ArrayList<Item> crunchResults(Elements e){
+    public ArrayList<Item> crunchResults(JSONArray jsonArray){
 
         ArrayList<Item> results = new ArrayList<Item>();
 
         try {
 
-            for (int i = 0; i < e.size(); i++) {
+            for (int i = 0; i < jsonArray.length(); i++) {
 
-                Element ele = e.get(i);
+                JSONObject j = jsonArray.getJSONObject(i);
 
+                String title = j.getString("title");
+                String link = "https://www.SportChek.com" + j.getJSONArray("productPageUrls").getString(0);
 
-                String link = "https://www.sportchek.ca" + ele.select(" a.product-grid__link").attr("href");
-                System.out.println("https://www.sportchek.ca" + ele.select(" a.product-grid__link").attr("href"));
-                String title = ele.select(" span.product-title-text").text();
-
-                String pricestring = ele.select(" span.product-price__wrap").text();
-                price = Double.parseDouble(pricestring.substring(pricestring.lastIndexOf("$")));
-                System.out.println(pricestring);
-
-                //*******************************************
+                price = j.getDouble("price");
 
                 String store = "Sport Chek";
 
-
-
-                    //Adds the formatted item to an ArrayList of items
-                    results.add(new Item(title, store, price, link));
-
-
-                //Prints the object's to String to console
-                //For debug purposes, do NOT remove - **Important
+                results.add(new Item(title, store, price, link));
                 System.out.println(results.get(i).toString());
+
+
+
             }
         } catch (Exception a){
             a.printStackTrace();
@@ -246,6 +240,24 @@ public class SportChekSearch extends SearchQuery{
 
     public int getStatus(){
         return status;
+    }
+
+    private static String readUrl(String urlString) throws Exception {
+        BufferedReader reader = null;
+        try {
+            URL url = new URL(urlString);
+            reader = new BufferedReader(new InputStreamReader(url.openStream()));
+            StringBuffer buffer = new StringBuffer();
+            int read;
+            char[] chars = new char[1024];
+            while ((read = reader.read(chars)) != -1)
+                buffer.append(chars, 0, read);
+
+            return buffer.toString();
+        } finally {
+            if (reader != null)
+                reader.close();
+        }
     }
 
 }

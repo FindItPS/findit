@@ -44,6 +44,6 @@ public class FeaturedStoresAdapter extends BaseAdapter {
 
     // references to our images
     private Integer[] mThumbIds = {
-            R.drawable.bb_logo, R.drawable.cc_logo, R.drawable.st_logo, R.drawable.ch_logo, R.drawable.ro_logo, R.drawable.ps_logo, R.drawable.eg_logo, R.drawable.mt_logo, R.drawable.sc_logo, R.drawable.rc_logo, R.drawable.lo_logo, R.drawable.tg_logo
+            R.drawable.bb_logo, R.drawable.cc_logo, R.drawable.st_logo, R.drawable.ch_logo, R.drawable.ro_logo, R.drawable.ps_logo, R.drawable.eg_logo, R.drawable.mt_logo, R.drawable.sc_logo, R.drawable.rc_logo, R.drawable.lo_logo, R.drawable.ms_logo
     };
 }

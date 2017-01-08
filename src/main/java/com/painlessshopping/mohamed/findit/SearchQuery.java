@@ -93,7 +93,7 @@ public class SearchQuery {
                 ClothingSearch.adapter.clear();
                 new RootsSearch(c, q);
                 new SportChekSearch(c, q);
-                new GapSearch(c, q);
+                new MarksSearch(c, q);
 
             } else {
                 Toast.makeText(c, "The Minimum Query Length is 3 Characters", Toast.LENGTH_LONG).show();
