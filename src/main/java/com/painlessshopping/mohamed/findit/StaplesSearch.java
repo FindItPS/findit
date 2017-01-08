@@ -47,7 +47,9 @@ public class StaplesSearch extends SearchQuery{
     /**
      * Constructor method
      * @param context The context taken from the webview (So that the asynctask can show progress)
+     * @param query Provides the search term
      */
+
     public StaplesSearch(Context context, String query) {
 
         final Context c = context;
@@ -81,19 +83,15 @@ public class StaplesSearch extends SearchQuery{
                     }
             );
 
-
-//            TextView text = (TextView) a.findViewById(R.id.editText);
-//
-//            if(text.getText() != null){
+            //Loads website with WebView to fetch results
             browser.loadUrl("http://www.staples.ca/" + query + "/directory_" + query + "_20051_1_20001?");
             browser.loadUrl(browser.getUrl());
             final String link = browser.getUrl();
+
+            //Processes pages of results
             new fetcher(c).execute(link);
             new fetcher(c).execute(link + "fids=&pn=2&sr=true&sby=&min=&max=");
             new fetcher(c).execute(link + "fids=&pn=3&sr=true&sby=&min=&max=");
-//
-//            }
-
 
 
         }
@@ -136,6 +134,7 @@ public class StaplesSearch extends SearchQuery{
                         .timeout(10000)
                         .get();
 
+                //Defines which element of the website to observe
                 finalDoc = doc.select("body div.stp--product-list");
 
 
@@ -173,8 +172,6 @@ public class StaplesSearch extends SearchQuery{
 
         results = r.select("div.stp--new-product-tile-container.desktop");
         System.out.println(results.size() + " Results have been returned from Staples.");
-//        fetchPrice(results);
-//        fetchDescription(results);
 
         return results;
     }
@@ -189,6 +186,7 @@ public class StaplesSearch extends SearchQuery{
 
                 Element ele = e.get(i);
 
+                //Separates required details from the HTML including link, name and price
                 String description = ele.select(" div.product-info > a").first().text();
 
                 String id = ele.select(" div.product-info > a").first().attr("href");

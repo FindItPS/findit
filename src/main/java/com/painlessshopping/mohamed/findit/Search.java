@@ -23,6 +23,10 @@ import org.jsoup.nodes.Document;
 
 import java.util.ArrayList;
 
+/**
+ * Template Search Class
+ */
+
 public class Search extends AppCompatActivity {
 
     private static Context context;

@@ -5,7 +5,7 @@ Licensed under Apache License Version 2.0
 
 ## Description ##
 
-Find It! allows users to browse local stores for item of interest from the comfort of your own home.
+Find It! allows users to browse local stores for item of interest from the comfort of your own home. The app is currently availalbe in English, French, Japanese and Chinese (Simplified).
 
 ## Features ##
 
@@ -36,13 +36,18 @@ Stores that can be searched currently include:
 
 -Loblaws
 
--The Gap
+-Mark's
 
 ### Sort Your Results ###
 Users will use search to find very different items with different criteria. They will be able to sort their results alphabetically and by price to best find their items in the list.
 
 ### Save for Later ###
-When out and about the shops users may want to have list of the items they have found on Find It! to purchase. When searching, user can add an item to the cart, saving information such as name, price, link and location.
+When out and about the shops users may want to have list of the items they have found on Find It! to purchase. When searching, users can add an item to the cart, saving information such as name, price, link and location.
+
+Users can also later export their cart in a text or email to people in their contact for their viewing. This will share all the information that is saved when the item gets added to the cart
 
 ### Store Categories ###
 When searching for a shirt user may not want to have technology stores give suggestions. To solve this, user have access to Store Categories that allow users control what content will appear.
+
+### App Themes ###
+Not everyone enjoys a green color palette and at Find It! we understand that. To facilitate a pleasant UI for every user we have added a wide variety of themes to pick from, ranging from the purple amethyst theme to the warm summer theme.

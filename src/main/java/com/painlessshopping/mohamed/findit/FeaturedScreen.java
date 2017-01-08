@@ -1,6 +1,8 @@
 package com.painlessshopping.mohamed.findit;
 
 /**
+ * Controls the Featured Stores screen.
+ *
  * Created by samuel on 8/12/16.
  */
 
@@ -26,6 +28,7 @@ public class FeaturedScreen extends AppCompatActivity implements NavigationView.
         setTheme(ThemeHandler.getTheme());
     super.onCreate(savedInstanceState);
 
+        //Sets languages
         Locale locale = new Locale(LanguageHandler.getLang());
         Locale.setDefault(locale);
         Configuration config = new Configuration();
@@ -34,9 +37,11 @@ public class FeaturedScreen extends AppCompatActivity implements NavigationView.
                 getResources().getDisplayMetrics());
         setContentView(R.layout.activity_featured_screen);
 
+        //Initializes toolbar at the top of the screen view
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //Navigation Bar
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.drawer_open, R.string.drawer_close);
@@ -47,12 +52,14 @@ public class FeaturedScreen extends AppCompatActivity implements NavigationView.
         navigationView.setNavigationItemSelectedListener(this);
 
 
-    GridView gridview = (GridView) findViewById(R.id.gridview);
-    gridview.setAdapter(new FeaturedStoresAdapter(this));
+        //Creates GridView of images that contain the stores
+        GridView gridview = (GridView) findViewById(R.id.gridview);
+        gridview.setAdapter(new FeaturedStoresAdapter(this));
 
         setTitle(getString(R.string.ft_name));
 }
 
+    //Controls back button presses
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -62,6 +69,12 @@ public class FeaturedScreen extends AppCompatActivity implements NavigationView.
             super.onBackPressed();
         }
     }
+
+    /**
+     * Controls navigation bar button reactions
+     *
+     * @param item Selected item on the navigation bar
+     */
 
 
     @SuppressWarnings("StatementWithEmptyBody")

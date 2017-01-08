@@ -30,6 +30,10 @@ import org.jsoup.nodes.Document;
 import java.util.ArrayList;
 import java.util.Locale;
 
+/**
+ * Controls the Food search view and processes search queries.
+ */
+
 public class FoodSearch extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener  {
 
     private static Context context;
@@ -66,6 +70,7 @@ public class FoodSearch extends AppCompatActivity implements NavigationView.OnNa
         setTheme(ThemeHandler.getTheme());
         super.onCreate(savedInstanceState);
 
+        //Sets Language
         Locale locale = new Locale(LanguageHandler.getLang());
         Locale.setDefault(locale);
         Configuration config = new Configuration();
@@ -74,9 +79,11 @@ public class FoodSearch extends AppCompatActivity implements NavigationView.OnNa
                 getResources().getDisplayMetrics());
         setContentView(R.layout.fragment_search);
 
+        //Initializes toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //Navigation bar
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.drawer_open, R.string.drawer_close);
@@ -88,13 +95,16 @@ public class FoodSearch extends AppCompatActivity implements NavigationView.OnNa
 
         context = this;
 
+        //Creates list for item results
         ListView listView=(ListView)findViewById(R.id.listView);
         adapter= new CustomAdapter(Items, this);
         listView.setAdapter(adapter);
 
+        //Creates text view for inputting searches
         TextView empty = (TextView) findViewById(R.id.empty);
         listView.setEmptyView(empty);
 
+        //Sets toolbar text
         setTitle(getString(R.string.title_activity_food_search));
         handleIntent(getIntent());
 
@@ -130,6 +140,13 @@ public class FoodSearch extends AppCompatActivity implements NavigationView.OnNa
 
         return true;
     }
+
+    /**
+     * Controls toolbar button and their ability to sort list items
+     *
+     * @param item Items on the tool bar menu
+     * @return Identifies that the sort has been completed
+     */
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -182,14 +199,6 @@ public class FoodSearch extends AppCompatActivity implements NavigationView.OnNa
             return fragment;
         }
 
-//        @Override
-//        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-//                                 Bundle savedInstanceState) {
-//            View rootView = inflater.inflate(R.layout.fragment_search, container, false);
-//            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-//            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
-//            return rootView;
-//        }
     }
 
     /**
@@ -234,6 +243,11 @@ public class FoodSearch extends AppCompatActivity implements NavigationView.OnNa
         return FoodSearch.context;
     }
 
+    /**
+     * Controls sort
+     *
+     * @param type Type of sort to be executed
+     */
 
     public void sortList(String type){
 
@@ -271,6 +285,8 @@ public class FoodSearch extends AppCompatActivity implements NavigationView.OnNa
         adapter.notifyDataSetChanged();
 
     }
+
+    //Controls back button presses
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -281,6 +297,12 @@ public class FoodSearch extends AppCompatActivity implements NavigationView.OnNa
         }
     }
 
+
+    /**
+     * Controls navigation bar button reactions
+     *
+     * @param item Selected item on the navigation bar
+     */
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -313,6 +335,7 @@ public class FoodSearch extends AppCompatActivity implements NavigationView.OnNa
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 }//End of Class
 
 

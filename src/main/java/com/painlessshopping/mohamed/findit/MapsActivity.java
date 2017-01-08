@@ -30,8 +30,13 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * Controls location services
+ */
+
 public class MapsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, OnMapReadyCallback {
 
+    //Creates Interactive Google Map
     private GoogleMap mMap;
     private static final float DEFAULTZOOM = 15;
 
@@ -40,6 +45,7 @@ public class MapsActivity extends AppCompatActivity implements NavigationView.On
         setTheme(ThemeHandler.getTheme());
         super.onCreate(savedInstanceState);
 
+        //Sets language
         Locale locale = new Locale(LanguageHandler.getLang());
         Locale.setDefault(locale);
         Configuration config = new Configuration();
@@ -48,8 +54,11 @@ public class MapsActivity extends AppCompatActivity implements NavigationView.On
                 getResources().getDisplayMetrics());
         setContentView(R.layout.activity_maps);
 
+        //Initializes toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        //Navigation Bar
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.drawer_open, R.string.drawer_close);
@@ -64,6 +73,7 @@ public class MapsActivity extends AppCompatActivity implements NavigationView.On
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(MapsActivity.this);
 
+        //Sets toolbar text
         setTitle(getString(R.string.title_activity_maps));
         handleIntent(getIntent());
     }
@@ -98,15 +108,12 @@ public class MapsActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-//    private void gotoLocation(double lat, double lng, float zoom) {
-//        LatLng ll = new LatLng(lat, lng);
-//        CameraUpdate update = CameraUpdateFactory.newLatLngZoom(ll, zoom);
-//        mMap.moveCamera(update);
-//}
+    /**
+     * Finds location on the map
+     *
+     * @param loc Location to find
+     */
     public void fetchLoc(String loc){
-
-//        EditText et = (EditText) findViewById(R.id.TFaddress);
-//        String loc = et.getText().toString();
 
         if(loc !=null && !loc.equals("")) {
 
@@ -179,6 +186,12 @@ public class MapsActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
+
+    /**
+     * Controls navigation bar button reactions
+     *
+     * @param item Selected item on the navigation bar
+     */
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override

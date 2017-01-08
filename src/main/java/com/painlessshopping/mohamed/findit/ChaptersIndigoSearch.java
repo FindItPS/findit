@@ -19,19 +19,20 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
+ * Fetches search results from the Chapters-Indigo website.
+ *
  * Created by Abdourahmane on 2016-12-07.
  */
 
 public class ChaptersIndigoSearch  extends SearchQuery{
 
-    //You do not need a resultsEven object. This was specific to CANADA COMPUTERS' WEBSITE
     public Elements resultsEven;
     public Elements finalDoc;
     private ArrayList<Item> processed;
     private final Handler uiHandler = new Handler();
     public int status = 0;
 
-    //This basically is just so that the class knows which Activity we're working with
+    //Allows for the class to recognize which activity is making a query
     private Context c;
 
     protected class JSHtmlInterface {
@@ -53,7 +54,9 @@ public class ChaptersIndigoSearch  extends SearchQuery{
     /**
      * Constructor method
      * @param context The context taken from the webview (So that the asynctask can show progress)
+     * @param query Provides the search term
      */
+
     public ChaptersIndigoSearch (Context context, String query) {
 
         final Context c = context;
@@ -87,18 +90,13 @@ public class ChaptersIndigoSearch  extends SearchQuery{
                     }
             );
 
-
-//            TextView text = (TextView) a.findViewById(R.id.editText);
-//
-//            if(text.getText() != null){
+            //Loads website with WebView to fetch results
             browser.loadUrl("https://www.chapters.indigo.ca/en-ca/home/search/?keywords=" + query);
             browser.loadUrl(browser.getUrl());
             final String link = browser.getUrl();
+
+            //Processes pages of results
             new fetcher(c).execute(link);
-//
-//            }
-
-
 
         }
         catch(Exception e){
@@ -152,8 +150,7 @@ public class ChaptersIndigoSearch  extends SearchQuery{
                         .get();
 
 
-//                finalDoc = doc.select("body div.search-page__results-container div.search-page__product.search-page__product-container");
-
+                //Defines which element of the website to observe
                 finalDoc = doc.select("body article.search-page__product--grid");
 
 
@@ -197,6 +194,7 @@ public class ChaptersIndigoSearch  extends SearchQuery{
 
             pdialog.dismiss();
 
+            //Adds Best Buy to the Tech Search OR the Toy Search based on request
             if(mContext == BookSearch.getAppContext()){
                 BookSearch.adapter.notifyDataSetChanged();
                 SearchQueueHandler.makeRequest(mContext, processed, SearchQueueHandler.BOOK_SEARCH);
@@ -224,6 +222,7 @@ public class ChaptersIndigoSearch  extends SearchQuery{
                 Element ele = e.get(i);
                 System.out.println(ele.toString());
 
+                //Separates required details from the HTML including link, name and price
 
                 String link = "https://www.chapters.indigo.ca" + ele.select(" a.search-page__product-title-link--grid").first().attr("href");
 

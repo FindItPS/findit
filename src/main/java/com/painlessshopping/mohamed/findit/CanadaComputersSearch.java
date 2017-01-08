@@ -19,6 +19,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
+ * Fetches search results from the Canada Computers website.
+ *
  * Created by Abdourahmane on 2016-11-28.
  */
 
@@ -47,7 +49,9 @@ public class CanadaComputersSearch extends SearchQuery{
     /**
      * Constructor method
      * @param context The context taken from the webview (So that the asynctask can show progress)
+     * @param query Provides the search term
      */
+
     public CanadaComputersSearch(Context context, String query) {
 
         final Context c = context;
@@ -82,13 +86,12 @@ public class CanadaComputersSearch extends SearchQuery{
             );
 
 
-//            TextView text = (TextView) a.findViewById(R.id.editText);
-//
-//            if(text.getText() != null){
+                //Loads website with WebView to fetch results
                 browser.loadUrl("http://www.canadacomputers.com/simple_search.php?keywords=" + query);
-
                 browser.loadUrl(browser.getUrl());
                 final String link = browser.getUrl();
+
+                //Processes pages of results
                 new fetcher(c).execute(link);
                 new fetcher(c).execute(link + "&page=2");
                 new fetcher(c).execute(link + "&page=3");
@@ -104,8 +107,11 @@ public class CanadaComputersSearch extends SearchQuery{
     }
 
     /**
-     * This subclass accesses the CanadaComputers website and fetches results, all the while posting progress
+     * This subclass is a worker thread meaning it does work in the background while the user interface is doing something else
+     * This is done to prevent "lag".
+     * To call this class you must write fetcher(Context c).execute(The link you want to connect to)
      */
+
     class fetcher extends AsyncTask<String, Void, Elements> {
 
         Context mContext;
@@ -124,11 +130,15 @@ public class CanadaComputersSearch extends SearchQuery{
             pdialog.show();
         }
 
+        //This return elements because the postExecute() method needs an Elements object to parse its results
         @Override
         protected Elements doInBackground(String... strings) {
+
+            //You can pass in multiple strings, so this line just says to use the first string
             String link = strings[0];
 
-            System.out.println("Connecting to " + link + "\n...");
+            //For Debug Purposes, Do NOT Remove - **Important**
+            System.out.println("Connecting to: " + link);
 
             try {
                 doc = Jsoup.connect(link)
@@ -137,6 +147,7 @@ public class CanadaComputersSearch extends SearchQuery{
                         .timeout(10000)
                         .get();
 
+                //Defines which element of the website to observe
                 finalDoc = doc.select("body tbody");
 
 
@@ -158,6 +169,7 @@ public class CanadaComputersSearch extends SearchQuery{
 
             pdialog.dismiss();
 
+            //Adds Canada Computers to the Tech Search
             TechSearch.adapter.notifyDataSetChanged();
             SearchQueueHandler.makeRequest(mContext, processed, SearchQueueHandler.TECH_SEARCH);
 

@@ -19,6 +19,8 @@ import android.widget.ListView;
 import java.util.Locale;
 
 /**
+ * Runs language settings screen and allows for languages to be changed
+ *
  * Created by Sam 05/01/2017
  */
 
@@ -31,6 +33,7 @@ public class LangSettings extends AppCompatActivity implements NavigationView.On
     private ListView mDrawerList;
     private String[] mPlanetTitles;
 
+    //Sets default language, changed when user presses for a different one
     static String appCurrentLanguage = "en";
 
 
@@ -39,6 +42,7 @@ public class LangSettings extends AppCompatActivity implements NavigationView.On
         setTheme(ThemeHandler.getTheme());
         super.onCreate(savedInstanceState);
 
+        //Sets language
         Locale locale = new Locale(appCurrentLanguage);
         Locale.setDefault(locale);
         Configuration config = new Configuration();
@@ -47,14 +51,17 @@ public class LangSettings extends AppCompatActivity implements NavigationView.On
                 getResources().getDisplayMetrics());
         setContentView(R.layout.activity_lang_settings);
 
+        //Initializes toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //Creates buttons
         Button enLangButton = (Button)findViewById(R.id.buttonEn);
         Button frLangButton = (Button)findViewById(R.id.buttonFr);
         Button jaLangButton = (Button)findViewById(R.id.buttonJa);
         Button zhLangButton = (Button)findViewById(R.id.buttonZh);
 
+        //Changes language if button is pressed
         enLangButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -73,6 +80,7 @@ public class LangSettings extends AppCompatActivity implements NavigationView.On
             }
         });
 
+        //Changes language if button is pressed
         frLangButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -91,6 +99,7 @@ public class LangSettings extends AppCompatActivity implements NavigationView.On
             }
         });
 
+        //Changes language if button is pressed
         jaLangButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -109,6 +118,7 @@ public class LangSettings extends AppCompatActivity implements NavigationView.On
             }
         });
 
+        //Changes language if button is pressed
         zhLangButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -127,11 +137,7 @@ public class LangSettings extends AppCompatActivity implements NavigationView.On
             }
         });
 
-
-
-
-
-
+        //Navigation Bar
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.drawer_open, R.string.drawer_close);
@@ -141,13 +147,13 @@ public class LangSettings extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-
-
+        //Sets Toolbar Text
         setTitle(getString(R.string.lang_name));
 
 
     }//End of OnCreate**************************************
 
+    //Controls back button presses
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -180,6 +186,12 @@ public class LangSettings extends AppCompatActivity implements NavigationView.On
         return super.onOptionsItemSelected(item);
     }
 
+
+    /**
+     * Controls navigation bar button reactions
+     *
+     * @param item Selected item on the navigation bar
+     */
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override

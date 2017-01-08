@@ -19,19 +19,20 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
+ * Fetches search results from the Best Buy website.
+ *
  * Created by Samuel on 2016-12-23.
  */
 
 public class RootsSearch extends SearchQuery{
 
-    //You do not need a resultsEven object. This was specific to CANADA COMPUTERS' WEBSITE
     public Elements resultsEven;
     public Elements finalDoc;
     private ArrayList<Item> processed;
     private final Handler uiHandler = new Handler();
     public int status = 0;
 
-    //This basically is just so that the class knows which Activity we're working with
+    //Allows for the class to recognize which activity is making a query
     private Context c;
 
     protected class JSHtmlInterface {
@@ -53,7 +54,9 @@ public class RootsSearch extends SearchQuery{
     /**
      * Constructor method
      * @param context The context taken from the webview (So that the asynctask can show progress)
+     * @param query Provides the search term
      */
+
     public RootsSearch(Context context, String query) {
 
         final Context c = context;
@@ -87,20 +90,12 @@ public class RootsSearch extends SearchQuery{
                     }
             );
 
-
+                //Loads website with WebView to fetch results
                 browser.loadUrl("http://www.roots.com/on/demandware.store/Sites-RootsCA-Site/en_CA/Search-Show?q=" + query);
                 browser.loadUrl(browser.getUrl());
                 final String link = browser.getUrl();
+                //Processes pages of results
                 new fetcher(c).execute(link);
-                
-                /*
-                Website lazy-loaded, pages not possible
-                
-                new fetcher(c).execute(link + "&page=2");
-                new fetcher(c).execute(link + "&page=3");
-                */
-
-
 
         }
         catch(Exception e){
@@ -215,7 +210,7 @@ public class RootsSearch extends SearchQuery{
 
                 Element ele = e.get(i);
 
-
+                //Separates required details from the HTML including link, name and price
                 String link = ("http://www.roots.com" + ele.select(" a.name-link").attr("href"));
                 System.out.println("http://www.roots.com" + ele.select(" a.name-link").attr("href"));
 
@@ -223,7 +218,6 @@ public class RootsSearch extends SearchQuery{
 
 
                 String pricestring = ele.select(" span.product-sales-price").text();
-
                 price = Double.parseDouble(pricestring.substring(1, pricestring.indexOf(" ")));
                 System.out.println(pricestring.substring(1, pricestring.indexOf(" ")));
 

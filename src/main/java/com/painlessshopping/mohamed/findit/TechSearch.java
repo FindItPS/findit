@@ -30,6 +30,10 @@ import org.jsoup.nodes.Document;
 import java.util.ArrayList;
 import java.util.Locale;
 
+/**
+ * Controls the Tech search view and processes search queries.
+ */
+
 public class TechSearch extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private static Context context;
@@ -66,6 +70,7 @@ public class TechSearch extends AppCompatActivity implements NavigationView.OnNa
         setTheme(ThemeHandler.getTheme());
         super.onCreate(savedInstanceState);
 
+        //Sets Language
         Locale locale = new Locale(LanguageHandler.getLang());
         Locale.setDefault(locale);
         Configuration config = new Configuration();
@@ -74,9 +79,11 @@ public class TechSearch extends AppCompatActivity implements NavigationView.OnNa
                 getResources().getDisplayMetrics());
         setContentView(R.layout.fragment_search);
 
+        //Initializes Toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //Navigation Bar
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.drawer_open, R.string.drawer_close);
@@ -88,13 +95,16 @@ public class TechSearch extends AppCompatActivity implements NavigationView.OnNa
 
         context = this;
 
+        //Creates the list of items
         ListView listView=(ListView)findViewById(R.id.listView);
         adapter= new CustomAdapter(Items, this);
         listView.setAdapter(adapter);
 
+        //Creates search query bar
         TextView empty = (TextView) findViewById(R.id.empty);
         listView.setEmptyView(empty);
 
+        //Sets toolbar text
         setTitle(getString(R.string.title_activity_tech_search));
         handleIntent(getIntent());
 
@@ -130,6 +140,13 @@ public class TechSearch extends AppCompatActivity implements NavigationView.OnNa
 
         return true;
     }
+
+    /**
+     * Controls toolbar button and their ability to sort list items
+     *
+     * @param item Items on the tool bar menu
+     * @return Identifies that the sort has been completed
+     */
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -236,6 +253,11 @@ public class TechSearch extends AppCompatActivity implements NavigationView.OnNa
     }
 
 
+    /**
+     * Controls sort
+     *
+     * @param type Type of sort to be executed
+     */
     public void sortList(String type){
 
         ArrayList<Item> results = new ArrayList<Item>();
@@ -273,6 +295,7 @@ public class TechSearch extends AppCompatActivity implements NavigationView.OnNa
 
     }
 
+    //Controls back button presses
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -283,6 +306,12 @@ public class TechSearch extends AppCompatActivity implements NavigationView.OnNa
         }
     }
 
+
+    /**
+     * Controls navigation bar button reactions
+     *
+     * @param item Selected item on the navigation bar
+     */
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override

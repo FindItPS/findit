@@ -19,6 +19,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
+ * Fetches search results from the Mastermind Toys website.
+ *
  * Created by Samuel on 2016-12-23.
  */
 
@@ -29,7 +31,7 @@ public class MastermindToysSearch extends SearchQuery{
     private final Handler uiHandler = new Handler();
     public int status = 0;
 
-    //This basically is just so that the class knows which Activity we're working with
+    //Allows for the class to recognize which activity is making a query
     private Context c;
 
     protected class JSHtmlInterface {
@@ -51,7 +53,9 @@ public class MastermindToysSearch extends SearchQuery{
     /**
      * Constructor method
      * @param context The context taken from the webview (So that the asynctask can show progress)
+     * @param query Provides the search term
      */
+
     public MastermindToysSearch(Context context, String query) {
 
 
@@ -86,10 +90,12 @@ public class MastermindToysSearch extends SearchQuery{
                     }
             );
 
-
+                //Loads website with WebView to fetch results
                 browser.loadUrl("http://www.mastermindtoys.com/catalog/searchresults.aspx?search=" + query);
                 browser.loadUrl(browser.getUrl());
                 final String link = browser.getUrl();
+
+                //Processes pages of results
                 new fetcher(c).execute(link);
                 new fetcher(c).execute(link + "&p=2");
                 new fetcher(c).execute(link + "&p=3");
@@ -102,8 +108,6 @@ public class MastermindToysSearch extends SearchQuery{
         }
 
         //Get the link from the WebView, and save it in a final string so it can be accessed from worker thread
-
-
     }
 
     /**
@@ -147,10 +151,8 @@ public class MastermindToysSearch extends SearchQuery{
                         .timeout(10000)
                         .get();
 
-
+                //Defines which element of the website to observe
                 finalDoc = doc.select("body div.mm_SearchProduct");
-
-
 
 
             } catch (IOException e) {
@@ -218,6 +220,7 @@ public class MastermindToysSearch extends SearchQuery{
 
                 Element ele = e.get(i);
 
+                //Separates required details from the HTML including link, name and price
                 String link = "http://www.mastermindtoys.com" + ele.select(" div.mm_SearchProdDescription > a").attr("href");
                 System.out.println("http://www.mastermindtoys.com" + ele.select(" div.mm_SearchProdDescription > a").attr("href"));
                 String title = ele.select(" div.mm_SearchProdDescription > a").text();

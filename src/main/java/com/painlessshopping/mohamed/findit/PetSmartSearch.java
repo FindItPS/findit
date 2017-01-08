@@ -19,19 +19,20 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
+ * Fetches search results from the Best Buy website.
+ *
  * Created by Samuel on 2016-12-20.
  */
 
 public class PetSmartSearch extends SearchQuery{
 
-    //You do not need a resultsEven object. This was specific to CANADA COMPUTERS' WEBSITE
     public Elements resultsEven;
     public Elements finalDoc;
     private ArrayList<Item> processed;
     private final Handler uiHandler = new Handler();
     public int status = 0;
 
-    //This basically is just so that the class knows which Activity we're working with
+    //Allows for the class to recognize which activity is making a query
     private Context c;
 
     protected class JSHtmlInterface {
@@ -53,7 +54,9 @@ public class PetSmartSearch extends SearchQuery{
     /**
      * Constructor method
      * @param context The context taken from the webview (So that the asynctask can show progress)
+     * @param query Provides the search term
      */
+
     public PetSmartSearch(Context context, String query) {
 
         final Context c = context;
@@ -87,14 +90,15 @@ public class PetSmartSearch extends SearchQuery{
                     }
             );
 
+                //Loads website with WebView to fetch results
                 browser.loadUrl("https://www.petsmart.ca/gsi/webstore/WFS/PETNA-PETCA-Site/en_CA/-/CAD/ViewParametricSearch-ProductPaging?PageNumber=0&PageSize=24&SearchTerm=" + query + "&SearchParameter=%26%40QueryTerm%3D" + query + "26OnlineFlag%3D1");
                 browser.loadUrl(browser.getUrl());
                 final String link = browser.getUrl();
+
+                //Processes pages of results
                 new fetcher(c).execute(link);
                 new fetcher(c).execute("https://www.petsmart.ca/gsi/webstore/WFS/PETNA-PETCA-Site/en_CA/-/CAD/ViewParametricSearch-ProductPaging?PageNumber=1&PageSize=24&SearchTerm=" + query + "&SearchParameter=%26%40QueryTerm%3D" + query + "26OnlineFlag%3D1");
                 new fetcher(c).execute("https://www.petsmart.ca/gsi/webstore/WFS/PETNA-PETCA-Site/en_CA/-/CAD/ViewParametricSearch-ProductPaging?PageNumber=2&PageSize=24&SearchTerm=" + query + "&SearchParameter=%26%40QueryTerm%3D" + query + "26OnlineFlag%3D1");
-
-
 
         }
         catch(Exception e){
@@ -102,8 +106,6 @@ public class PetSmartSearch extends SearchQuery{
         }
 
         //Get the link from the WebView, and save it in a final string so it can be accessed from worker thread
-
-
     }
 
     /**
@@ -147,7 +149,7 @@ public class PetSmartSearch extends SearchQuery{
                         .timeout(10000)
                         .get();
 
-
+                //Defines which element of the website to observe
                 finalDoc = doc.select("body div.ws-group.pet-prodloop");
                 System.out.println(finalDoc.toString());
 
@@ -208,9 +210,8 @@ public class PetSmartSearch extends SearchQuery{
 
                 Element ele = e.get(i);
 
-
+                //Separates required details from the HTML including link, name and price
                 String link = ele.select(" a.url.kor-product-link.pet-prodloop-title").attr("href");
-//                String title = ele.select(" a.url.kor-product-link.pet-prodloop-title").attr("title");
                 String title = ele.select(" h4.ws-product-title.fn").text();
 
                 String pricestring = ele.select("span.kor-product-sale-price-value.ws-sale-price.ws-sale-price-temporary").text();

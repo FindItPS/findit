@@ -19,6 +19,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
+ * Fetches search results from the Real Canadian Superstore website.
+ *
  * Created by Samuel on 2016-12-24.
  */
 
@@ -29,7 +31,7 @@ public class RCSuperstoreSearch extends SearchQuery{
     private final Handler uiHandler = new Handler();
     public int status = 0;
 
-    //This basically is just so that the class knows which Activity we're working with
+    //Allows for the class to recognize which activity is making a query
     private Context c;
 
     protected class JSHtmlInterface {
@@ -51,7 +53,9 @@ public class RCSuperstoreSearch extends SearchQuery{
     /**
      * Constructor method
      * @param context The context taken from the webview (So that the asynctask can show progress)
+     * @param query Provides the search term
      */
+
     public RCSuperstoreSearch(Context context, String query) {
 
         final Context c = context;
@@ -85,29 +89,19 @@ public class RCSuperstoreSearch extends SearchQuery{
                     }
             );
 
-
+                //Loads website with WebView to fetch results
                 browser.loadUrl("https://www.realcanadiansuperstore.ca/search/?search-bar=" + query.replaceAll(" ", "%20"));
                 browser.loadUrl(browser.getUrl());
                 final String link = browser.getUrl();
+
+                //Processes pages of results
                 new fetcher(c).execute(link);
-                
-                /*
-                Site lazy-loaded, pages not possible
-                
-                new fetcher(c).execute(link + "&page=2");
-                new fetcher(c).execute(link + "&page=3");
-                */
-
-
-
         }
         catch(Exception e){
             e.printStackTrace();
         }
 
         //Get the link from the WebView, and save it in a final string so it can be accessed from worker thread
-
-
     }
 
     /**
@@ -151,7 +145,7 @@ public class RCSuperstoreSearch extends SearchQuery{
                         .timeout(10000)
                         .get();
 
-
+                //Defines which element of the website to observe
                 finalDoc = doc.select("body div.content-tile-list div.item.content-tile");
 
 
@@ -204,9 +198,6 @@ public class RCSuperstoreSearch extends SearchQuery{
                 SearchQueueHandler.makeRequest(mContext, processed, SearchQueueHandler.PETS_SEARCH);
             }
 
-
-
-
         }
     }
 
@@ -222,7 +213,7 @@ public class RCSuperstoreSearch extends SearchQuery{
 
                 Element ele = e.get(i);
 
-
+                //Separates required details from the HTML including link, name and price
                 String link = "http://www.realcanadiansuperstore.ca" + ele.select(" a.product-name").attr("href");
                 System.out.println("http://www.realcanadiansuperstore.ca" + ele.select(" a.product-name").attr("href"));
                 String title = ele.select(" span.js-product-entry-name").text();
