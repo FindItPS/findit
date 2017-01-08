@@ -20,6 +20,10 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Locale;
 
+/**
+ * Controls the cart activity
+ */
+
 public class MyCart extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener   {
 
     ArrayList<Item> Items = new ArrayList<>(); ;
@@ -31,6 +35,7 @@ public class MyCart extends AppCompatActivity implements NavigationView.OnNaviga
         setTheme(ThemeHandler.getTheme());
         super.onCreate(savedInstanceState);
 
+        //Sets the Language
         Locale locale = new Locale(LanguageHandler.getLang());
         Locale.setDefault(locale);
         Configuration config = new Configuration();
@@ -39,9 +44,11 @@ public class MyCart extends AppCompatActivity implements NavigationView.OnNaviga
                 getResources().getDisplayMetrics());
         setContentView(R.layout.activity_my_cart);
 
+        //Initializes the toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //Navigation bar
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.drawer_open, R.string.drawer_close);
@@ -51,7 +58,7 @@ public class MyCart extends AppCompatActivity implements NavigationView.OnNaviga
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-
+        //Item list view
         ListView listView=(ListView)findViewById(R.id.cart);
         adapter= new CartAdapter(Items, this, listView);
         listView.setAdapter(adapter);
@@ -59,9 +66,11 @@ public class MyCart extends AppCompatActivity implements NavigationView.OnNaviga
         TextView empty = (TextView) findViewById(R.id.empty);
         listView.setEmptyView(empty);
 
+        //Refers to the CarAdapter for formatting
         adapter.addAll(CartInfoProvider.getCart());
         adapter.notifyDataSetChanged();
 
+        //Sets toolbar text
         setTitle(getString(R.string.cart_name));
     }
 
@@ -73,24 +82,36 @@ public class MyCart extends AppCompatActivity implements NavigationView.OnNaviga
         return true;
     }
 
+    //Cart Share function
     private void shareIt(){
         if(adapter.getCount() > 0){
+
+            //Opens Android share dialog
             Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
             sharingIntent.setType("text/plain");
 
+            //Defines text that will be send by user
             String shareBody = getString(R.string.share_subject) + "\n\n";
             for(int i= 0; i <adapter.getCount(); i++){
                 shareBody += (i+1) + ". " + adapter.getItem(i).toString() + "\n\n";
             }
 
+            //More text
             sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, getString(R.string.share_subject));
             sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
             startActivity(Intent.createChooser(sharingIntent, getString(R.string.share_via)));
         } else {
+            //If they have no items, tell them
             Toast.makeText(this, getString(R.string.empty_cart_share), Toast.LENGTH_LONG).show();
         }
     }
 
+    /**
+     * Controls toolbar button and their ability to sort list items
+     *
+     * @param item Items on the tool bar menu
+     * @return Identifies that the sort has been completed
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -121,6 +142,11 @@ public class MyCart extends AppCompatActivity implements NavigationView.OnNaviga
         }
     }
 
+    /**
+     * Controls sort
+     *
+     * @param type Type of sort
+     */
     public void sortList(String type){
 
         ArrayList<Item> results = new ArrayList<Item>();
@@ -158,6 +184,8 @@ public class MyCart extends AppCompatActivity implements NavigationView.OnNaviga
         adapter.notifyDataSetChanged();
 
     }
+
+    //Controls back button press
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -168,6 +196,12 @@ public class MyCart extends AppCompatActivity implements NavigationView.OnNaviga
         }
     }
 
+
+    /**
+     * Controls navigation bar button reactions
+     *
+     * @param item Selected item on the navigation bar
+     */
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override

@@ -9,6 +9,8 @@ import android.widget.GridView;
 import android.widget.ImageView;
 
 /**
+ * Controls image button on the home screen
+ *
  * Created by Abdourahmane on 2016-12-29.
  */
 
@@ -65,6 +67,7 @@ public class ImageAdapter extends BaseAdapter implements View.OnClickListener {
         int position=(Integer) v.getTag();
         final int id = mThumbIds[position];
 
+        //When clicked, the images open their respective activities
         switch (id)
         {
             case R.drawable.books_icon_large:

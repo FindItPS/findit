@@ -19,19 +19,20 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
+ * Fetches search results from the Gap website.
+ *
  * Created by Sam on 2016-12-29.
  */
 
 public class GapSearch extends SearchQuery{
 
-    //You do not need a resultsEven object. This was specific to CANADA COMPUTERS' WEBSITE
     public Elements resultsEven;
     public Elements finalDoc;
     private ArrayList<Item> processed;
     private final Handler uiHandler = new Handler();
     public int status = 0;
 
-    //This basically is just so that the class knows which Activity we're working with
+    //Allows for the class to recognize which activity is making a query
     private Context c;
 
     protected class JSHtmlInterface {
@@ -53,7 +54,9 @@ public class GapSearch extends SearchQuery{
     /**
      * Constructor method
      * @param context The context taken from the webview (So that the asynctask can show progress)
+     * @param query Provides the search term
      */
+
     public GapSearch(Context context, String query) {
 
         final Context c = context;
@@ -87,21 +90,13 @@ public class GapSearch extends SearchQuery{
                     }
             );
 
-
+                //Loads website with WebView to fetch results
                 browser.loadUrl("http://www.gapcanada.ca/browse/search.do?searchText=" + query.replaceAll(" ", "%20"));
                 browser.loadUrl(browser.getUrl());
                 final String link = browser.getUrl();
+
+                //Processes pages of results
                 new fetcher(c).execute(link);
-                
-                
-                /*
-                Won't work, lazy loaded
-                new fetcher(c).execute(link + "&page=2");
-                new fetcher(c).execute(link + "&page=3");
-                */
-
-
-
         }
         catch(Exception e){
             e.printStackTrace();

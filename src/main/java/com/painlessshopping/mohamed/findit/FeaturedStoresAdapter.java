@@ -7,6 +7,9 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 
+/**
+ * Adapter to help control the view of the cart
+ */
 
 public class FeaturedStoresAdapter extends BaseAdapter {
     private Context mContext;

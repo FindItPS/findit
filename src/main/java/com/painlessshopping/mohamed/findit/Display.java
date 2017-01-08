@@ -15,6 +15,10 @@ import android.view.MenuItem;
 import android.view.Window;
 import android.widget.ListView;
 
+/**
+ * Controls buttons and formatting for the Display Settings screen
+ */
+
 public class Display extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private Window window = getWindow();
@@ -37,11 +41,11 @@ public class Display extends AppCompatActivity implements NavigationView.OnNavig
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display);
 
+        //Initializes toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
-
+        //Navigation bar
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.drawer_open, R.string.drawer_close);
@@ -51,13 +55,17 @@ public class Display extends AppCompatActivity implements NavigationView.OnNavig
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        //Creates the list of themes
         ListView themes = (ListView) findViewById(R.id.themeList);
         themes.setAdapter(new ThemeAdapter(this, themes));
 
+        //Sets toolbar title
         setTitle(getString(R.string.title_activity_display));
 
 
     }
+
+    //Controls back button presses
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -75,6 +83,7 @@ public class Display extends AppCompatActivity implements NavigationView.OnNavig
         return true;
     }
 
+    //Controls toolbar buttons
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -90,6 +99,11 @@ public class Display extends AppCompatActivity implements NavigationView.OnNavig
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Controls navigation bar button reactions
+     *
+     * @param item Selected item on the navigation bar
+     */
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -108,6 +122,7 @@ public class Display extends AppCompatActivity implements NavigationView.OnNavig
             startActivity(new Intent(Display.this, FeaturedScreen.class));
 
         } else if (id == R.id.nav_language_settings) {
+            startActivity(new Intent(Display.this, LangSettings.class));
 
         } else if (id == R.id.nav_location_settings) {
             startActivity(new Intent(Display.this, MapsActivity.class));
@@ -121,4 +136,5 @@ public class Display extends AppCompatActivity implements NavigationView.OnNavig
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 }//End of Class

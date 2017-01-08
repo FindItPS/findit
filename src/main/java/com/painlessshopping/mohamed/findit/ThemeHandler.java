@@ -1,6 +1,8 @@
 package com.painlessshopping.mohamed.findit;
 
 /**
+ * Handles themes
+ *
  * Created by Abdourahmane on 2017-01-02.
  */
 

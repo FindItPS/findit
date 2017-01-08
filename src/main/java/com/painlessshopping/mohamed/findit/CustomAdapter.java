@@ -14,6 +14,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 /**
+ * Adapter to help control the views not possible with XML
+ *
  * Created by Abdourahmane on 2016-12-02.
  */
 

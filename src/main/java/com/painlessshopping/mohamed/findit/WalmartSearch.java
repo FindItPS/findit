@@ -47,7 +47,9 @@ public class WalmartSearch extends SearchQuery{
     /**
      * Constructor method
      * @param context The context taken from the webview (So that the asynctask can show progress)
+     * @param query Provides the search term
      */
+
     public WalmartSearch(Context context, String query) {
 
         final Context c = context;
@@ -81,20 +83,15 @@ public class WalmartSearch extends SearchQuery{
                     }
             );
 
-
-//            TextView text = (TextView) a.findViewById(R.id.editText);
-//
-//            if(text.getText() != null){
+            //Loads website with WebView to fetch results
             browser.loadUrl("http://www.walmart.ca/search/" + query);
-
             browser.loadUrl(browser.getUrl());
             final String link = browser.getUrl();
+
+            //Processes pages of results
             new fetcher(c).execute(link);
             new fetcher(c).execute(link + "/page-2");
             new fetcher(c).execute(link + "/page-3");
-//
-//            }
-
 
 
         }
@@ -178,6 +175,7 @@ public class WalmartSearch extends SearchQuery{
 
                 Element ele = e.get(i);
 
+                //Separates required details from the HTML including link, name and price
                 String description = ele.select("h1 > a").first().text();
 
                 System.out.println("TITLE " + description);

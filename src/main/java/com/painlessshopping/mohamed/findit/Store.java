@@ -1,6 +1,8 @@
 package com.painlessshopping.mohamed.findit;
 
 /**
+ * Creates store object
+ *
  * Created by Abdourahmane on 2016-12-15.
  */
 

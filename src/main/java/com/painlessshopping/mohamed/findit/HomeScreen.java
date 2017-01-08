@@ -17,6 +17,10 @@ import android.widget.ListView;
 
 import java.util.Locale;
 
+/**
+ * Controls the Book search view and processes search queries.
+ */
+
 public class HomeScreen extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout mDrawerLayout;
@@ -32,6 +36,7 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
         setTheme(ThemeHandler.getTheme());
         super.onCreate(savedInstanceState);
 
+        //Sets language
         Locale locale = new Locale(LanguageHandler.getLang());
         Locale.setDefault(locale);
         Configuration config = new Configuration();
@@ -40,9 +45,11 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
                 getResources().getDisplayMetrics());
         setContentView(R.layout.activity_home_screen);
 
+        //Initializes toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //Navigation Bar
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.drawer_open, R.string.drawer_close);
@@ -52,16 +59,18 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        //Creates gridview to display buttons
         GridView gridview = (GridView) findViewById(R.id.gridview);
         gridview.setAdapter(new ImageAdapter(this));
 
-
+        //Sets toolbar text
         setTitle(getString(R.string.app_name));
 
 
 
     }//End of OnCreate**************************************
 
+    //Controls Back Button Presses
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -94,6 +103,12 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
         return super.onOptionsItemSelected(item);
     }
 
+
+    /**
+     * Controls navigation bar button reactions
+     *
+     * @param item Selected item on the navigation bar
+     */
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override

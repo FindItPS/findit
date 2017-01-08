@@ -8,6 +8,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 /**
+ * Handles Search Queries
  * Created by Abdourahmane on 2017-01-02.
  */
 

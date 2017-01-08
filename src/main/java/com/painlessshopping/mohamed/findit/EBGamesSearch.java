@@ -19,19 +19,20 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
+ * Fetches search results from the EB Games website.
+ *
  * Created by Samuel on 2016-12-20.
  */
 
 public class EBGamesSearch extends SearchQuery{
 
-    //You do not need a resultsEven object. This was specific to CANADA COMPUTERS' WEBSITE
     public Elements resultsEven;
     public Elements finalDoc;
     private ArrayList<Item> processed;
     private final Handler uiHandler = new Handler();
     public int status = 0;
 
-    //This basically is just so that the class knows which Activity we're working with
+    //Allows for the class to recognize which activity is making a query
     private Context c;
 
     protected class JSHtmlInterface {
@@ -53,7 +54,9 @@ public class EBGamesSearch extends SearchQuery{
     /**
      * Constructor method
      * @param context The context taken from the webview (So that the asynctask can show progress)
+     * @param query Provides the search term
      */
+
     public EBGamesSearch(Context context, String query) {
 
         final Context c = context;
@@ -87,9 +90,13 @@ public class EBGamesSearch extends SearchQuery{
                     }
             );
 
+
+                //Loads website with WebView to fetch results
                 browser.loadUrl("https://www.ebgames.ca/SearchResult/QuickSearch?q=" + query);
                 browser.loadUrl(browser.getUrl());
                 final String link = browser.getUrl();
+
+                //Processes pages of results
                 new fetcher(c).execute(link);
 
 
@@ -144,11 +151,8 @@ public class EBGamesSearch extends SearchQuery{
                         .timeout(10000)
                         .get();
 
-
+                //Defines which element of the website to observe
                 finalDoc = doc.select("body div.singleProduct");
-
-
-
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -203,28 +207,15 @@ public class EBGamesSearch extends SearchQuery{
 
                 Element ele = e.get(i);
 
-
+                //Separates required details from the HTML including link, name and price
                 String link = ("https://www.ebgames.ca" + ele.select("h3 a").attr("href="));
                 String title = ele.select("h3 a").text();
 
                 int endIndex = 0;
-
                 String pricestring = "";
                 String samplestring = ele.select("div.prodBuy span").text();
-
-
-
-                    pricestring = (ele.select("div.prodBuy span").text()).substring((ele.select("div.prodBuy span").text()).lastIndexOf("$") + 1);
-
-
-
+                pricestring = (ele.select("div.prodBuy span").text()).substring((ele.select("div.prodBuy span").text()).lastIndexOf("$") + 1);
                 System.out.println("PRICE = " + pricestring);
-//                while (Character.isDigit(pricestring.charAt(endIndex)) || pricestring.charAt(endIndex) == '.') {
-//                    endIndex++;
-//                }
-
-
-
                 price = Double.parseDouble(pricestring);
 
                 String store = "EB Games";

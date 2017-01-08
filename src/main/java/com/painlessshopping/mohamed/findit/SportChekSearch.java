@@ -19,6 +19,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
+ * Fetches search results from the Sport Chek website.
+ *
  * Created by Samuel on 2016-12-24.
  */
 
@@ -29,7 +31,7 @@ public class SportChekSearch extends SearchQuery{
     private final Handler uiHandler = new Handler();
     public int status = 0;
 
-    //This basically is just so that the class knows which Activity we're working with
+    //Allows for the class to recognize which activity is making a query
     private Context c;
 
     protected class JSHtmlInterface {
@@ -51,7 +53,9 @@ public class SportChekSearch extends SearchQuery{
     /**
      * Constructor method
      * @param context The context taken from the webview (So that the asynctask can show progress)
+     * @param query Provides the search term
      */
+
     public SportChekSearch(Context context, String query) {
 
         final Context c = context;
@@ -86,19 +90,14 @@ public class SportChekSearch extends SearchQuery{
             );
 
 
+                //Loads website with WebView to fetch results
                 browser.loadUrl("https://www.sportchek.ca/search.html#q=" + query.replaceAll(" ", "+") + "&lastVisibleProductNumber=3");
                 browser.loadUrl(browser.getUrl());
                 final String link = browser.getUrl();
+
+                //Processes pages of results
                 new fetcher(c).execute(link);
                 
-                /*
-                Can't do pages, site lazy-loaded
-                
-                new fetcher(c).execute(link + "&page=2");
-                new fetcher(c).execute(link + "&page=3");
-                */
-
-
 
         }
         catch(Exception e){
@@ -151,12 +150,8 @@ public class SportChekSearch extends SearchQuery{
                         .timeout(10000)
                         .get();
 
-
+                //Defines which element of the website to observe
                 finalDoc = doc.select("body section.product-grid-wrapper");
-
-//                System.out.println(finalDoc.toString());
-
-
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -214,7 +209,7 @@ public class SportChekSearch extends SearchQuery{
 
                 Element ele = e.get(i);
 
-
+                //Separates required details from the HTML including link, name and price
                 String link = "https://www.sportchek.ca" + ele.select(" a.product-grid__link").attr("href");
                 System.out.println("https://www.sportchek.ca" + ele.select(" a.product-grid__link").attr("href"));
                 String title = ele.select(" span.product-title-text").text();

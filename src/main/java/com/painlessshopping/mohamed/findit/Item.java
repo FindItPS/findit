@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.Comparator;
 
 /**
+ * Creates Item (Object type) to store details for website-collected information
+ *
  * Created by Abdourahmane on 2016-11-28.
  */
 
@@ -13,12 +15,15 @@ public class Item{
     String title, store, link;
     Double price;
 
+    //Constructor
     public Item(String t, String s, Double p, String l){
         setTitle(t);
         setStore(s);
         setLink(l);
         setPrice(p);
     }
+
+    //Set Title
     public void setTitle(String t){
 
         if(!t.isEmpty()){
@@ -28,6 +33,7 @@ public class Item{
         }
     }
 
+    //Set Store
     public void setStore(String s){
 
         if(!s.isEmpty()){
@@ -37,6 +43,7 @@ public class Item{
         }
     }
 
+    //Set Price
     public void setPrice(Double p){
 
 
@@ -44,25 +51,30 @@ public class Item{
 
     }
 
+    //Get Title
     public String getTitle(){
         return this.title;
     }
 
 
+    //Get Price
     public Double getPrice(){
 
         return this.price;
     }
 
+    //Get Store
     public String getStore() {
         return this.store;
     }
+
+    //Item toString
     @Override
     public String toString() {
         return "$" + getPrice() + " " + getTitle() + " from  " + store + "\n" + getLink();
     }
 
-
+    //Item sorts
     public static ArrayList<Item> sortItems(ArrayList<Item> unsorted, String sort){
 
         switch(sort){
@@ -99,6 +111,7 @@ public class Item{
 
 
 
+    //Item sorts
     enum ItemSort implements Comparator<Item> {
         PRICE_LOW_HIGH {
             @Override
@@ -153,6 +166,7 @@ public class Item{
         }
     }
 
+    //Set Link
     public void setLink(String l){
         if(!l.isEmpty()){
             link = l;

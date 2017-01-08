@@ -1,6 +1,8 @@
 package com.painlessshopping.mohamed.findit;
 
 /**
+ * Handles default languages
+ *
  * Created by Abdourahmane on 2017-01-05.
  */
 
