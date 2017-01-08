@@ -36,7 +36,7 @@ Stores that can be searched currently include:
 
 -Loblaws
 
--The Gap
+-Mark's
 
 ### Sort Your Results ###
 Users will use search to find very different items with different criteria. They will be able to sort their results alphabetically and by price to best find their items in the list.
