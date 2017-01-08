@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:src="@drawable/ic_nav_bg_4"
+        android:src="?attr/navHeader"
         tools:ignore="ContentDescription" />
 
     <!--<TextView-->

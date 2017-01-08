@@ -141,4 +141,5 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 }//End of Class

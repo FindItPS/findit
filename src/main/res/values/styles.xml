@@ -9,6 +9,7 @@
         <item name="windowActionBar">false</item>
         <item name="android:statusBarColor" tools:targetApi="lollipop">@color/colorPrimaryDark</item>
         <item name="windowNoTitle">true</item>
+        <item name="navHeader">@drawable/ic_nav_bg_default</item>
 
     </style>
 
@@ -20,6 +21,7 @@
         <item name="windowActionBar">false</item>
         <item name="android:statusBarColor" tools:targetApi="lollipop">@color/colorPrimaryDark.Autumn</item>
         <item name="windowNoTitle">true</item>
+        <item name="navHeader">@drawable/ic_nav_bg_autumn</item>
 
     </style>
 
@@ -31,6 +33,7 @@
         <item name="windowActionBar">false</item>
         <item name="android:statusBarColor" tools:targetApi="lollipop">@color/colorPrimaryDark.Amethyst</item>
         <item name="windowNoTitle">true</item>
+        <item name="navHeader">@drawable/ic_nav_bg_amethyst</item>
 
     </style>
 
@@ -42,6 +45,7 @@
         <item name="windowActionBar">false</item>
         <item name="android:statusBarColor" tools:targetApi="lollipop">@color/colorPrimaryDark.Winter</item>
         <item name="windowNoTitle">true</item>
+        <item name="navHeader">@drawable/ic_nav_bg_winter</item>
 
     </style>
 
@@ -53,6 +57,7 @@
         <item name="windowActionBar">false</item>
         <item name="android:statusBarColor" tools:targetApi="lollipop">@color/colorPrimaryDark.Spring</item>
         <item name="windowNoTitle">true</item>
+        <item name="navHeader">@drawable/ic_nav_bg_spring</item>
 
     </style>
 
@@ -64,6 +69,7 @@
         <item name="windowActionBar">false</item>
         <item name="android:statusBarColor" tools:targetApi="lollipop">@color/colorPrimaryDark.Summer</item>
         <item name="windowNoTitle">true</item>
+        <item name="navHeader">@drawable/ic_nav_bg_summer</item>
 
     </style>
 
