@@ -208,7 +208,7 @@ public class EBGamesSearch extends SearchQuery{
                 Element ele = e.get(i);
 
                 //Separates required details from the HTML including link, name and price
-                String link = ("https://www.ebgames.ca" + ele.select("h3 a").attr("href="));
+                String link = ("https://www.ebgames.ca" + ele.select("h3 a").attr("href"));
                 String title = ele.select("h3 a").text();
 
                 int endIndex = 0;

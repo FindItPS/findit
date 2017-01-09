@@ -219,7 +219,7 @@ public class SportChekSearch extends SearchQuery{
                 JSONObject j = jsonArray.getJSONObject(i);
 
                 String title = j.getString("title");
-                String link = "https://www.SportChek.com" + j.getJSONArray("productPageUrls").getString(0);
+                String link = "https://www.sportchek.ca" + j.getJSONArray("productPageUrls").getString(0) + ".html";
 
                 price = j.getDouble("price");
 
