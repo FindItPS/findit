@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 
 public class SearchQueueHandler {
-    public static int BOOK_QUEUE = 4 , CLOTHING_QUEUE = 3, FOOD_QUEUE = 2, PETS_QUEUE = 4, TECH_QUEUE = 10, TOYS_QUEUE = 4;
+    public static int BOOK_QUEUE = 4 , CLOTHING_QUEUE = 4, FOOD_QUEUE = 2, PETS_QUEUE = 4, TECH_QUEUE = 10, TOYS_QUEUE = 4;
     public static final int BOOK_SEARCH = 1, FOOD_SEARCH = 2, PETS_SEARCH = 3, TECH_SEARCH = 4, TOYS_SEARCH = 5, CLOTHING_SEARCH = 6;
     public static ArrayList<Item> masterList = new ArrayList<Item>();
 
@@ -107,7 +107,7 @@ public class SearchQueueHandler {
             case CLOTHING_SEARCH:
                 if(CLOTHING_QUEUE != 0){
                     masterList.addAll(processed);
-                    System.out.println("HANDLED REQUESET #" + Math.abs(CLOTHING_QUEUE - 4));
+                    System.out.println("HANDLED REQUESET #" + Math.abs(CLOTHING_QUEUE - 5));
                     CLOTHING_QUEUE--;
                 }
 

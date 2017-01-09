@@ -90,12 +90,13 @@ public class SearchQuery {
             }
 
         }else if (type == CLOTHING_SEARCH){
-            if(q.length() >= 3){
+            if(q.length() >= 4){
 
                 ClothingSearch.adapter.clear();
                 new RootsSearch(c, q);
-                new SportChekSearch(c, q);
+                new HnMSearch(c, q);
                 new MarksSearch(c, q);
+                new SportChekSearch(c, q);
 
             } else {
                 Toast.makeText(c, "The Minimum Query Length is 3 Characters", Toast.LENGTH_LONG).show();

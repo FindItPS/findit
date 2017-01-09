@@ -24,7 +24,7 @@ import java.util.ArrayList;
  * Created by Samuel on 2016-12-23.
  */
 
-public class HandMSearch extends SearchQuery{
+public class HnMSearch extends SearchQuery{
 
     public Elements resultsEven;
     public Elements finalDoc;
@@ -57,7 +57,7 @@ public class HandMSearch extends SearchQuery{
      * @param query Provides the search term
      */
 
-    public HandMSearch(Context context, String query) {
+    public HnMSearch(Context context, String query) {
 
         final Context c = context;
 
@@ -91,7 +91,7 @@ public class HandMSearch extends SearchQuery{
             );
 
                 //Loads website with WebView to fetch results
-                browser.loadUrl("http://www2.hm.com/en_ca/search-results.html?q=" + query + "&sort=stock&offset=0&page-size=500");
+                browser.loadUrl("http://www2.hm.com/en_ca/search-results.html?q=" + query + "&sort=stock&offset=0&page-size=30");
                 browser.loadUrl(browser.getUrl());
                 final String link = browser.getUrl();
                 //Processes pages of results
@@ -214,12 +214,19 @@ public class HandMSearch extends SearchQuery{
                 String link = ("http://www2.hm.com" + ele.select(" h3.product-item-headline a").attr("href"));
                 System.out.println("http://www2.hm.com" + ele.select(" h3.product-item-headline a").attr("href"));
 
-                String title = ele.select(" h3.product-item-headline a").text;
+                String title = ele.select(" h3.product-item-headline a").first().text();
 
 
                 String pricestring = ele.select(" div.product-item-price").text();
-                price = Double.parseDouble(pricestring.substring(1, pricestring.indexOf(" ")));
-                System.out.println(pricestring.substring(1, pricestring.indexOf(" ")));
+                pricestring = pricestring.substring(pricestring.lastIndexOf("$") + 1);
+                try {
+                    price = Double.parseDouble(pricestring);
+
+                } catch (NumberFormatException e1){
+
+                }
+
+                System.out.println(pricestring);
 
                 //*******************************************
 
