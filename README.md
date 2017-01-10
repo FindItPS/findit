@@ -1,7 +1,5 @@
 # Find-It-Android #
 
-![alt tag](https://raw.githubusercontent.com/findit2016/Find-It-Android/master/src/main/ic_launcher-web.png)
-
 ICS4U Project created by Mohamed Amadou and Samuel Jones.
 
 Licensed under Apache License Version 2.0
