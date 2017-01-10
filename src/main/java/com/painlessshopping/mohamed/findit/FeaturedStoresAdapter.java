@@ -73,7 +73,7 @@ public class FeaturedStoresAdapter extends BaseAdapter {
             "https://www.sportchek.ca/",
             "http://www.rcsuperstore.com/",
             "https://www.loblaws.ca/",
-            "https://www.marks.com/en/home-page.html"
-	    "http://www2.hm.com/en_ca/index.html
+            "https://www.marks.com/en/home-page.html",
+	        "http://www2.hm.com/en_ca/index.html"
     };
 }
