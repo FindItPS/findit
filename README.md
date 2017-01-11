@@ -1,11 +1,12 @@
 # Find-It-Android #
+
 ICS4U Project created by Mohamed Amadou and Samuel Jones.
 
 Licensed under Apache License Version 2.0
 
 ## Description ##
 
-Find It! allows users to browse local stores for item of interest from the comfort of your own home. The app is currently availalbe in English, French, Japanese and Chinese (Simplified).
+Find It! is a consolidated search app that allows users to find items of interest without a long search on the web. The app is currently availalbe in English, French, Japanese and Chinese (Simplified).
 
 ## Features ##
 
