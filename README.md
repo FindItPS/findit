@@ -5,6 +5,7 @@ ICS4U Project created by Mohamed Amadou and Samuel Jones.
 Licensed under Apache License Version 2.0
 
 ## Description ##
+![alt tag](https://drive.google.com/file/d/0B8P1LHXaOAF-X2x0N09kYVZ6R1E/view?usp=sharing "Find It! Screenshot")
 
 Find It! is a consolidated search app that allows users to find items of interest without a long search on the web. The app is currently availalbe in English, French, Japanese and Chinese (Simplified).
 
