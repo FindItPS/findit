@@ -5,6 +5,7 @@ ICS4U Project created by Mohamed Amadou and Samuel Jones.
 Licensed under Apache License Version 2.0
 
 ## Description ##
+![alt tag](http://i.imgur.com/c0ZKOqg.jpg "Find It! Screenshot")
 
 Find It! is a consolidated search app that allows users to find items of interest without a long search on the web. The app is currently availalbe in English, French, Japanese and Chinese (Simplified).
 
@@ -38,6 +39,8 @@ Stores that can be searched currently include:
 -Loblaws
 
 -Mark's
+
+-H&M
 
 ### Sort Your Results ###
 Users will use search to find very different items with different criteria. They will be able to sort their results alphabetically and by price to best find their items in the list.
