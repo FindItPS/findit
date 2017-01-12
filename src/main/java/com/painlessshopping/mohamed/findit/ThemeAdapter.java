@@ -106,7 +106,7 @@ public class ThemeAdapter  extends BaseAdapter {
             public void onClick(View v) {
 
                 ThemeHandler.setTheme(themeIDs[pos]);
-                SharedPreferences.Editor editor = mContext.getSharedPreferences("MyPref", mContext.MODE_PRIVATE).edit();
+                SharedPreferences.Editor editor = mContext.getSharedPreferences(OpeningScreen.KEY_PREFS_NAME, mContext.MODE_PRIVATE).edit();
                 editor.putInt("theme", themeIDs[pos]);
                 editor.commit();
                 mContext.startActivity(new Intent(mContext, Display.class));

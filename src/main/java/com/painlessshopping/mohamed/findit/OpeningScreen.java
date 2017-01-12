@@ -32,22 +32,20 @@ public class OpeningScreen extends AppCompatActivity {
 
 
     private boolean firstLaunch;
-    //Creates activity
-    @Override
+    public static final String KEY_PREFS_NAME = "myPrefs";
+    public static final String KEY_FIRST_LAUNCH = "firstLaunch";
+
     protected void onCreate(Bundle savedInstanceState) {
 
-        SharedPreferences preferences = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
-        boolean firstLaunch = preferences.getBoolean("firstlaunch", true);
-
-        System.out.println("FIRST LANUNCH? " + firstLaunch);
+        SharedPreferences preferences = getSharedPreferences(KEY_PREFS_NAME, MODE_PRIVATE);
+        boolean firstLaunch = preferences.getBoolean(KEY_FIRST_LAUNCH, true);
 
         if(firstLaunch == true){
-            SharedPreferences.Editor editor = getSharedPreferences("MyPref", MODE_PRIVATE).edit();
+            SharedPreferences.Editor editor = getSharedPreferences(KEY_PREFS_NAME, MODE_PRIVATE).edit();
             editor.putString("language", "en");
             editor.putInt("theme", R.style.Default);
-            editor.putBoolean("firstLaunch", false);
+            editor.putBoolean(KEY_FIRST_LAUNCH, false);
             editor.commit();
-            System.out.println(preferences.getBoolean("firstLaunch", true));
         }
 
 

@@ -78,7 +78,7 @@ public class LangSettings extends AppCompatActivity implements NavigationView.On
                 getResources().updateConfiguration(config,
                         getResources().getDisplayMetrics());
 
-                SharedPreferences.Editor editor = getSharedPreferences("MyPref", MODE_PRIVATE).edit();
+                SharedPreferences.Editor editor = getSharedPreferences(OpeningScreen.KEY_PREFS_NAME , MODE_PRIVATE).edit();
                 editor.putString("language", appCurrentLanguage);
                 editor.commit();
                 startActivity(new Intent(LangSettings.this, LangSettings.class));
@@ -101,7 +101,7 @@ public class LangSettings extends AppCompatActivity implements NavigationView.On
                 getResources().updateConfiguration(config,
                         getResources().getDisplayMetrics());
 
-                SharedPreferences.Editor editor = getSharedPreferences("MyPref", MODE_PRIVATE).edit();
+                SharedPreferences.Editor editor = getSharedPreferences(OpeningScreen.KEY_PREFS_NAME , MODE_PRIVATE).edit();
                 editor.putString("language", appCurrentLanguage);
                 editor.commit();
                 startActivity(new Intent(LangSettings.this, LangSettings.class));
@@ -124,7 +124,7 @@ public class LangSettings extends AppCompatActivity implements NavigationView.On
                 getResources().updateConfiguration(config,
                         getResources().getDisplayMetrics());
 
-                SharedPreferences.Editor editor = getSharedPreferences("MyPref", MODE_PRIVATE).edit();
+                SharedPreferences.Editor editor = getSharedPreferences(OpeningScreen.KEY_PREFS_NAME , MODE_PRIVATE).edit();
                 editor.putString("language", appCurrentLanguage);
                 editor.commit();
                 startActivity(new Intent(LangSettings.this, LangSettings.class));
@@ -147,7 +147,7 @@ public class LangSettings extends AppCompatActivity implements NavigationView.On
                 getResources().updateConfiguration(config,
                         getResources().getDisplayMetrics());
 
-                SharedPreferences.Editor editor = getSharedPreferences("MyPref", MODE_PRIVATE).edit();
+                SharedPreferences.Editor editor = getSharedPreferences(OpeningScreen.KEY_PREFS_NAME , MODE_PRIVATE).edit();
                 editor.putString("language", appCurrentLanguage);
                 editor.commit();
                 startActivity(new Intent(LangSettings.this, LangSettings.class));
