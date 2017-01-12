@@ -2,6 +2,7 @@ package com.painlessshopping.mohamed.findit;
 
 import android.app.FragmentManager;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -34,7 +35,7 @@ public class LangSettings extends AppCompatActivity implements NavigationView.On
     private String[] mPlanetTitles;
 
     //Sets default language, changed when user presses for a different one
-    static String appCurrentLanguage = "en";
+    static String appCurrentLanguage = "";
 
 
     @Override
@@ -76,6 +77,10 @@ public class LangSettings extends AppCompatActivity implements NavigationView.On
                 config.locale = locale;
                 getResources().updateConfiguration(config,
                         getResources().getDisplayMetrics());
+
+                SharedPreferences.Editor editor = getSharedPreferences("MyPref", MODE_PRIVATE).edit();
+                editor.putString("language", appCurrentLanguage);
+                editor.commit();
                 startActivity(new Intent(LangSettings.this, LangSettings.class));
             }
         });
@@ -95,6 +100,10 @@ public class LangSettings extends AppCompatActivity implements NavigationView.On
                 config.locale = locale;
                 getResources().updateConfiguration(config,
                         getResources().getDisplayMetrics());
+
+                SharedPreferences.Editor editor = getSharedPreferences("MyPref", MODE_PRIVATE).edit();
+                editor.putString("language", appCurrentLanguage);
+                editor.commit();
                 startActivity(new Intent(LangSettings.this, LangSettings.class));
             }
         });
@@ -114,6 +123,10 @@ public class LangSettings extends AppCompatActivity implements NavigationView.On
                 config.locale = locale;
                 getResources().updateConfiguration(config,
                         getResources().getDisplayMetrics());
+
+                SharedPreferences.Editor editor = getSharedPreferences("MyPref", MODE_PRIVATE).edit();
+                editor.putString("language", appCurrentLanguage);
+                editor.commit();
                 startActivity(new Intent(LangSettings.this, LangSettings.class));
             }
         });
@@ -133,6 +146,10 @@ public class LangSettings extends AppCompatActivity implements NavigationView.On
                 config.locale = locale;
                 getResources().updateConfiguration(config,
                         getResources().getDisplayMetrics());
+
+                SharedPreferences.Editor editor = getSharedPreferences("MyPref", MODE_PRIVATE).edit();
+                editor.putString("language", appCurrentLanguage);
+                editor.commit();
                 startActivity(new Intent(LangSettings.this, LangSettings.class));
             }
         });

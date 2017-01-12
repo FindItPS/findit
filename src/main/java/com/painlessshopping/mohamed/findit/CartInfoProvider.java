@@ -12,6 +12,11 @@ public class CartInfoProvider {
 
     private static ArrayList<Item> cart = new ArrayList<Item>();
 
+    public static void importCart(ArrayList<Item> i){
+
+        //Add all items to cart
+        cart.addAll(i);
+    }
     public static void addToCart(Item i){
 
         //Adds an item to the cart
