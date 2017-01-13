@@ -14,33 +14,21 @@ Find It! is a consolidated search app that allows users to find items of interes
 ### Search Local Stores ###
 Using our search functions they can easily get important information such as what store the item can be purchased at, the price, the title of the the item and the item price.
 
-Stores that can be searched currently include:
-
--Best Buy
-
--Canada Computers
-
--Staples
-
--Chapters
-
--Roots
-
--Pet Smart
-
--EB Games
-
--Mastermind Toys 
-
--Sport Chek
-
--Real Canadian Superstore
-
--Loblaws
-
--Mark's
-
--H&M
+Stores that can be searched currently include |
+------------- |
+Best Buy|
+Canada Computers |
+Staples |
+Chapters |
+Roots |
+Pet Smart |
+EB Games |
+Mastermind Toys | 
+Sport Chek |
+Real Canadian Superstore |
+Loblaws |
+Mark's |
+H&M |
 
 ### Sort Your Results ###
 Users will use search to find very different items with different criteria. They will be able to sort their results alphabetically and by price to best find their items in the list.

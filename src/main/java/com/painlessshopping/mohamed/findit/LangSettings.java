@@ -44,7 +44,7 @@ public class LangSettings extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
 
         //Sets language
-        Locale locale = new Locale(appCurrentLanguage);
+        Locale locale = new Locale(LanguageHandler.getLang());
         Locale.setDefault(locale);
         Configuration config = new Configuration();
         config.locale = locale;
