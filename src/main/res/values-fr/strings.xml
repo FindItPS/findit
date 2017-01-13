@@ -42,4 +42,7 @@
     <string name="comm_name">Communiquer</string>
     <string name="title_activity_search">Chercher</string>
     <string name="undo">ANNULER</string>
+    <string name="empty_cart_share">Tu as besoin au moins 1 objet pour partager</string>
+    <string name="share_via">Partager par</string>
+    <string name="share_subject">Mon Trouvez-Le Liste</string>
 </resources>

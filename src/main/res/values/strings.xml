@@ -14,8 +14,8 @@
     <string name="comm_name">Communicate</string>
     <string name="share_name">Share</string>
     <string name="send_name">Send</string>
-    <string name="drawer_open">Open Navigation Drawer</string>
-    <string name="drawer_close">Close Navigation Drawer</string>
+    <string name="drawer_open" translatable="false">Open Navigation Drawer</string>
+    <string name="drawer_close" translatable="false">Close Navigation Drawer</string>
 
     <!-- Search Activity Strings -->
     <string name="title_activity_search">Search</string>

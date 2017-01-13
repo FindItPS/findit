@@ -42,4 +42,7 @@
     <string name="title_activity_display">请选择显示主题</string>
     <string name="title_activity_search">搜索</string>
     <string name="undo">解开</string>
+    <string name="share_via">与某人分享</string>
+    <string name="share_subject">我的“找到它！\" 心愿单</string>
+    <string name="empty_cart_share">您的购物车至少需要分享1个项目</string>
 </resources>
