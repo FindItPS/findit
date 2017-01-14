@@ -129,9 +129,6 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
         } else if (id == R.id.nav_language_settings) {
             startActivity(new Intent(HomeScreen.this, LangSettings.class));
 
-        } else if (id == R.id.nav_location_settings) {
-            startActivity(new Intent(HomeScreen.this, MapsActivity.class));
-
         } else if (id == R.id.nav_display) {
             startActivity(new Intent(HomeScreen.this, Display.class));
 

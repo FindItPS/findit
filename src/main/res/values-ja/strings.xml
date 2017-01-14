@@ -29,7 +29,6 @@
     <string name="title_activity_book_search">書籍検索</string>
     <string name="title_activity_clothing_search">衣類の検索</string>
     <string name="title_activity_food_search">食品の検索</string>
-    <string name="title_activity_maps">あなたの場所を入力してください</string>
     <string name="title_activity_pet_search">ペットの検索</string>
     <string name="title_activity_tech_search">テクノロジーの検索</string>
     <string name="title_activity_toy_search">おもちゃの検索</string>
@@ -37,7 +36,6 @@
     <string name="action_settings">設定</string>
     <string name="action_sort">ソート</string>
     <string name="search_hint">検索クエリを入力</string>
-    <string name="set_location">あなたの場所を設定する</string>
     <string name="title_activity_display">表示テーマを選択する</string>
     <string name="comm_name">コミュニケーションする</string>
     <string name="title_activity_search">サーチ</string>

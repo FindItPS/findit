@@ -332,9 +332,6 @@ public class TechSearch extends AppCompatActivity implements NavigationView.OnNa
         } else if (id == R.id.nav_language_settings) {
             startActivity(new Intent(TechSearch.this, LangSettings.class));
 
-        } else if (id == R.id.nav_location_settings) {
-            startActivity(new Intent(TechSearch.this, MapsActivity.class));
-
         } else if (id == R.id.nav_display) {
             startActivity(new Intent(TechSearch.this, Display.class));
 

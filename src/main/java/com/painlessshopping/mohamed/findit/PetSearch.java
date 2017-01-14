@@ -322,9 +322,6 @@ public class PetSearch extends AppCompatActivity implements NavigationView.OnNav
         } else if (id == R.id.nav_language_settings) {
             startActivity(new Intent(PetSearch.this, LangSettings.class));
 
-        } else if (id == R.id.nav_location_settings) {
-            startActivity(new Intent(PetSearch.this, MapsActivity.class));
-
         } else if (id == R.id.nav_display) {
             startActivity(new Intent(PetSearch.this, Display.class));
 

@@ -19,10 +19,6 @@
             android:icon="@drawable/ic_g_translate_black_24dp"
             android:title="@string/lang_name" />
         <item
-            android:id="@+id/nav_location_settings"
-            android:icon="@drawable/ic_location_on_black_24dp"
-            android:title="@string/loca_name" />
-        <item
             android:id="@+id/nav_display"
             android:icon="@drawable/ic_settings_black_24dp"
             android:title="@string/display_name" />

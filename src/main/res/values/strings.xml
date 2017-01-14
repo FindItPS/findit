@@ -49,12 +49,6 @@
     <string name="sort_naz">Name: A to Z</string>
     <string name="sort_nza">Name: Z to A</string>
 
-    <!-- Location Setting Activity Strings-->
-    <string name="title_activity_maps">Enter Location</string>
-    <string name="set_location">Set Location</string>
-    <string name="location_set">Your Location has Successfully been Saved.</string>
-    <string name="map_hint" translatable="false"> 200 University Ave W, Waterloo</string>
-
     <!-- Display Setting Strings-->
     <string name="title_activity_display">Choose A Display Theme</string>
 

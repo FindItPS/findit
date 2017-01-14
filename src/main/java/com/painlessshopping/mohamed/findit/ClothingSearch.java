@@ -330,10 +330,7 @@ public class ClothingSearch extends AppCompatActivity implements NavigationView.
         } else if (id == R.id.nav_language_settings) {
             startActivity(new Intent(ClothingSearch.this, LangSettings.class));
 
-        } else if (id == R.id.nav_location_settings) {
-            startActivity(new Intent(ClothingSearch.this, MapsActivity.class));
-
-        } else if (id == R.id.nav_display) {
+        }  else if (id == R.id.nav_display) {
             startActivity(new Intent(ClothingSearch.this, Display.class));
 
         }
