@@ -324,9 +324,6 @@ public class BookSearch extends AppCompatActivity implements NavigationView.OnNa
         } else if (id == R.id.nav_language_settings) {
             startActivity(new Intent(BookSearch.this, LangSettings.class));
 
-        } else if (id == R.id.nav_location_settings) {
-            startActivity(new Intent(BookSearch.this, MapsActivity.class));
-
         } else if (id == R.id.nav_display) {
             startActivity(new Intent(BookSearch.this, Display.class));
 

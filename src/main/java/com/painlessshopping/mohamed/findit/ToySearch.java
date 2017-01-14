@@ -331,9 +331,6 @@ public class ToySearch extends AppCompatActivity implements NavigationView.OnNav
         } else if (id == R.id.nav_language_settings) {
             startActivity(new Intent(ToySearch.this, LangSettings.class));
 
-        } else if (id == R.id.nav_location_settings) {
-            startActivity(new Intent(ToySearch.this, MapsActivity.class));
-
         } else if (id == R.id.nav_display) {
             startActivity(new Intent(ToySearch.this, Display.class));
 

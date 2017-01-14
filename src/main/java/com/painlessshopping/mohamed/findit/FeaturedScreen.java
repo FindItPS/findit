@@ -96,9 +96,6 @@ public class FeaturedScreen extends AppCompatActivity implements NavigationView.
         } else if (id == R.id.nav_language_settings) {
             startActivity(new Intent(FeaturedScreen.this, LangSettings.class));
 
-        } else if (id == R.id.nav_location_settings) {
-            startActivity(new Intent(FeaturedScreen.this, MapsActivity.class));
-
         } else if (id == R.id.nav_display) {
             startActivity(new Intent(FeaturedScreen.this, Display.class));
 

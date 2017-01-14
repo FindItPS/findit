@@ -124,9 +124,6 @@ public class Display extends AppCompatActivity implements NavigationView.OnNavig
         } else if (id == R.id.nav_language_settings) {
             startActivity(new Intent(Display.this, LangSettings.class));
 
-        } else if (id == R.id.nav_location_settings) {
-            startActivity(new Intent(Display.this, MapsActivity.class));
-
         } else if (id == R.id.nav_display) {
             startActivity(new Intent(Display.this, Display.class));
 

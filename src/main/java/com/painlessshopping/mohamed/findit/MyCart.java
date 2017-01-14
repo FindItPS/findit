@@ -222,9 +222,6 @@ public class MyCart extends AppCompatActivity implements NavigationView.OnNaviga
         } else if (id == R.id.nav_language_settings) {
             startActivity(new Intent(MyCart.this, LangSettings.class));
 
-        } else if (id == R.id.nav_location_settings) {
-            startActivity(new Intent(MyCart.this, MapsActivity.class));
-
         } else if (id == R.id.nav_display) {
             startActivity(new Intent(MyCart.this, Display.class));
 
