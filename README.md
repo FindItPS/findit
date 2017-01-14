@@ -1,5 +1,5 @@
 # Find-It-Android #
-![alt tag](https://raw.githubusercontent.com/FindItPS/Find-It-Android/master/resourcePictures/Find_It_Banner.png "Find It! Banner")
+![alt tag](https://raw.githubusercontent.com/FindItPS/Find-It-Android/master/referencePictures/Find_It_Banner.png "Find It! Banner")
 
 ICS4U Project created by Mohamed Amadou and Samuel Jones.
 
