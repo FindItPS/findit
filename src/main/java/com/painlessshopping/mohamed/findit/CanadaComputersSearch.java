@@ -21,7 +21,7 @@ import java.util.ArrayList;
 /**
  * Fetches search results from the Canada Computers website.
  *
- * Created by Abdourahmane on 2016-11-28.
+ * Created by Mohamed on 2016-11-28.
  */
 
 public class CanadaComputersSearch extends SearchQuery{

@@ -5,7 +5,7 @@ import android.content.SharedPreferences;
 /**
  * Handles themes
  *
- * Created by Abdourahmane on 2017-01-02.
+ * Created by Mohamed on 2017-01-02.
  */
 
 public class ThemeHandler {

@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * Created by Abdourahmane on 2016-11-28.
+ * Created by Mohamed on 2016-11-28.
  */
 
 public class StaplesSearch extends SearchQuery{

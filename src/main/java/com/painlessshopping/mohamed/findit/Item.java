@@ -7,7 +7,7 @@ import java.util.Comparator;
 /**
  * Creates Item (Object type) to store details for website-collected information
  *
- * Created by Abdourahmane on 2016-11-28.
+ * Created by Mohamed on 2016-11-28.
  */
 
 public class Item{

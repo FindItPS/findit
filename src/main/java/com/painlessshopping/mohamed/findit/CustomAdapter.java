@@ -16,7 +16,7 @@ import java.util.ArrayList;
 /**
  * Adapter to help control the views not possible with XML
  *
- * Created by Abdourahmane on 2016-12-02.
+ * Created by Mohamed on 2016-12-02.
  */
 
 public class CustomAdapter extends ArrayAdapter<Item> implements View.OnClickListener{

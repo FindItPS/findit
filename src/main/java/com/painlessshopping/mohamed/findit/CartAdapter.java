@@ -16,7 +16,7 @@ import java.util.ArrayList;
 /**
  * Adapter to help control the view of the cart
  *
- * Created by Abdourahmane on 2016-12-12.
+ * Created by Mohamed on 2016-12-12.
  */
 
 public class CartAdapter extends ArrayAdapter<Item> implements View.OnClickListener{

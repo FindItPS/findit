@@ -11,7 +11,7 @@ import android.widget.ImageView;
 /**
  * Controls image button on the home screen
  *
- * Created by Abdourahmane on 2016-12-29.
+ * Created by Mohamed on 2016-12-29.
  */
 
 public class ImageAdapter extends BaseAdapter implements View.OnClickListener {

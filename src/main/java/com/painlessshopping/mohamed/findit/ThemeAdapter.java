@@ -18,7 +18,7 @@ import java.util.ArrayList;
 /**
  * Controls theme formatting
  *
- * Created by Abdourahmane on 2017-01-05.
+ * Created by Mohamed on 2017-01-05.
  */
 
 public class ThemeAdapter  extends BaseAdapter {

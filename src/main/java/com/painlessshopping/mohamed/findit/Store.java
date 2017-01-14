@@ -3,7 +3,7 @@ package com.painlessshopping.mohamed.findit;
 /**
  * Creates store object
  *
- * Created by Abdourahmane on 2016-12-15.
+ * Created by Mohamed on 2016-12-15.
  */
 
 public class Store {

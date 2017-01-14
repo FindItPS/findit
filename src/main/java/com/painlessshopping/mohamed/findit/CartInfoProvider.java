@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * Controls adding, removing and fetching items from cart
  *
- * Created by Abdourahmane on 2016-12-12.
+ * Created by Mohamed on 2016-12-12.
  */
 
 public class CartInfoProvider {

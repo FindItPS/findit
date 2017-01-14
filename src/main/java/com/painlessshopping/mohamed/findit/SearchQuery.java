@@ -10,7 +10,7 @@ import org.jsoup.select.Elements;
 /**
  * Controls different types of searches and their divisions
  *
- * Created by Abdourahmane on 2016-11-28.
+ * Created by Mohamed on 2016-11-28.
  */
 
 public class SearchQuery {

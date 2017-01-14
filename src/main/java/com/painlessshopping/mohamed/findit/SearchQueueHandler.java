@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 /**
  * Handles Search Queries
- * Created by Abdourahmane on 2017-01-02.
+ * Created by Mohamed on 2017-01-02.
  */
 
 public class SearchQueueHandler {

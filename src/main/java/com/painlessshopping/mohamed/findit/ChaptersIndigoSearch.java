@@ -21,7 +21,7 @@ import java.util.ArrayList;
 /**
  * Fetches search results from the Chapters-Indigo website.
  *
- * Created by Abdourahmane on 2016-12-07.
+ * Created by Mohamed on 2016-12-07.
  */
 
 public class ChaptersIndigoSearch  extends SearchQuery{
