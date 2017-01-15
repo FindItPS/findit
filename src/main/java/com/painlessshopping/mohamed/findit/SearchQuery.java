@@ -27,6 +27,8 @@ public class SearchQuery {
     private ProgressDialog dialog;
     private static int ccstatus, bbstatus = 0;
     public static final int BOOK_SEARCH = 1, FOOD_SEARCH = 2, PETS_SEARCH = 3, TECH_SEARCH = 4, TOYS_SEARCH = 5, CLOTHING_SEARCH = 6;
+    public int deviceNumberOfCores = getNumberOfCores();
+
 
     public SearchQuery(){
 
@@ -38,8 +40,31 @@ public class SearchQuery {
             if(q.length() >= 3){
 
                 BookSearch.adapter.clear();
-		new ChaptersIndigoSearch(c, q);
-                new MastermindToysSearch(c, q);
+
+                //If the processor has 8+ cores run the searches in parallel
+                //Otherwise, run them sequentially
+                if(deviceNumberOfCores > 3){
+
+                    //My (Sam's) tries at it
+                    //Currently all producing errors
+
+                    //This?
+                    new ChaptersIndigoSearch(c, q).fetcher.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+                    new MastermindToysSearch(c, q).fetcher.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+
+                    //Or maybe this?
+                    //(Correct me if I'm wrong but I think this runs it sequentially too?)
+                    ChaptersIndigoSearch chapters = new ChaptersIndigoSearch(c, q);
+                    MastermindToysSearch mastermind = new MastermindToysSearch(c, q);
+
+                    chapters.fetcher.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+                    mastermind.fetcher.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+
+                }else{
+
+                    new ChaptersIndigoSearch(c, q);
+                    new MastermindToysSearch(c, q);
+                }
 
             } else {
                 Toast.makeText(c, "The Minimum Query Length is 3 Characters", Toast.LENGTH_LONG).show();
@@ -106,5 +131,11 @@ public class SearchQuery {
 
         }
     }
+
+    private int getNumberOfCores(){
+
+        return Runtime.getRuntime().availableProcessors();
+    }
+
 
 }
