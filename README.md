@@ -33,7 +33,7 @@ H&M |
 Users will use search to find very different items with different criteria. They will be able to sort their results alphabetically and by price to best find their items in the list.
 
 ### Save for Later ###
-When out and about the shops users may want to have list of the items they have found on Find It! to purchase. When searching, users can add an item to the cart, saving information such as name, price, link and location.
+When out and about the shop's users may want to have a list of the items they have found on Find It! to purchase. When searching, users can add an item to the cart, saving information such as name, price, link and location.
 
 Users can also later export their cart in a text or email to people in their contact for their viewing. This will share all the information that is saved when the item gets added to the cart
 

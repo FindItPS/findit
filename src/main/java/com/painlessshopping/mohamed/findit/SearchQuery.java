@@ -2,10 +2,13 @@ package com.painlessshopping.mohamed.findit;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.os.AsyncTask;
 import android.widget.Toast;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
+
+import java.util.concurrent.Executor;
 
 /**
  * Controls different types of searches and their divisions
@@ -25,7 +28,6 @@ public class SearchQuery {
     private static int ccstatus, bbstatus = 0;
     public static final int BOOK_SEARCH = 1, FOOD_SEARCH = 2, PETS_SEARCH = 3, TECH_SEARCH = 4, TOYS_SEARCH = 5, CLOTHING_SEARCH = 6;
 
-
     public SearchQuery(){
 
     }
@@ -36,7 +38,7 @@ public class SearchQuery {
             if(q.length() >= 3){
 
                 BookSearch.adapter.clear();
-                new ChaptersIndigoSearch(c, q);
+		new ChaptersIndigoSearch(c, q);
                 new MastermindToysSearch(c, q);
 
 
@@ -105,6 +107,5 @@ public class SearchQuery {
 
         }
     }
-
 
 }
