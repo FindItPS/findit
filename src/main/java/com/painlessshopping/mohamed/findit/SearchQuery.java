@@ -39,6 +39,7 @@ public class SearchQuery {
                 new ChaptersIndigoSearch(c, q);
                 new MastermindToysSearch(c, q);
 
+
             } else {
                 Toast.makeText(c, "The Minimum Query Length is 3 Characters", Toast.LENGTH_LONG).show();
             }

@@ -77,6 +77,7 @@ public class Item{
     //Item sorts
     public static ArrayList<Item> sortItems(ArrayList<Item> unsorted, String sort){
 
+
         switch(sort){
 
             case "Price: Low to High" :

@@ -268,27 +268,23 @@ public class TechSearch extends AppCompatActivity implements NavigationView.OnNa
 
         adapter.clear();
 
-        switch(type){
+        final String pricelh = getResources().getString(R.string.sort_plh);
+        final String pricehl = getResources().getString(R.string.sort_phl);
 
-            case "Price: Low to High" :
-                adapter.addAll(Item.sortItems(results, getResources().getString(R.string.sort_plh)));
-                break;
+        final String nameaz = getResources().getString(R.string.sort_naz);
+        final String nameza = getResources().getString(R.string.sort_nza);
 
-            case "Price: High to Low" :
-                adapter.addAll(Item.sortItems(results, getResources().getString(R.string.sort_phl)));
-                break;
+        if(type.equals(pricelh)){
+            adapter.addAll(Item.sortItems(results, "Price: Low to High"));
 
-            case "Name: A to Z" :
-                adapter.addAll(Item.sortItems(results, getResources().getString(R.string.sort_naz)));
-                break;
+        } else if(type.equals(pricehl)){
+            adapter.addAll(Item.sortItems(results, "Price: High to Low"));
 
-            case "Name: Z to A" :
-                adapter.addAll(Item.sortItems(results, getResources().getString(R.string.sort_nza)));
-                break;
-            default:
-                adapter.addAll(results);
-                System.out.println("Default Sort has been carried out.");
-                break;
+        } else if(type.equals(nameaz)){
+            adapter.addAll(Item.sortItems(results, "Name: A to Z"));
+
+        } else if(type.equals(nameza)){
+            adapter.addAll(Item.sortItems(results, "Name: Z to A"));
         }
 
         adapter.notifyDataSetChanged();

@@ -68,7 +68,7 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
 
 
 
-    }//End of OnCreate**************************************
+    }
 
     //Controls Back Button Presses
     @Override
