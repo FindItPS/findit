@@ -35,7 +35,7 @@ public class SearchQuery {
     public SearchQuery(Context c, String q, int type){
 
         if(type == BOOK_SEARCH){
-            if(q.length() >= 3){
+            if(q.length() > 3){
 
                 BookSearch.adapter.clear();
 		new ChaptersIndigoSearch(c, q);
@@ -47,7 +47,7 @@ public class SearchQuery {
             }
 
         }else if (type == FOOD_SEARCH){
-            if(q.length() >= 3){
+            if(q.length() > 3){
 
                 FoodSearch.adapter.clear();
                 new RCSuperstoreSearch(c, q);
@@ -58,7 +58,7 @@ public class SearchQuery {
             }
 
         }else if (type == PETS_SEARCH){
-            if(q.length() >= 3){
+            if(q.length() > 3){
 
                 PetSearch.adapter.clear();
                 new PetSmartSearch(c, q);
@@ -69,7 +69,7 @@ public class SearchQuery {
             }
 
         }else if (type == TECH_SEARCH){
-            if(q.length() >= 3){
+            if(q.length() > 3){
 
                 TechSearch.adapter.clear();
                 new CanadaComputersSearch(c, q);
@@ -82,7 +82,7 @@ public class SearchQuery {
             }
 
         }else if (type == TOYS_SEARCH){
-            if(q.length() >= 3){
+            if(q.length() > 3){
 
                 ToySearch.adapter.clear();
                 new MastermindToysSearch(c, q);
@@ -93,7 +93,7 @@ public class SearchQuery {
             }
 
         }else if (type == CLOTHING_SEARCH){
-            if(q.length() >= 4){
+            if(q.length() > 3){
 
                 ClothingSearch.adapter.clear();
                 new RootsSearch(c, q);
