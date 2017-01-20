@@ -30,7 +30,7 @@
     <string name="finding_results">Finding Results!</string>
     <string name="empty_search">There are currently no available search results to display.</string>
     <string name="results_found"> relevant results have been retrieved.</string>
-    <string name="s_results_found">1 relevant result has been retrieved.</string>
+    <string name="s_results_found"> relevant result has been retrieved.</string>
 
 
     <!-- My Cart Activity Strings -->
