@@ -28,8 +28,14 @@ public class SearchQueueHandler {
 
                 if(BOOK_QUEUE == 0){
                     ListView list = (ListView) ((Activity) c).findViewById(R.id.listView);
-                    Snackbar.make(list, masterList.size() + " "  + c.getString(R.string.results_found), Snackbar.LENGTH_LONG ).show();
-                    System.out.println(masterList.size() + "Results have been REACHED.");
+                    
+                    if(masterList.size() == 1){
+                        Snackbar.make(list, masterList.size() + " "  + c.getString(R.string.s_results_found), Snackbar.LENGTH_LONG ).show();
+                        System.out.println(masterList.size() + "Results have been REACHED.");
+                    } else if (masterList.size() == 0 || masterList.size() > 1){
+                       Snackbar.make(list, masterList.size() + " "  + c.getString(R.string.results_found), Snackbar.LENGTH_LONG ).show();
+                       System.out.println(masterList.size() + "Results have been REACHED."); 
+                    }
 
                     masterList.clear();
                     BOOK_QUEUE = 4;
@@ -45,8 +51,14 @@ public class SearchQueueHandler {
 
                 if(FOOD_QUEUE == 0){
                     ListView list = (ListView) ((Activity) c).findViewById(R.id.listView);
-                    Snackbar.make(list, masterList.size() + " "  +  c.getString(R.string.results_found), Snackbar.LENGTH_LONG ).show();
-                    System.out.println(masterList.size() + "Results have been REACHED.");
+                    
+                    if(masterList.size() == 1){
+                        Snackbar.make(list, masterList.size() + " "  + c.getString(R.string.s_results_found), Snackbar.LENGTH_LONG ).show();
+                        System.out.println(masterList.size() + "Results have been REACHED.");
+                    } else if (masterList.size() == 0 || masterList.size() > 1){
+                       Snackbar.make(list, masterList.size() + " "  + c.getString(R.string.results_found), Snackbar.LENGTH_LONG ).show();
+                       System.out.println(masterList.size() + "Results have been REACHED."); 
+                    }
 
                     masterList.clear();
                     FOOD_QUEUE = 2;
@@ -62,8 +74,14 @@ public class SearchQueueHandler {
 
                 if(PETS_QUEUE == 0){
                     ListView list = (ListView) ((Activity) c).findViewById(R.id.listView);
-                    Snackbar.make(list, masterList.size() + " "  +  c.getString(R.string.results_found), Snackbar.LENGTH_LONG ).show();
-                    System.out.println(masterList.size() + "Results have been REACHED.");
+                    
+                    if(masterList.size() == 1){
+                        Snackbar.make(list, masterList.size() + " "  + c.getString(R.string.s_results_found), Snackbar.LENGTH_LONG ).show();
+                        System.out.println(masterList.size() + "Results have been REACHED.");
+                    } else if (masterList.size() == 0 || masterList.size() > 1){
+                       Snackbar.make(list, masterList.size() + " "  + c.getString(R.string.results_found), Snackbar.LENGTH_LONG ).show();
+                       System.out.println(masterList.size() + "Results have been REACHED."); 
+                    }
 
                     masterList.clear();
                     PETS_QUEUE = 4;
@@ -79,8 +97,14 @@ public class SearchQueueHandler {
 
                 if(TECH_QUEUE == 0){
                     ListView list = (ListView) ((Activity) c).findViewById(R.id.listView);
-                    Snackbar.make(list, masterList.size() + " "  +  c.getString(R.string.results_found), Snackbar.LENGTH_LONG ).show();
-                    System.out.println(masterList.size() + "Results have been REACHED.");
+                    
+                    if(masterList.size() == 1){
+                        Snackbar.make(list, masterList.size() + " "  + c.getString(R.string.s_results_found), Snackbar.LENGTH_LONG ).show();
+                        System.out.println(masterList.size() + "Results have been REACHED.");
+                    } else if (masterList.size() == 0 || masterList.size() > 1){
+                       Snackbar.make(list, masterList.size() + " "  + c.getString(R.string.results_found), Snackbar.LENGTH_LONG ).show();
+                       System.out.println(masterList.size() + "Results have been REACHED."); 
+                    }
 
                     masterList.clear();
                     TECH_QUEUE = 10;
@@ -96,9 +120,15 @@ public class SearchQueueHandler {
 
                 if(TOYS_QUEUE == 0){
                     ListView list = (ListView) ((Activity) c).findViewById(R.id.listView);
-                    Snackbar.make(list, masterList.size() + " "  +  c.getString(R.string.results_found), Snackbar.LENGTH_LONG ).show();
-                    System.out.println(masterList.size() + "Results have been REACHED.");
-
+                    
+                    if(masterList.size() == 1){
+                        Snackbar.make(list, masterList.size() + " "  + c.getString(R.string.s_results_found), Snackbar.LENGTH_LONG ).show();
+                        System.out.println(masterList.size() + "Results have been REACHED.");
+                    } else if (masterList.size() == 0 || masterList.size() > 1){
+                       Snackbar.make(list, masterList.size() + " "  + c.getString(R.string.results_found), Snackbar.LENGTH_LONG ).show();
+                       System.out.println(masterList.size() + "Results have been REACHED."); 
+                    }
+                    
                     masterList.clear();
                     TOYS_QUEUE = 4;
 
@@ -113,8 +143,14 @@ public class SearchQueueHandler {
 
                 if(CLOTHING_QUEUE == 0){
                     ListView list = (ListView) ((Activity) c).findViewById(R.id.listView);
-                    Snackbar.make(list, masterList.size() + " "  +  c.getString(R.string.results_found), Snackbar.LENGTH_LONG ).show();
-                    System.out.println(masterList.size() + "Results have been REACHED.");
+                    
+                    if(masterList.size() == 1){
+                        Snackbar.make(list, masterList.size() + " "  + c.getString(R.string.s_results_found), Snackbar.LENGTH_LONG ).show();
+                        System.out.println(masterList.size() + "Results have been REACHED.");
+                    } else if (masterList.size() == 0 || masterList.size() > 1){
+                       Snackbar.make(list, masterList.size() + " "  + c.getString(R.string.results_found), Snackbar.LENGTH_LONG ).show();
+                       System.out.println(masterList.size() + "Results have been REACHED."); 
+                    }
 
                     masterList.clear();
                     CLOTHING_QUEUE = 3;
