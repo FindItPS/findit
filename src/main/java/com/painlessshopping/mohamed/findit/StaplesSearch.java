@@ -170,10 +170,16 @@ public class StaplesSearch extends SearchQuery{
      */
     public Elements parse(Elements r){
 
-        results = r.select("div.stp--new-product-tile-container.desktop");
-        System.out.println(results.size() + " Results have been returned from Staples.");
+        if(r != null){
+            results = r.select("div.stp--new-product-tile-container.desktop");
+            System.out.println(results.size() + " Results have been returned from Staples.");
 
-        return results;
+            return results;
+        }
+        else {
+            return null;
+        }
+
     }
 
     public ArrayList<Item> crunchResults(Elements e){

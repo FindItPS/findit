@@ -183,18 +183,24 @@ public class CanadaComputersSearch extends SearchQuery{
      */
     public Elements parse(Elements r){
 
-        results = r.select(" tr.productListing-odd");
-        resultsEven = r.select(" tr.productListing-even");
+        if(r != null){
+            results = r.select(" tr.productListing-odd");
+            resultsEven = r.select(" tr.productListing-even");
 
-        //Add the "even" product listings to results array
-        for(int j = 0; j <resultsEven.size();j++){
-            results.add(resultsEven.get(j));
-        }
-        System.out.println(results.size() + " Results have been returned from CanadaComputers.");
+            //Add the "even" product listings to results array
+            for(int j = 0; j <resultsEven.size();j++){
+                results.add(resultsEven.get(j));
+            }
+            System.out.println(results.size() + " Results have been returned from CanadaComputers.");
 //        fetchPrice(results);
 //        fetchDescription(results);
 
-        return results;
+            return results;
+
+        } else {
+            return null;
+        }
+
     }
 
     public ArrayList<Item> crunchResults(Elements e){
