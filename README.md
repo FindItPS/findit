@@ -3,6 +3,8 @@
 
 ICS4U Project created by Mohamed Amadou and Samuel Jones.
 
+Currently in release [v1.0.1](https://github.com/FindItPS/Find-It-Android/releases)
+
 Licensed under Apache License Version 2.0
 
 ## Description ##
