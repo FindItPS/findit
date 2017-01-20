@@ -42,4 +42,5 @@
     <string name="empty_cart_share">あなたのカートは共有するために、少なくとも1つのアイテムを必要とします</string>
     <string name="share_subject">私の \"見つける！\" ウィッシュリスト</string>
     <string name="share_via">と共有する</string>
+    <string name="s_results_found">件の結果が見つかりました</string>
 </resources>

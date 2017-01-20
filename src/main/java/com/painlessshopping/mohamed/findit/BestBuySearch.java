@@ -109,7 +109,6 @@ public class BestBuySearch extends SearchQuery{
 
         //Get the link from the WebView, and save it in a final string so it can be accessed from worker thread
 
-
     }
 
     /**
