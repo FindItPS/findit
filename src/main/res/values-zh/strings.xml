@@ -42,4 +42,5 @@
     <string name="share_via">与某人分享</string>
     <string name="share_subject">我的“找到它！\" 心愿单</string>
     <string name="empty_cart_share">您的购物车至少需要分享1个项目</string>
+    <string name="s_results_found">" 检索到相关结果"</string>
 </resources>

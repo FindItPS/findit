@@ -42,4 +42,5 @@
     <string name="empty_cart_share">Tu as besoin au moins 1 objet pour partager</string>
     <string name="share_via">Partager par</string>
     <string name="share_subject">Mon Trouvez-Le Liste</string>
+    <string name="s_results_found">" résultat pertinent a été récupéré"</string>
 </resources>
