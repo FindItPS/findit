@@ -1,4 +1,4 @@
-# Find-It-Android #
+# 🛍 Find It! Painless Shopping #
 
 ![Find It UX Banner](https://raw.githubusercontent.com/FindItPS/Find-It-Android/master/referencePictures/Find_It_Banner.png "Find It! Banner")
 
