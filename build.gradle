@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 28
     buildToolsVersion "28.0.3"
     defaultConfig {
         applicationId "com.painlessshopping.mohamed.findit"
         minSdkVersion 17
-        targetSdkVersion 29
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -38,23 +38,28 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.0.2'
+        classpath 'com.android.tools.build:gradle:4.1.0'
     }
 }
 
+allprojects{
+    repositories {
+        google()
+        jcenter()
+    }
+}
 
 dependencies {
+
+
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    implementation 'com.android.support:multidex:'
-    implementation 'com.google.android.gms:play-services:12.0.1'
-    implementation 'com.android.support:support-v4:29.0.0'
-    implementation 'com.android.support:recyclerview-v7:29.0.1'
-    implementation 'com.android.support:appcompat-v7:29.0.1'
-    implementation 'com.android.support:design:29.0.1'
-    implementation 'org.jsoup:jsoup:1.10.1'
-    implementation 'com.android.support:support-vector-drawable:29.0.1'
+    // implementation 'com.google.android.gms:play-services:12.0.1'
+    implementation 'com.google.android.material:material:1.2.0'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.legacy:legacy-support-core-ui:1.0.0'
+    implementation 'org.jsoup:jsoup:1.13.1'
     testImplementation 'junit:junit:4.12'
 }
