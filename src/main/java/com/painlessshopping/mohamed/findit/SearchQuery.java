@@ -2,13 +2,10 @@ package com.painlessshopping.mohamed.findit;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.os.AsyncTask;
 import android.widget.Toast;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
-
-import java.util.concurrent.Executor;
 
 /**
  * Controls different types of searches and their divisions
