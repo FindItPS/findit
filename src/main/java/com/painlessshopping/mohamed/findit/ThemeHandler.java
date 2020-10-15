@@ -1,7 +1,5 @@
 package com.painlessshopping.mohamed.findit;
 
-import android.content.SharedPreferences;
-
 /**
  * Handles themes
  *

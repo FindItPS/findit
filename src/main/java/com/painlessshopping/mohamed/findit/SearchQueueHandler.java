@@ -2,7 +2,7 @@ package com.painlessshopping.mohamed.findit;
 
 import android.app.Activity;
 import android.content.Context;
-import android.support.design.widget.Snackbar;
+import com.google.android.material.snackbar.Snackbar;
 import android.widget.ListView;
 
 import java.util.ArrayList;

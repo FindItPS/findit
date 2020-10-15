@@ -1,26 +1,12 @@
 package com.painlessshopping.mohamed.findit;
 
 //Imports libraries
-
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.media.audiofx.BassBoost;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.Environment;
-import android.support.v7.app.AppCompatActivity;
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import androidx.appcompat.app.AppCompatActivity;
 import java.util.Locale;
 
 /**
