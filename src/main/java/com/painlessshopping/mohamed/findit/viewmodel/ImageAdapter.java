@@ -1,4 +1,4 @@
-package com.painlessshopping.mohamed.findit;
+package com.painlessshopping.mohamed.findit.viewmodel;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,6 +7,14 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+
+import com.painlessshopping.mohamed.findit.BookSearch;
+import com.painlessshopping.mohamed.findit.ClothingSearch;
+import com.painlessshopping.mohamed.findit.FoodSearch;
+import com.painlessshopping.mohamed.findit.PetSearch;
+import com.painlessshopping.mohamed.findit.R;
+import com.painlessshopping.mohamed.findit.TechSearch;
+import com.painlessshopping.mohamed.findit.ToySearch;
 
 /**
  * Controls image button on the home screen

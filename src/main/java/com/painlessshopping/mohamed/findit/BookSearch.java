@@ -15,6 +15,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 import com.google.android.material.navigation.NavigationView;
+import com.painlessshopping.mohamed.findit.model.Item;
+import com.painlessshopping.mohamed.findit.model.SearchQuery;
+import com.painlessshopping.mohamed.findit.viewmodel.CustomAdapter;
+import com.painlessshopping.mohamed.findit.viewmodel.LanguageHandler;
+import com.painlessshopping.mohamed.findit.viewmodel.ThemeHandler;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -105,33 +110,24 @@ public class BookSearch extends AppCompatActivity implements NavigationView.OnNa
 
     @Override
     protected void onNewIntent(Intent intent) {
-
         super.onNewIntent(intent);
         setIntent(intent);
         handleIntent(intent);
     }
 
     private void handleIntent(Intent intent) {
-
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
-
             new SearchQuery(BookSearch.this, query, 1);
-
-
         }
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_search, menu);
-
         SearchManager searchManager =(SearchManager) getSystemService(Context.SEARCH_SERVICE);
-
         SearchView searchView =(SearchView) menu.findItem(R.id.search).getActionView();
-
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-
         return true;
     }
 
@@ -141,14 +137,12 @@ public class BookSearch extends AppCompatActivity implements NavigationView.OnNa
      * @param item Items on the tool bar menu
      * @return Identifies that the sort has been completed
      */
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_settings:
                 final CharSequence sortTypes[] = new CharSequence[] {getResources().getString(R.string.sort_plh), getResources().getString(R.string.sort_phl),
                         getResources().getString(R.string.sort_naz), getResources().getString(R.string.sort_nza)};
-
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setTitle(getString(R.string.sort_rby));
                 builder.setItems(sortTypes, new DialogInterface.OnClickListener() {
@@ -159,12 +153,10 @@ public class BookSearch extends AppCompatActivity implements NavigationView.OnNa
                 });
                 builder.show();
                 return true;
-
             default:
                 // If we got here, the user's action was not recognized.
                 // Invoke the superclass to handle it.
                 return super.onOptionsItemSelected(item);
-
         }
     }
 
@@ -192,7 +184,6 @@ public class BookSearch extends AppCompatActivity implements NavigationView.OnNa
             fragment.setArguments(args);
             return fragment;
         }
-
     }
 
     /**
@@ -237,7 +228,6 @@ public class BookSearch extends AppCompatActivity implements NavigationView.OnNa
         return BookSearch.context;
     }
 
-
     /**
      * Controls sort
      *
@@ -255,25 +245,20 @@ public class BookSearch extends AppCompatActivity implements NavigationView.OnNa
 
         final String pricelh = getResources().getString(R.string.sort_plh);
         final String pricehl = getResources().getString(R.string.sort_phl);
-
         final String nameaz = getResources().getString(R.string.sort_naz);
         final String nameza = getResources().getString(R.string.sort_nza);
 
         if(type.equals(pricelh)){
             adapter.addAll(Item.sortItems(results, "Price: Low to High"));
-
         } else if(type.equals(pricehl)){
             adapter.addAll(Item.sortItems(results, "Price: High to Low"));
-
         } else if(type.equals(nameaz)){
             adapter.addAll(Item.sortItems(results, "Name: A to Z"));
-
         } else if(type.equals(nameza)){
             adapter.addAll(Item.sortItems(results, "Name: Z to A"));
         }
 
         adapter.notifyDataSetChanged();
-
     }
 
     //Controls back button presses
@@ -287,13 +272,11 @@ public class BookSearch extends AppCompatActivity implements NavigationView.OnNa
         }
     }
 
-
     /**
      * Controls navigation bar button reactions
      *
      * @param item Selected item on the navigation bar
      */
-
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -303,19 +286,14 @@ public class BookSearch extends AppCompatActivity implements NavigationView.OnNa
 
         if (id == R.id.nav_search) {
             startActivity(new Intent(BookSearch.this, HomeScreen.class));
-
         }  else if (id == R.id.nav_my_cart) {
             startActivity(new Intent(BookSearch.this, MyCart.class));
-
         } else if (id == R.id.nav_featured_stores) {
             startActivity(new Intent(BookSearch.this, FeaturedScreen.class));
-
         } else if (id == R.id.nav_language_settings) {
             startActivity(new Intent(BookSearch.this, LangSettings.class));
-
         } else if (id == R.id.nav_display) {
             startActivity(new Intent(BookSearch.this, Display.class));
-
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

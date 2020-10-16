@@ -1,4 +1,6 @@
-package com.painlessshopping.mohamed.findit;
+package com.painlessshopping.mohamed.findit.viewmodel;
+
+import com.painlessshopping.mohamed.findit.model.Item;
 
 import java.util.ArrayList;
 

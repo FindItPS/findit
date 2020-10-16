@@ -15,6 +15,12 @@ import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.TextView;
 import com.google.android.material.navigation.NavigationView;
+import com.painlessshopping.mohamed.findit.model.Item;
+import com.painlessshopping.mohamed.findit.viewmodel.CartAdapter;
+import com.painlessshopping.mohamed.findit.viewmodel.CartInfoProvider;
+import com.painlessshopping.mohamed.findit.viewmodel.LanguageHandler;
+import com.painlessshopping.mohamed.findit.viewmodel.ThemeHandler;
+
 import android.widget.Toast;
 
 import java.util.ArrayList;

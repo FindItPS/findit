@@ -1,4 +1,4 @@
-package com.painlessshopping.mohamed.findit;
+package com.painlessshopping.mohamed.findit.viewmodel;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,6 +12,11 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.painlessshopping.mohamed.findit.Display;
+import com.painlessshopping.mohamed.findit.OpeningScreen;
+import com.painlessshopping.mohamed.findit.R;
+import com.painlessshopping.mohamed.findit.model.Item;
 
 import java.util.ArrayList;
 

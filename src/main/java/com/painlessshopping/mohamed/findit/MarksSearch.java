@@ -10,6 +10,10 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import com.painlessshopping.mohamed.findit.model.Item;
+import com.painlessshopping.mohamed.findit.model.SearchQuery;
+import com.painlessshopping.mohamed.findit.viewmodel.SearchQueueHandler;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.jsoup.Jsoup;
@@ -25,7 +29,7 @@ import java.util.ArrayList;
  * Created by Sam on 2016-12-29.
  */
 
-public class MarksSearch extends SearchQuery{
+public class MarksSearch extends SearchQuery {
 
     //You do not need a resultsEven object. This was specific to CANADA COMPUTERS' WEBSITE
     public Elements resultsEven;

@@ -19,6 +19,9 @@ import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.painlessshopping.mohamed.findit.model.Item;
+import com.painlessshopping.mohamed.findit.viewmodel.CustomAdapter;
+
 import org.jsoup.nodes.Document;
 
 import java.util.ArrayList;

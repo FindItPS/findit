@@ -7,6 +7,10 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.painlessshopping.mohamed.findit.viewmodel.LanguageHandler;
+import com.painlessshopping.mohamed.findit.viewmodel.ThemeHandler;
+
 import java.util.Locale;
 
 /**

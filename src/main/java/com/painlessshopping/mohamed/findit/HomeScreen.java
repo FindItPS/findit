@@ -13,6 +13,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
 import com.google.android.material.navigation.NavigationView;
+import com.painlessshopping.mohamed.findit.viewmodel.ImageAdapter;
+import com.painlessshopping.mohamed.findit.viewmodel.LanguageHandler;
+import com.painlessshopping.mohamed.findit.viewmodel.ThemeHandler;
+
 import android.widget.GridView;
 
 import java.util.Locale;

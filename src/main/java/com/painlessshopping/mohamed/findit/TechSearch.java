@@ -24,6 +24,12 @@ import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.TextView;
 import com.google.android.material.navigation.NavigationView;
+import com.painlessshopping.mohamed.findit.model.Item;
+import com.painlessshopping.mohamed.findit.model.SearchQuery;
+import com.painlessshopping.mohamed.findit.viewmodel.CustomAdapter;
+import com.painlessshopping.mohamed.findit.viewmodel.LanguageHandler;
+import com.painlessshopping.mohamed.findit.viewmodel.ThemeHandler;
+
 import org.jsoup.nodes.Document;
 
 import java.util.ArrayList;

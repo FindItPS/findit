@@ -1,4 +1,4 @@
-package com.painlessshopping.mohamed.findit;
+package com.painlessshopping.mohamed.findit.model;
 
 /**
  * Creates store object

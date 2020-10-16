@@ -1,9 +1,12 @@
-package com.painlessshopping.mohamed.findit;
+package com.painlessshopping.mohamed.findit.viewmodel;
 
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import com.google.android.material.snackbar.Snackbar;
+import com.painlessshopping.mohamed.findit.model.Item;
+import com.painlessshopping.mohamed.findit.R;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

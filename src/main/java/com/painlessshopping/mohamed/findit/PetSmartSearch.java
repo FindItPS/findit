@@ -10,6 +10,10 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import com.painlessshopping.mohamed.findit.model.Item;
+import com.painlessshopping.mohamed.findit.model.SearchQuery;
+import com.painlessshopping.mohamed.findit.viewmodel.SearchQueueHandler;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -24,7 +28,7 @@ import java.util.ArrayList;
  * Created by Samuel on 2016-12-20.
  */
 
-public class PetSmartSearch extends SearchQuery{
+public class PetSmartSearch extends SearchQuery {
 
     public Elements resultsEven;
     public Elements finalDoc;

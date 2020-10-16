@@ -16,6 +16,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import android.view.MenuItem;
 import com.google.android.material.navigation.NavigationView;
+import com.painlessshopping.mohamed.findit.viewmodel.FeaturedStoresAdapter;
+import com.painlessshopping.mohamed.findit.viewmodel.LanguageHandler;
+import com.painlessshopping.mohamed.findit.viewmodel.ThemeHandler;
 
 import android.widget.GridView;
 

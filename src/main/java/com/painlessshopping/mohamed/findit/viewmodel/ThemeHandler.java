@@ -1,4 +1,6 @@
-package com.painlessshopping.mohamed.findit;
+package com.painlessshopping.mohamed.findit.viewmodel;
+
+import com.painlessshopping.mohamed.findit.R;
 
 /**
  * Handles themes
