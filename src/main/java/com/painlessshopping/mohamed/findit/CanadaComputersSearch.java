@@ -34,7 +34,6 @@ public class CanadaComputersSearch extends SearchQuery{
         @android.webkit.JavascriptInterface
         public void showHTML(String html) {
             final String htmlContent = html;
-
             uiHandler.post(
                     new Runnable() {
                         @Override
@@ -51,9 +50,7 @@ public class CanadaComputersSearch extends SearchQuery{
      * @param context The context taken from the webview (So that the asynctask can show progress)
      * @param query Provides the search term
      */
-
     public CanadaComputersSearch(Context context, String query) {
-
         final Context c = context;
 
         try {
@@ -84,8 +81,6 @@ public class CanadaComputersSearch extends SearchQuery{
                         }
                     }
             );
-
-
                 //Loads website with WebView to fetch results
                 browser.loadUrl("http://www.canadacomputers.com/simple_search.php?keywords=" + query);
                 browser.loadUrl(browser.getUrl());
@@ -95,11 +90,6 @@ public class CanadaComputersSearch extends SearchQuery{
                 new fetcher(c).execute(link);
                 new fetcher(c).execute(link + "&page=2");
                 new fetcher(c).execute(link + "&page=3");
-//
-//            }
-
-
-
         }
         catch(Exception e){
             e.printStackTrace();
@@ -111,9 +101,7 @@ public class CanadaComputersSearch extends SearchQuery{
      * This is done to prevent "lag".
      * To call this class you must write fetcher(Context c).execute(The link you want to connect to)
      */
-
     class fetcher extends AsyncTask<String, Void, Elements> {
-
         Context mContext;
         ProgressDialog pdialog;
 
@@ -146,34 +134,26 @@ public class CanadaComputersSearch extends SearchQuery{
                         .userAgent("Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36")
                         .timeout(10000)
                         .get();
-
                 //Defines which element of the website to observe
                 finalDoc = doc.select("body tbody");
-
-
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
             return finalDoc;
         }
 
 
         @Override
         protected void onPostExecute(Elements result) {
-
             processed = crunchResults(parse(result));
             System.out.println("Done Crunching CanadaComputers");
             TechSearch.adapter.addAll(processed);
             System.out.println("Adapter Notified by CanadaComputers");
-
             pdialog.dismiss();
 
             //Adds Canada Computers to the Tech Search
             TechSearch.adapter.notifyDataSetChanged();
             SearchQueueHandler.makeRequest(mContext, processed, SearchQueueHandler.TECH_SEARCH);
-
-
         }
     }
 
@@ -182,7 +162,6 @@ public class CanadaComputersSearch extends SearchQuery{
      * @param r The elements retrieved from the Asynctask "fetcher"
      */
     public Elements parse(Elements r){
-
         if(r != null){
             results = r.select(" tr.productListing-odd");
             resultsEven = r.select(" tr.productListing-even");
@@ -194,29 +173,20 @@ public class CanadaComputersSearch extends SearchQuery{
             System.out.println(results.size() + " Results have been returned from CanadaComputers.");
 //        fetchPrice(results);
 //        fetchDescription(results);
-
             return results;
-
         } else {
             return null;
         }
-
     }
 
     public ArrayList<Item> crunchResults(Elements e){
-
         ArrayList<Item> results = new ArrayList<Item>();
-
         try {
-
             for (int i = 0; i < e.size(); i++) {
 
                 Element ele = e.get(i).select("td").get(1);
-
                 String description = ele.select("div.item_description > a").first().text();
-
-                Elements ids = ele.select(" " +
-                        "div.partnum");
+                Elements ids = ele.select(" " + "div.partnum");
                 String unflink = ids.get(1).attr("id");
                 String link = "http://m.canadacomputers.com/mobile/itemid/" + unflink;
                 Element prices = e.get(i).select("td").get(2);
@@ -234,15 +204,12 @@ public class CanadaComputersSearch extends SearchQuery{
                 //Parses the double as an actual price
                 price = Double.parseDouble(pricestring);
                 String store = "Canada Computers";
-
                 results.add(new Item(description, store, price, link));
-
                 System.out.println(results.get(i).toString());
             }
         } catch (Exception a){
             a.printStackTrace();
         }
-
         return results;
     }
 
