@@ -53,7 +53,7 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.drawer_open, R.string.drawer_close);
-        drawer.setDrawerListener(toggle);
+        drawer.addDrawerListener(toggle);
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -65,8 +65,6 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
 
         //Sets toolbar text
         setTitle(getString(R.string.app_name));
-
-
 
     }
 
