@@ -124,7 +124,7 @@ public class FoodSearch extends AppCompatActivity implements NavigationView.OnNa
 
         SearchManager searchManager =(SearchManager) getSystemService(Context.SEARCH_SERVICE);
 
-        SearchView searchView =(SearchView) menu.findItem(R.id.search).getActionView();
+        SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
 
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
 
