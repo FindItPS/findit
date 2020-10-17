@@ -11,12 +11,13 @@ class TechSpider(scrapy.Spider):
         urls = [
             'https://www.canadacomputers.com/search/results_details.php?keywords=laptop',
         ]
-        script = "for(let x=0;x<4;x++) { setTimeOut(() => window.scrollTo(0,document.body.scrollHeight), 3000); }" # Arbitrarily chose to scroll 4 times
+        script = 'for(let x=0;x<4;x++) { window.setTimeout(() => window.scrollTo(0,document.body.scrollHeight), 6000); }' # Arbitrarily chose to scroll 4 times
         for url in urls:
             yield SeleniumRequest(url=url, 
             callback=self.parse,
             script=script, # If we want to get more results, we will have to deal with the scrollign timeout
-            wait_until=EC.element_to_be_clickable((By.CLASS_NAME, "productInfoSearch"))) # Will run any custom JS code 
+            script=script, # If we want to get more results, we will have to deal with the scrolling timeout
+            )
 
     def parse(self, response):
         page = response.url.split("/")[-2]
