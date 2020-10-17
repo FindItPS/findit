@@ -10,7 +10,7 @@
 from shutil import which
 
 SELENIUM_DRIVER_NAME = 'chrome'
-SELENIUM_DRIVER_EXECUTABLE_PATH = which('geckodriver')
+SELENIUM_DRIVER_EXECUTABLE_PATH = which('chromedriver') # 'geckodriver' if using firefox; don't forget to install geckodriver!
 SELENIUM_DRIVER_ARGUMENTS=['--headless'] # '-headless` if using firefox
 SELENIUM_BROWSER_EXECUTABLE_PATH = which('chrome')
 
